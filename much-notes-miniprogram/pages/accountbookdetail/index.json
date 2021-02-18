@@ -1,0 +1,8 @@
+{
+  "navigationBarTitleText": "账本管理",
+  "usingComponents": {
+    "van-button": "../../components/dist/button/index",
+    "van-action-sheet": "../../components/dist/action-sheet/index",
+    "van-dialog": "../../components/dist/dialog/index"
+  }
+}

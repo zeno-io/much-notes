@@ -1,0 +1,20 @@
+<!--pages/accountbookdetail/index.wxml-->
+<view class="content">
+  <block wx:for="{{list}}">
+    <view class="item">
+      <image class="item-img" mode="widthFix" src="{{item.head_img}}"></image>
+      <view class="left-wrap">
+        <view class="item-name {{item.id==adminUid?'item-admin':''}}">{{item.nickname}}</view>
+
+        <image wx:if="{{uid==adminUid&&uid!=item.id}}" bindtap="showEditActions" data-uid="{{item.id}}" class="item-icon" mode="widthFix" src="http://wxjizhang.oss-cn-hangzhou.aliyuncs.com/assets/icon_edit.png"></image>
+      </view>
+
+    </view>
+  </block>
+</view>
+<view class="btn-wrap">
+  <van-button bind:click="showActions" round type="info" custom-class="my-btn" size="large">管理</van-button>
+</view>
+<van-action-sheet show="{{ show }}" actions="{{ actions }}" bind:close="onClose" bind:select="onSelect" />
+<van-action-sheet show="{{ editShow }}" actions="{{ editActions }}" bind:close="onEditClose" bind:select="onEditSelect" />
+<van-dialog id="van-dialog" />

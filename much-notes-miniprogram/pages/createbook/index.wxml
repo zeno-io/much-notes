@@ -1,0 +1,15 @@
+<!--pages/createbook/index.wxml-->
+<van-cell-group>
+  <van-field
+    value="{{ value }}"
+    placeholder="请输入账单名"
+    border="{{ false }}"
+    bind:change="onChange"
+  />
+</van-cell-group>
+<view class="btn-wrap">
+  <van-button class="btn-submit" bind:click="submit" round size="large"  type="info">创建</van-button>
+</view>
+<van-toast id="van-toast" />
+
+

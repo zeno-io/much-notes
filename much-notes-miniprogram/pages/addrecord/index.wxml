@@ -1,0 +1,47 @@
+<!--pages/addrecord/index.wxml-->
+<view class="wrap">
+  <scroll-view class="tabs-wrap">
+    <van-tabs type="card" animated swipeable active="{{ tabActive }}" bind:change="onTabChange">
+      <van-tab title="支出">
+        <view class="info-wrap">
+          <!-- 这里展示选中的分类 -->
+          <view class="info-wrap-left">
+            <image class="info-icon" mode='widtFix' src="{{zcCategoryList[zcCategorySelectedIndex].icon[1]}}"></image>
+            <view class="info-category">
+              {{zcCategoryList[zcCategorySelectedIndex].name}}
+            </view>
+          </view>
+          <view class="info-money">{{value===''?"0.00":value}}</view>
+        </view>
+        <view class='category-wrap'>
+          <view wx:for="{{zcCategoryList}}" class='category-item' data-index='{{index}}' bindtap='categroyItemSelect'>
+            <image class='category-item-img' mode='widtFix' src="{{zcCategorySelectedIndex==index?item.icon[1]:item.icon[0]}}"></image>
+            <view class='category-item-name'>{{item.name}}</view>
+          </view>
+        </view>
+      </van-tab>
+      <van-tab title="收入">
+        <view class="info-wrap">
+          <!-- 这里展示选中的分类 -->
+          <view class="info-wrap-left">
+            <image class="info-icon" mode='widtFix' src="{{srCategoryList[srCategorySelectedIndex].icon[1]}}"></image>
+            <view class="info-category">
+              {{srCategoryList[srCategorySelectedIndex].name}}
+            </view>
+          </view>
+          <view class="info-money">{{value}}</view>
+        </view>
+        <view class='category-wrap'>
+          <view wx:for="{{srCategoryList}}" class='category-item' data-index='{{index}}' bindtap='categroyItemSelect'>
+            <image class='category-item-img' mode='widtFix' src="{{srCategorySelectedIndex==index?item.icon[1]:item.icon[0]}}"></image>
+            <view class='category-item-name'>{{item.name}}</view>
+          </view>
+        </view>
+      </van-tab>
+    </van-tabs>
+  </scroll-view>
+
+
+  <jz-input bind:numChange="numChange" initDate='{{initDate}}' accountType='{{accountType}}' initRemark='{{remark}}' initValue='{{value}}' bind:submit='submit'>
+  </jz-input>
+</view>

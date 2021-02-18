@@ -1,0 +1,10 @@
+/* pages/createbook/index.wxss */
+.btn-wrap{
+  margin-top: 10vh;
+  text-align: center;
+  padding: 1vh 4vw;
+}
+.btn-submit button{
+  height: auto !important;
+  line-height: 12vw!important;
+}

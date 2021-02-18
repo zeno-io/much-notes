@@ -1,0 +1,52 @@
+<!--components/jz-input.wxml-->
+<!-- 日期及备注 -->
+<view class='jz-input-info-wrap'>
+  <view class='jz-input-date-account-wrap'>
+    <view class='jz-input-rl-wrap' bindtap='showDateSelect'>{{day}}</view>
+    <view class='jz-input-account' bindtap='selectAccount'>
+      <image class='jz-input-account-icon' src="{{accountList[accountSelectedIndex].icon}}"></image>
+      <view class="jz-input-account-name">{{accountList[accountSelectedIndex].name}}</view>
+    </view>
+  </view>
+  <input value='{{remark}}' bindinput="remarkInput" class='jz-input-remark-input' placeholder='备注'>
+
+  </input>
+
+</view>
+<!-- 选择账户的 -->
+<van-action-sheet show="{{ showAccountSelect }}" title="选择账户" bind:close="onAccountSelectClose">
+  <block wx:for="{{accountList}}">
+    <view class="jz-input-account-item" data-index='{{index}}' bindtap='onAccountSelect'>
+      <view class='jz-input-account-item-info-wrap'data-index='{{index}}'>
+        <image class='jz-input-account-item-icon' src="{{item.icon}}"></image>
+        <view class="jz-input-account-item-name {{item.selected?'jz-input-account-item-selected':''}}">{{item.name}}</view>
+      </view>
+      <view class="jz-input-account-balance {{item.selected?'jz-input-account-item-selected':''}}">{{item.balance}}</view>
+    </view>
+  </block>
+</van-action-sheet>
+<!-- 日期选择弹出view -->
+<van-popup position='bottom' show="{{ show }}" bind:close="onClose">
+  <van-datetime-picker type="date" value="{{ currentDate }}" bind:cancel="onClose" bind:confirm="dateInput" formatter="{{ formatter }}" />
+</van-popup>
+<!-- 数字输入 -->
+<view class='btn-input-wrap'>
+  <view class='btn-num-wrap'>
+    <view class='btn-num jz-input-7' data-num='7' data-type='num' bindtap='numInput' hover-class="btn-hover">7</view>
+    <view class='btn-num jz-input-8' data-num='8' data-type='num' bindtap='numInput' hover-class="btn-hover">8</view>
+    <view class='btn-num jz-input-9' data-num='9' data-type='num' bindtap='numInput' hover-class="btn-hover">9</view>
+    <view class='btn-num jz-input-4' data-num='4' data-type='num' bindtap='numInput' hover-class="btn-hover">4</view>
+    <view class='btn-num jz-input-5' data-num='5' data-type='num' bindtap='numInput' hover-class="btn-hover">5</view>
+    <view class='btn-num jz-input-6' data-num='6' data-type='num' bindtap='numInput' hover-class="btn-hover">6</view>
+    <view class='btn-num jz-input-1' data-num='1' data-type='num' bindtap='numInput' hover-class="btn-hover">1</view>
+    <view class='btn-num jz-input-2' data-num='2' data-type='num' bindtap='numInput' hover-class="btn-hover">2</view>
+    <view class='btn-num jz-input-3' data-num='3' data-type='num' bindtap='numInput' hover-class="btn-hover">3</view>
+    <view class='btn-num jz-input-empty' bindtap='numInput' data-type='empty' bindtap='numInput' hover-class="btn-hover">清空</view>
+    <view class='btn-num jz-input-dot' data-num='.' data-type='num' bindtap='numInput' hover-class="btn-hover">.</view>
+    <view class='btn-num jz-input-0' data-num='0' data-type='num' bindtap='numInput' hover-class="btn-hover">0</view>
+  </view>
+  <view class='btn-op-wrap'>
+    <view class='btn-op jz-input-del' bindtap='numInput' data-type='del' hover-class="btn-hover">删除</view>
+    <view class='btn-op jz-input-ok' bindtap='ok' hover-class="btn-hover">确定</view>
+  </view>
+</view>

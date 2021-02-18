@@ -1,0 +1,49 @@
+/* pages/balance/index.wxss */
+
+.top{
+  padding: 3vh 4vw;
+  color: #55B162;
+  background: #FEF1CF;
+}
+.top-title{
+  font-size: 5vw;
+}
+.info-wrap{
+  font-size: 3.5vw;
+  display: flex;
+  justify-items: center;
+  margin-top: 3vh;
+}
+.info-sr{
+  margin-left: 4vw;
+}
+.item-wrap{
+  background: white;
+}
+.item{
+  border-bottom: #fafafa 1px solid;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 3vw;
+}
+.item-icon{
+  width: 6vw;
+  height: 6vw;
+  border-radius: 1vw;
+}
+.item-img-arrow{
+  width: 3vw;
+}
+.item-left-wrap,.item-right-wrap{
+  display: flex;
+  align-items: center;
+}
+.item-img-arrow{
+  padding-left: 3vw;
+}
+.item-name,.item-balance{
+  color: #666666;
+  font-size: 3.5vw;
+  padding-left: 3vw;
+}

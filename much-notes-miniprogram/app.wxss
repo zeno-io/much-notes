@@ -1,0 +1,16 @@
+/**app.wxss**/
+@import "/components/dist/common/index.wxss";
+
+
+
+page {
+  background-color: #f2f9fb;
+}
+
+.my-btn {
+  height: auto !important;
+  line-height: 12vw !important;
+  color: #fff;
+  background-color: #1989fa;
+  border: 1px solid #1989fa;
+}

@@ -1,0 +1,27 @@
+/* pages/balanceedit/index.wxss */
+.content{
+  padding: 2vw;
+  background: white;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.left-wrap{
+  display: flex;
+  align-items: center;
+}
+.icon{
+  margin-right: 3vw;
+  width: 7vw;
+  height: 7vw;
+  border-radius: 1vw;
+}
+.btn-wrap{
+  margin-top: 5vh;
+  text-align: center;
+  padding: 1vh 4vw;
+}
+.btn-submit button{
+  height: auto !important;
+  line-height: 12vw!important;
+}

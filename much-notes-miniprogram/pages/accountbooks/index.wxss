@@ -1,0 +1,52 @@
+/* pages/accountbooks/index.wxss */
+.content {
+  height: 100vh;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.ab-list {
+  flex-grow: 1;
+}
+
+.btn-add {
+  background: white;
+  height: 7vh;
+  width: 100%;
+  text-align: center;
+  border-top: #cffafd 0.5px solid;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #00bceb;
+}
+
+.item {
+  background: white;
+  padding: 2vw;
+  margin: 2vw;
+  box-shadow: rgb(230, 230, 230) 2rpx 3rpx 6rpx 1rpx;
+  border-radius: 5rpx;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
+.item-info{
+  display: flex;
+  align-items: center;
+}
+.item-icon{
+  width: 8vw;
+  /* height: auto; */
+}
+.item-name{
+  color: #333;
+  font-size: 4vw;
+  margin-left:4vw;
+}
+.item-arrow{
+  width: 4vw;
+}

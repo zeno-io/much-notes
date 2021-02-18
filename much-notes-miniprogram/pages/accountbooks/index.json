@@ -1,0 +1,6 @@
+{
+  "navigationBarTitleText": "我的账本",
+  "usingComponents": {
+    "van-icon": "../../components/dist/icon/index"
+  }
+}

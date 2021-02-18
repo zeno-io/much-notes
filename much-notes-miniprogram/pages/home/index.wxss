@@ -1,0 +1,71 @@
+/* pages/home/index.wxss */
+
+.top {
+  background-color: #eee1d9;
+  height: 15vh;
+  /* border-bottom-left-radius: 50%; *//* border-bottom-right-radius: 50%; */
+}
+
+.title {
+  text-align: center;
+  color: #5bb568;
+  font: 4.5vw;
+}
+
+.container {
+  position: absolute;
+  top: 18vh;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  box-sizing: border-box;
+}
+
+#column-dom {
+  height: 50%;
+  width: 100%;
+}
+
+/* 年份切换-start */
+
+.year-container {
+  padding-top:4v; 
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.ani-wrap{
+  width: 20vw;
+  font-size: 4.5vw;
+  color: #333;
+  margin: 0 2vw;
+  overflow: hidden;
+  border-radius: 3vw;
+  background: white;
+}
+
+.year-wrap {
+  display: flex;
+  flex-wrap: nowrap;
+  justify-content: flex-end;
+}
+
+.year-item {
+  text-align: center;
+  flex-shrink: 0;
+  width: 20vw;
+}
+.img{
+  width: 4vw;
+  height: 4vw;
+  padding: 2vw;
+}
+.img-right{
+  transform: rotate(180deg);
+}
+
+/* 年份切换-end */

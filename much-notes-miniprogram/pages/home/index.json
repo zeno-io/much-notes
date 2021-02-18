@@ -1,0 +1,8 @@
+{
+  "navigationBarTextStyle": "black",
+  "navigationBarBackgroundColor": "#EEE1D9",
+  "navigationBarTitleText": "统计",
+  "usingComponents": {
+    "ff-canvas": "@antv/f2-canvas"
+  }
+}

@@ -1,0 +1,7 @@
+{
+  "navigationBarTitleText": "资产编辑",
+  "usingComponents": {
+    "van-button": "../../components/dist/button/index",
+    "van-field": "../../components/dist/field/index"
+  }
+}

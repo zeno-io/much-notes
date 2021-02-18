@@ -1,0 +1,10 @@
+{
+  "navigationBarTitleText": "创建账本",
+  "usingComponents": {
+    "van-cell": "../../components/dist/cell/index",
+    "van-cell-group": "../../components/dist/cell-group/index",
+    "van-field": "../../components/dist/field/index",
+    "van-button": "../../components/dist/button/index",
+    "van-toast": "../../components/dist/toast/index"
+  }
+}

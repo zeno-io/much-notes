@@ -1,0 +1,8 @@
+{
+  "component": true,
+  "usingComponents": {
+    "van-datetime-picker": "../dist/datetime-picker/index",
+    "van-popup": "../dist/popup/index",
+    "van-action-sheet": "../dist/action-sheet/index"
+  }
+}

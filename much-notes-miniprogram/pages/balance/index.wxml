@@ -1,0 +1,22 @@
+<!--pages/balance/index.wxml-->
+<view class='content'>
+  <view class='top'>
+    <view class='top-title'>资产总计</view>
+    <view class='info-wrap'>
+      <view class='info-count'>{{total/100}}</view>
+    </view>
+  </view>
+  <view class='item-wrap'>
+    <view wx:for="{{accountList}}" class='item' data-index='{{index}}' bindtap='toEdit'>
+      <view class='item-left-wrap'>
+        <image class='item-icon' src='{{item.icon}}' mode='widthFix'></image>
+        <view class='item-name'>{{item.name}}</view>
+      </view>
+      <view class='item-right-wrap'>
+        <view class='item-balance'>{{item.balance/100}}</view>
+        <image mode='widthFix' class='item-img-arrow' src='../../imgs/icon_arrow.png'></image>
+      </view>
+
+    </view>
+  </view>
+</view>

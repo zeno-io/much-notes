@@ -1,0 +1,8 @@
+{
+  "navigationBarTitleText": "账单编辑",
+  "usingComponents": {
+    "van-dialog": "../../components/dist/dialog/index",
+    "van-button": "../../components/dist/button/index",
+    "van-toast": "../../components/dist/toast/index"
+  }
+}

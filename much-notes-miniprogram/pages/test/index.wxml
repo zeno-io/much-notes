@@ -1,0 +1,86 @@
+<view id="container">
+  <block wx:for="{{list}}">
+    <view class="group">
+      <view id="sticky{{index}}" class="sticky {{positions[index]}}">
+        {{item.title}}
+      </view>
+      
+      <view class="content">
+        <block wx:for="{{item.records}}">
+           <view class='s-test'>{{item}}</view>
+        </block>
+      </view>
+      <view id="sticky_sentinel--top{{index}}" class="sticky_sentinel sticky_sentinel--top"></view>
+      <view id="sticky_sentinel--bottom{{index}}" class="sticky_sentinel sticky_sentinel--bottom"></view>
+    </view>
+  </block>
+  <!-- <view class="group" style='padding-top:40px;'>
+    <view id="sticky0" class="sticky {{positions[0]}}">
+      <h2 id="No">No</h2>
+    </view>
+    <view class="content">
+
+      <view class='s-test'>111111111</view>
+      <view class='s-test'>111111111</view>
+      <view class='s-test'>111111111</view>
+      <view class='s-test'>111111111</view>
+      <view class='s-test'>111111111</view>
+      <view class='s-test'>111111111</view>
+      <view class='s-test'>111111111</view>
+      <view class='s-test'>111111111</view>
+      <view class='s-test'>111111111</view>
+      <view class='s-test'>111111111</view>
+      <view class='s-test'>111111111</view>
+      <view class='s-test'>111111111</view>
+      <view class='s-test'>111111111</view>
+    </view>
+    <view id="sticky_sentinel--top0" class="sticky_sentinel sticky_sentinel--top">sticky_sentinel sticky_sentinel--top</view>
+    <view id="sticky_sentinel--bottom0" class="sticky_sentinel sticky_sentinel--bottom">sticky_sentinel sticky_sentinel--bottom</view>
+  </view>
+
+  <view class="group">
+    <view id="sticky1" class="sticky {{positions[1]}}">
+      <h2 id="JavaScript">JavaScript</h2>
+    </view>
+    <view class="content">
+      <view class='s-test'>111111111</view>
+      <view class='s-test'>111111111</view>
+      <view class='s-test'>111111111</view>
+      <view class='s-test'>111111111</view>
+      <view class='s-test'>111111111</view>
+      <view class='s-test'>111111111</view>
+      <view class='s-test'>111111111</view>
+      <view class='s-test'>111111111</view>
+      <view class='s-test'>111111111</view>
+      <view class='s-test'>111111111</view>
+      <view class='s-test'>111111111</view>
+      <view class='s-test'>111111111</view>
+      <view class='s-test'>111111111</view>
+    </view>
+    <view id="sticky_sentinel--top1" class="sticky_sentinel sticky_sentinel--top">sticky_sentinel sticky_sentinel--top</view>
+    <view id="sticky_sentinel--bottom1" class="sticky_sentinel sticky_sentinel--bottom">sticky_sentinel sticky_sentinel--bottom</view>
+  </view>
+
+  <view class="group">
+    <view id="sticky2" class="sticky {{positions[2]}}">
+      <h2 id="scroll-events">scroll events</h2>
+    </view>
+    <view class="content">
+      <view class='s-test'>111111111</view>
+      <view class='s-test'>111111111</view>
+      <view class='s-test'>111111111</view>
+      <view class='s-test'>111111111</view>
+      <view class='s-test'>111111111</view>
+      <view class='s-test'>111111111</view>
+      <view class='s-test'>111111111</view>
+      <view class='s-test'>111111111</view>
+      <view class='s-test'>111111111</view>
+      <view class='s-test'>111111111</view>
+      <view class='s-test'>111111111</view>
+      <view class='s-test'>111111111</view>
+      <view class='s-test'>111111111</view>
+    </view>
+    <view id="sticky_sentinel--top2" class="sticky_sentinel sticky_sentinel--top">sticky_sentinel sticky_sentinel--top</view>
+    <view id="sticky_sentinel--bottom2" class="sticky_sentinel sticky_sentinel--bottom">sticky_sentinel sticky_sentinel--bottom</view>
+  </view> -->
+</view>

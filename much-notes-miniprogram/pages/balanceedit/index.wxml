@@ -1,0 +1,17 @@
+<!--pages/balanceedit/index.wxml-->
+<view class='content'>
+  <view class='left-wrap'>
+    <image src='{{icon}}' mode='widthFix' class='icon'></image>
+    <view class='type-name'>{{name}}</view>
+  </view>
+  <van-field
+    value="{{ balance/100 }}"
+    border="{{ false }}"
+    type='number'
+    input-align='right'
+    bind:change="onChange"
+  />
+</view>
+<view class="btn-wrap">
+  <van-button class="btn-submit" bind:click="submit" round size="large"  type="info">提交</van-button>
+</view>

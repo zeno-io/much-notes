@@ -1,0 +1,43 @@
+<!--pages/recorddetail/index.wxml-->
+<view class='content'>
+  <view class='container-info'>
+    <view class='info-info-wrap'>
+      <view class='img-category-wrap'>
+        <image class='img-category' src='{{icon}}'></image>
+        <view class='category-type-wrap'>
+          <view class='category-name'>{{categoryNmae}}</view>
+          <view class='type'>{{type}}</view>
+        </view>
+      </view>
+      <view class='money'>{{money/100}}</view>
+    </view>
+    <view class='info-info-wrap'>
+      <view class='info-title'>账户</view>
+      <view class='info-value'>{{account_type_name}}</view>
+    </view>
+    <view class='info-info-wrap'>
+      <view class='info-title'>记录人</view>
+      <view class='info-value'>{{nickname}}</view>
+    </view>
+    <view class='info-info-wrap'>
+      <view class='info-title'>发生时间</view>
+      <view class='info-value'>{{time}}</view>
+    </view>
+
+    <view class='info-info-wrap'>
+      <view class='info-title'>修改时间</view>
+      <view class='info-value'>{{date}}</view>
+    </view>
+    <view class='info-info-wrap'>
+      <view class='info-title'>备注</view>
+      <view class='info-value'>{{remark==null?"":remark}}</view>
+    </view>
+  </view>
+  <view class='container-btn'>
+    <view bindtap='del' class='btn del'>删除</view> 
+    <view bindtap='edit' class='btn edit'>编辑</view> 
+  </view>
+
+</view>
+<van-dialog id="van-dialog" />
+<van-toast id="van-toast" />

@@ -1,0 +1,37 @@
+/* pages/my/index.wxss */
+.content{
+  height: 100vh;
+  background-color: white;
+}
+.img-avatarUrl{
+  width: 15vw;
+  height: 15vw;
+  border-radius: 50%;
+  margin: 5vw;
+  border: white 1rpx solid;
+}
+.user-info-wrap{
+  display: flex;
+  align-items: center;
+  background: #E7F3DB;
+}
+.nickname{
+  font-size: 5vw;
+  color: #55B162;
+}
+.user-zc{
+  padding: 3vh 0;
+  margin: 2vw 8vw;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: #ececec 1px solid;
+}
+.icon-arrow{
+  width: 4vw;
+}
+.vip{
+  color: yellowgreen;
+  font-size: 4vw;
+  text-align: center;
+}

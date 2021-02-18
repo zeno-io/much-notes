@@ -1,0 +1,158 @@
+/* components/jz-input.wxss */
+
+.btn-num {
+  box-sizing: border-box;
+  background-color: #3b414d;
+  color: white;
+  width: 25vw;
+  height: 12vw;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.jz-input-7, .jz-input-8, .jz-input-9, .jz-input-4, .jz-input-5, .jz-input-6,
+.jz-input-1, .jz-input-2, .jz-input-3 {
+  border-bottom: #4e545f 0.5px solid;
+}
+
+.jz-input-7, .jz-input-8, .jz-input-4, .jz-input-5, .jz-input-1, .jz-input-2,
+.jz-input-empty, .jz-input-dot {
+  border-right: #4e545f 0.5px solid;
+}
+
+.btn-num-wrap {
+  box-sizing: border-box;
+  display: flex;
+  flex-wrap: wrap;
+  width: 75vw;
+}
+
+.btn-op-wrap {
+  display: flex;
+  width: 25vw;
+  flex-direction: column;
+  height: 48vw;
+}
+
+.btn-op {
+  justify-content: center;
+  align-items: center;
+  background-color: #3b414d;
+  color: white;
+  display: flex;
+  height: 24vw;
+  width: 25vw;
+  box-sizing: border-box;
+  border: #4e545f 0.5px solid;
+}
+
+.btn-input-wrap {
+  font-size: 4vw;
+  display: flex;
+  font-family: '微软雅黑';
+}
+
+.jz-input-del {
+  border-bottom: none;
+}
+
+.btn-hover {
+  /* box-shadow:0px 0px 8px rgb(61, 50, 73) inset;  */
+  background-color: rgb(58, 49, 68);
+}
+
+.jz-input-ok {
+  color: rgb(224, 222, 55);
+}
+
+/* 顶部样式 */
+
+.jz-input-rl-wrap {
+  background-image: url('http://jz.wwfarm.cn/assets/icon_rl.png');
+  background-size: 100%;
+  background-repeat: no-repeat;
+  color: #797979;
+  padding: 1.5vw;
+  font-size: 3.5vw;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 7vw;
+  height: 7vw;
+  box-sizing: border-box;
+}
+
+.jz-input-info-wrap {
+  padding: 1vw;
+  background: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.jz-input-date-account-wrap {
+  display: flex;
+  align-items: center;
+}
+
+.jz-input-remark-input {
+  display: flex;
+  align-items: center;
+  width: 15vw;
+  font-size: 3.5vw;
+  justify-content: center;
+  color: #797979;
+  /* border-radius: 50%; */
+  border-bottom: #ccc 1px solid;
+}
+
+.jz-input-account-item-info-wrap {
+  display: flex;
+}
+
+.jz-input-account-item {
+  padding: 2vw 5vw;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: #eee 1rpx solid;
+}
+
+.jz-input-account-item-icon {
+  width: 7vw;
+  height: 7vw;
+  border-radius: 4rpx;
+  margin-right: 2vw;
+}
+
+.jz-input-account-item-name, .jz-input-account-balance {
+  font-size: 4vw;
+  color: #333;
+  display: flex;
+  align-items: center;
+}
+
+.jz-input-account-item-selected {
+  color: rgb(196, 151, 3) !important;
+}
+
+.jz-input-account {
+  margin-left: 4vw;
+  display: flex;
+  align-items: center;
+}
+
+.jz-input-account-icon {
+  width: 5vw;
+  height: 5vw;
+  border-radius: 3rpx;
+  margin-right: 2vw;
+}
+
+.jz-input-account-name {
+  font-size: 3.5vw;
+  color: #797979;
+  display: flex;
+  align-items: center;
+}

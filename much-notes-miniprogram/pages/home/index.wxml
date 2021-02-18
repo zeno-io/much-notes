@@ -1,0 +1,16 @@
+<view class='top'>
+  <view class='year-container'>
+    <image class='img-left img' bindtap='swiper' data-type='0' src='../../imgs/icon_arrow_white.png'></image>
+    <view class='ani-wrap'>
+      <view class='year-wrap' animation='{{ani}}'>
+          <view wx:for="{{years}}" class='year-item'>{{item}}</view>
+        </view>
+    </view>
+    <image class='img-right img' bindtap='swiper' data-type='1' src='../../imgs/icon_arrow_white.png'></image>
+  </view>
+</view>
+<view>
+  <view class="container">
+    <ff-canvas id="column-dom" canvas-id="column" opts="{{ opts }}"></ff-canvas>
+  </view>
+</view>
