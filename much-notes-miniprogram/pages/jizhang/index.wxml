@@ -9,11 +9,11 @@
       </view>
       <view bindtap="toAbDetail" class="ab-count" style="background-image: url({{BackgroundImg}})">{{accountBook.count}}人</view>
     </view>
-    <view class='total-zc'>{{zc/100}}</view>
+    <view class='total-zc'>￥{{zc/100.0}}</view>
     <view class='total-title'>{{cmonth}}月支出</view>
     <view class='total-wrap'>
-      <view class='total-title'>{{cmonth}}月收入:</view><view class='total-sr'>{{sr/100}}</view>
-      <view class='total-title'>{{cmonth}}月结余:</view><view class='total-sr'>{{(sr-zc)/100}}</view>
+      <view class='total-title'>{{cmonth}}月收入: </view><view class='total-sr'>￥{{sr/100}}</view>
+      <view class='total-title'>{{cmonth}}月结余: </view><view class='total-sr'>￥{{(sr-zc)/100}}</view>
     </view>
     
   </view>
@@ -23,10 +23,10 @@
         <view class="group">
           <view id="sticky{{index}}" class="sticky {{positions[index]}}">
             <view class='day-info-wrap'>
-              <view class='day-info-date'>{{item.total.time}}</view>
+             <!-- <view class='day-info-date'>{{item.total.time}}</view> -->
               <view class='day-info-total'>
-                <view class='day-info-sr'>收入:{{item.total.sr/100}}</view>
-                <view class='day-info-zc'>支出:{{item.total.zc/100}}</view>
+                <view class='day-info-sr'>收入: ￥{{item.total.sr/100}}</view>
+                <view class='day-info-zc'>支出: ￥{{item.total.zc/100}}</view>
               </view>
             </view>
             
@@ -40,7 +40,7 @@
                   <view>{{categorys[item.category_id].name}}</view>
                   <view class='item-remark'>{{(item.remark!=null&&item.remark!='')?'('+item.remark+')':''}}</view>
                 </view>
-                <view>{{item.type==0?'-':''}}{{item.money/100}}</view>
+                <view>{{item.type==0?'-':''}}￥{{item.money/100}}</view>
               </view>
             </block>
           </view>

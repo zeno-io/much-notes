@@ -17,7 +17,7 @@ Page({
     tabActive: 0,
     id:null
   },
-  
+
 
   /**
    * 生命周期函数--监听页面加载
@@ -74,17 +74,17 @@ Page({
     let params = {
       money: parseFloat(e.detail.value) * 100,
       type: this.data.tabActive,
-      account_type: e.detail.account,
-      id: getApp().globalData.account_book_id, //账单id
+      accountType: e.detail.account,
+      accountBookId: getApp().globalData.account_book_id, //账本id
       time: e.detail.date,
-      category_id: categoryItem.id,
-      category_name: categoryItem.name,
+      categoryId: categoryItem.id,
+      categoryName: categoryItem.name,
       remark: e.detail.remark
     }
-    let url = '/Record/add';
+    let url = '/mp/account/record/addRecord';
     if(this.data.id!=null){
-      params['record_id'] = this.data.id;
-      url = '/Record/edit'
+      params['recordId'] = this.data.id;
+      url = '/mp/account/record/editRecord'
     }
     c.request(url, params, (succ, data) => {
       if (succ) {
@@ -96,29 +96,32 @@ Page({
   //获取分类数据
   getCategory() {
     let vm = this;
-    c.request('/Category/getList', {}, (success, res) => {
-      for (let i in res.data.srCategory) {
-        res.data.srCategory[i].icon = JSON.parse(res.data.srCategory[i].icon)
+    c.request('/mp/category/getList', {}, (success, res) => {
+      for (let i in res.result.srCategory) {
+        res.result.srCategory[i].icon = JSON.parse(
+          res.result.srCategory[i].icon)
       }
-      for (let i in res.data.zcCategory) {
-        res.data.zcCategory[i].icon = JSON.parse(res.data.zcCategory[i].icon)
+      for (let i in res.result.zcCategory) {
+        res.result.zcCategory[i].icon = JSON.parse(
+          res.result.zcCategory[i].icon)
       }
       vm.setData({
-        srCategoryList: res.data.srCategory,
-        zcCategoryList: res.data.zcCategory
+        srCategoryList: res.result.srCategory,
+        zcCategoryList: res.result.zcCategory
       })
-      if(vm.data.id!=null){
+      if (vm.data.id != null) {
         vm.getDetailById();
       }
     })
   },
   getDetailById() {
     let vm = this
-    c.request('/Record/getById', { id: this.data.id }, (succ, data) => {
-      if (succ) {
-        vm.setInfo(data.data)
-      }
-    })
+    c.requestGet('/mp/account/record/getRecordById', {id: this.data.id},
+      (succ, data) => {
+        if (succ) {
+          vm.setInfo(data.result)
+        }
+      })
   },
   setInfo(data) {
     this.setData({
@@ -146,7 +149,7 @@ Page({
       }
     }
   },
-  //分类被选中
+  // 分类被选中
   categroyItemSelect(e) {
     let index = e.currentTarget.dataset.index;
     if (this.data.tabActive === 0) {
@@ -160,7 +163,7 @@ Page({
     }
 
   },
-  //tabs切换
+  // tabs切换
   onTabChange(e) {
     this.setData({
       tabActive: e.detail.index

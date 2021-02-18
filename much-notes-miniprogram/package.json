@@ -1,5 +1,5 @@
 {
-  "name": "jizhang",
+  "name": "much-notes",
   "version": "1.0.0",
   "description": "",
   "main": "app.js",
@@ -8,7 +8,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git@gitee.com:chniccs/jizhang.git"
+    "url": "git@github.com:SvenAugustus/much-notes.git"
   },
   "author": "",
   "license": "ISC",

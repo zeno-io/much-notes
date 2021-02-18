@@ -1,0 +1,140 @@
+<!DOCTYPE generatorConfiguration PUBLIC
+  "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN"
+  "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd">
+<generatorConfiguration>
+  <!--
+    <properties resource="application.properties"/>
+  -->
+  <!-- <context id="simple" targetRuntime="MyBatis3Simple">--> <!--  针对MyBatis3Simple 1.4.0目前 CaseInsensitiveLikePlugin 不生效-->
+  <context id="simple" targetRuntime="MyBatis3">
+    <!--
+      <context id="simple" targetRuntime="MyBatis3Simple" defaultModelType="flat">
+    -->
+
+    <!-- 设置文件编码 -->
+    <property name="javaFileEncoding" value="UTF-8"/>
+    <!-- 由于beginningDelimiter和endingDelimiter的默认值为双引号(")，在Mysql中不能这么写，所以还要将这两个默认值改为` -->
+    <property name="beginningDelimiter" value="`"/>
+    <property name="endingDelimiter" value="`"/>
+
+    <!-- http://mybatis.org/generator/reference/plugins.html -->
+    <!-- 扩展自动生成的example。添加特定数据库查询条件(如Oracle ROWNUM支持),或添加除自动生成外的查询条件(如不区分大小写查询)
+    ，目前仅支持 MyBatis3 targetRuntime
+    -->
+    <plugin type="org.mybatis.generator.plugins.CaseInsensitiveLikePlugin"/>
+    <!-- 分页插件，目前仅支持 MyBatis3 targetRuntime -->
+    <plugin type="org.mybatis.generator.plugins.RowBoundsPlugin"/>
+    <!-- 为生成的Java模型类添加序列化接口，并生成serialVersionUID字段 -->
+    <plugin type="org.mybatis.generator.plugins.SerializablePlugin">
+      <property name="suppressJavaInterface" value="false"/>
+    </plugin>
+    <!-- 这个插件给生成的Java模型对象的getter，setter 变成链式方法-->
+    <!--    <plugin type="org.mybatis.generator.plugins.FluentBuilderMethodsPlugin"/>-->
+    <!-- 这个插件给生成的Java模型对象增加了toString方法 -->
+    <plugin type="org.mybatis.generator.plugins.ToStringPlugin"/>
+    <!-- 这个插件给生成的Java模型对象增加了equals和hashCode方法 -->
+    <plugin type="org.mybatis.generator.plugins.EqualsHashCodePlugin"/>
+    <plugin type="org.mybatis.generator.plugins.MapperAnnotationPlugin"/>
+
+    <commentGenerator>
+      <!-- 是否不生成注释 -->
+      <property name="suppressAllComments" value="true"/>
+      <!-- 不希望生成的注释中包含时间戳 -->
+      <property name="suppressDate" value="true"/>
+      <!-- 添加 db 表中字段的注释 -->
+      <property name="addRemarkComments" value="true"/>
+    </commentGenerator>
+
+    <!--数据库链接地址账号密码-->
+    <jdbcConnection driverClass="com.mysql.jdbc.Driver"
+      connectionURL="jdbc:mysql://localhost:3306/much_notes?serverTimezone=Asia/Shanghai"
+      userId="root" password="root123">
+      <!--高版本的 mysql-connector-java 需要设置 nullCatalogMeansCurrent=true-->
+      <!--      <property name="nullCatalogMeansCurrent" value="true"/>-->
+    </jdbcConnection>
+
+    <javaTypeResolver>
+      <property name="forceBigDecimals" value="false"/>
+    </javaTypeResolver>
+
+    <!--生成Model类存放位置-->
+    <javaModelGenerator targetPackage="xyz.flysium.dao.entity"
+      targetProject="src/main/java">
+      <!--      <property name="enableSubPackages" value="false"/>-->
+      <!--      <property name="trimStrings" value="true"/>-->
+      <!--      <property name="immutable" value="false"/>-->
+    </javaModelGenerator>
+
+    <!--
+       <sqlMapGenerator targetPackage="xyz.flysium.mapper"
+              targetProject="src/main/resources"/>
+    -->
+
+    <!--生成Mapper类存放位置-->
+    <javaClientGenerator type="ANNOTATEDMAPPER"
+      targetPackage="xyz.flysium.dao.repository"
+      targetProject="src/main/java">
+      <!--   <property name="enableSubPackages" value="false"/>  -->
+    </javaClientGenerator>
+
+    <!--生成对应表及类名-->
+    <table tableName="note_user" domainObjectName="NoteUserDO"
+      enableDeleteByPrimaryKey="false"
+      enableCountByExample="true" enableUpdateByExample="true" enableDeleteByExample="false"
+      enableSelectByExample="true" selectByExampleQueryId="true">
+      <!-- http://mybatis.org/generator/configreference/generatedKey.html -->
+      <generatedKey column="id" sqlStatement="Mysql" identity="true"/>
+    </table>
+    <table tableName="category" domainObjectName="CategoryDO"
+      enableDeleteByPrimaryKey="false" enableCountByExample="true" enableUpdateByExample="true"
+      enableDeleteByExample="false"
+      enableSelectByExample="true" selectByExampleQueryId="true">
+      <!-- http://mybatis.org/generator/configreference/generatedKey.html -->
+      <generatedKey column="id" sqlStatement="Mysql" identity="true"/>
+    </table>
+    <table tableName="account_type" domainObjectName="AccountTypeDO"
+      enableDeleteByPrimaryKey="false" enableCountByExample="true" enableUpdateByExample="true"
+      enableDeleteByExample="false"
+      enableSelectByExample="true" selectByExampleQueryId="true">
+      <!-- http://mybatis.org/generator/configreference/generatedKey.html -->
+      <generatedKey column="id" sqlStatement="Mysql" identity="true"/>
+    </table>
+    <table tableName="user_account_info" domainObjectName="UserAccountInfoDO"
+      enableDeleteByPrimaryKey="false" enableCountByExample="true" enableUpdateByExample="true"
+      enableDeleteByExample="false"
+      enableSelectByExample="true" selectByExampleQueryId="true">
+      <!-- http://mybatis.org/generator/configreference/generatedKey.html -->
+      <generatedKey column="id" sqlStatement="Mysql" identity="true"/>
+    </table>
+    <table tableName="user_account_book" domainObjectName="UserAccountBookDO"
+      enableDeleteByPrimaryKey="false" enableCountByExample="true" enableUpdateByExample="true"
+      enableDeleteByExample="false"
+      enableSelectByExample="true" selectByExampleQueryId="true">
+      <!-- http://mybatis.org/generator/configreference/generatedKey.html -->
+      <generatedKey column="id" sqlStatement="Mysql" identity="true"/>
+    </table>
+    <table tableName="user_account_book_auth" domainObjectName="UserAccountBookAuthDO"
+      enableDeleteByPrimaryKey="false" enableCountByExample="true" enableUpdateByExample="true"
+      enableDeleteByExample="false"
+      enableSelectByExample="true" selectByExampleQueryId="true">
+      <!-- http://mybatis.org/generator/configreference/generatedKey.html -->
+      <generatedKey column="id" sqlStatement="Mysql" identity="true"/>
+    </table>
+    <table tableName="user_account_record" domainObjectName="UserAccountRecordDO"
+      enableDeleteByPrimaryKey="false" enableCountByExample="true" enableUpdateByExample="true"
+      enableDeleteByExample="false"
+      enableSelectByExample="true" selectByExampleQueryId="true">
+      <!-- http://mybatis.org/generator/configreference/generatedKey.html -->
+      <generatedKey column="id" sqlStatement="Mysql" identity="true"/>
+    </table>
+    <table tableName="user_account_book_category" domainObjectName="UserAccountBookCategoryDO"
+      enableDeleteByPrimaryKey="false" enableCountByExample="true" enableUpdateByExample="true"
+      enableDeleteByExample="false"
+      enableSelectByExample="true" selectByExampleQueryId="true">
+      <!-- http://mybatis.org/generator/configreference/generatedKey.html -->
+      <generatedKey column="id" sqlStatement="Mysql" identity="true"/>
+    </table>
+
+  </context>
+
+</generatorConfiguration>

@@ -62,7 +62,7 @@ Page({
     getApp().globalData.refreshJz = true;
   },
 
-  
+
 
   /**
    * 生命周期函数--监听页面隐藏
@@ -86,24 +86,24 @@ Page({
   },
   getData: function() {
     let vm = this;
-    c.request('/AccountBooks/getById', {
+    c.requestGet('/mp/account/book/getAccountBookById', {
       "id": vm.data.abid
-    }, function(success, data) {
+    }, function (success, data) {
       vm.setData({
-        accountBook: data.data
+        accountBook: data.result
       });
     });
-    c.request('/Category/getUnTypeList', {
-      "id": vm.data.abid
+    c.request('/mp/category/getUnTypeList', {
+        "id": vm.data.abid
       },
       (succ, data) => {
         vm.data.categorys = {};
-        data.data.forEach(v => {
+        data.result.forEach(v => {
           let id = v.id;
           if (!(id in vm.data.categorys)) {
-            if(v.icon!=null&&v.icon.length>0){
+            if (v.icon != null && v.icon.length > 0) {
               let icons = JSON.parse(v.icon)
-              let category = { icon: icons[1], name: v.name}
+              let category = {icon: icons[1], name: v.name}
               vm.data.categorys[id]= category;
             }
           }
@@ -113,7 +113,7 @@ Page({
         })
       })
   },
-  //到账单详情去
+  //到账本详情去
   toAbDetail: function() {
     wx.navigateTo({
       url: '../accountbookdetail/index'
@@ -129,32 +129,32 @@ Page({
       url: '../addrecord/index',
     })
   },
-  //获取账单记录
+  //获取账本记录
   getRecordList() {
 
     let vm = this;
     let page = vm.data.records.length / vm.data.pageSize + 1;
-    c.request('/Record/getList', {
+    c.requestGet('/mp/account/record/getListByAccountBookId', {
       "id": vm.data.abid,
       "page": page
-    }, function(success, data) {
-      
+    }, function (success, data) {
+
       vm.setData({
-        total: data.data.total
+        total: data.result.total
       })
       //提取日期，主要为展示日期的统计
-      if (data.data.days != null && data.data.days.length > 0) {
-        vm.getDays(data.data.days)
+      if (data.result.days != null && data.result.days.length > 0) {
+        vm.getDays(data.result.days)
       }
       //合并数组
-      if (data.data.data != null && data.data.data.length > 0) {
-        vm.data.records = vm.data.records.concat(data.data.data);
+      if (data.result.data != null && data.result.data.length > 0) {
+        vm.data.records = vm.data.records.concat(data.result.data);
         let temp = '';
         if (vm.data.recordList.length > 0) {
           temp = vm.data.recordList[vm.data.recordList.length - 1].total.time
         }
 
-        data.data.data.forEach((v, index) => {
+        data.result.data.forEach((v, index) => {
           //如果日期与上一个数据的日期相同，就添加到上一个日期所在数组中去
           if (v.time == temp) {
             vm.data.recordList[vm.data.recordList.length - 1].datas.push(v)
@@ -224,7 +224,7 @@ Page({
       }else{
         this.setTotal(this.data.cacheTotal[time]);
       }
-      
+
     }
   },
   //设置总计并缓存数据
@@ -234,18 +234,19 @@ Page({
       this.data.cacheTotal[time] = data;
     }
     this.setData({
-      zc: data[0].zc,
-      sr: data[0].sr,
+      zc: data.zc,
+      sr: data.sr,
       cmonth: time.substr(5, 7)
     });
   },
   getTotal(){
     let vm = this;
-    c.request('/Record/getTotalWithMonth', { id: vm.data.abid,date: this.data.cdate},(succ,data)=>{
-      if(succ){
-        vm.setTotal(data.data);
-      }
-    });
+    c.requestGet('/mp/stat/getTotalWithMonth',
+      {id: vm.data.abid, date: this.data.cdate}, (succ, data) => {
+        if (succ) {
+          vm.setTotal(data.result);
+        }
+      });
   },
   init() {
     let vm = this;
@@ -333,14 +334,14 @@ Page({
       zc:0,
       sr:0
     })
-    //这里先判断是否有选择过账单id，如果没有就去选择
+    //这里先判断是否有选择过账本id，如果没有就去选择
     let abid = getApp().globalData.account_book_id;
     if (!c.checkStrNotNull(abid)) {
       wx.navigateTo({
         url: '../accountbooks/index'
       })
       return;
-    } 
+    }
     this.data.abid = abid;
     this.getData();
     this.setData({

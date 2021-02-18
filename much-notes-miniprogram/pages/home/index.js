@@ -100,7 +100,7 @@ Page({
     }
   },
   getMonthData() {
-    c.request('/Total/getTotlaByMonth', {
+    c.requestGet('/mp/stat/getTotalByMonth', {
       id: this.data.abid,
       month: '07'
     }, (succ, data) => {
@@ -108,35 +108,35 @@ Page({
     })
   },
   getYearData() {
-    c.request('/Total/getTotlaByYear', {
+    c.requestGet('/mp/stat/getTotalByYear', {
       id: this.data.abid,
       year: this.data.years[this.data.cIndex]
     }, (succ, data) => {
-      if (data.data != null && data.data.length > 0) {
+      if (data.result != null && data.result.length > 0) {
         let formatData = [];
-        data.data.forEach(v => {
-          
+        data.result.forEach(v => {
+
           formatData.push({
             type: '收入',
-            count: parseInt((v.sr_count)/100),
-            month: v.months
+            count: parseInt((v.sr) / 100),
+            month: v.month
           })
           formatData.push({
             type: '支出',
-            count: parseInt((v.zc_count) / 100),
-            month: v.months
+            count: parseInt((v.zc) / 100),
+            month: v.month
           })
           formatData.push({
             type: '净收入',
-            count: parseInt((v.sr_count-v.zc_count) / 100),
-            month: v.months
+            count: parseInt((v.sr-v.zc) / 100),
+            month: v.month
           })
         })
         chart.changeData(formatData);
       }else{
         chart.changeData([]);
       }
-     
+
     })
   },
   swiper(e) {

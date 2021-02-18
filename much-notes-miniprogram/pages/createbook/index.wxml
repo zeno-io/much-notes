@@ -2,7 +2,7 @@
 <van-cell-group>
   <van-field
     value="{{ value }}"
-    placeholder="请输入账单名"
+    placeholder="请输入账本名"
     border="{{ false }}"
     bind:change="onChange"
   />

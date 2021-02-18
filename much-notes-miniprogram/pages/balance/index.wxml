@@ -3,7 +3,7 @@
   <view class='top'>
     <view class='top-title'>资产总计</view>
     <view class='info-wrap'>
-      <view class='info-count'>{{total/100}}</view>
+      <view class='info-count'>￥{{total/100}}</view>
     </view>
   </view>
   <view class='item-wrap'>
@@ -13,7 +13,7 @@
         <view class='item-name'>{{item.name}}</view>
       </view>
       <view class='item-right-wrap'>
-        <view class='item-balance'>{{item.balance/100}}</view>
+        <view class='item-balance'>￥{{item.balance/100}}</view>
         <image mode='widthFix' class='item-img-arrow' src='../../imgs/icon_arrow.png'></image>
       </view>
 

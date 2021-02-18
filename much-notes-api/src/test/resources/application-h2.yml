@@ -1,0 +1,25 @@
+spring:
+  datasource:
+    ## 数据库连接设置
+    url: jdbc:h2:mem:test;MODE=MySQL  #配置h2数据库的连接地址
+    username: sa  #配置数据库用户名
+    password: sa  #配置数据库密码
+    driverClassName: org.h2.Driver  #配置JDBC Driver
+    ## 数据初始化设置, Spring Boot 会自动读取 classpath:schema-${platform}.sql 以及 data-${platform}.sql
+    platform: h2  #表明使用的数据库平台是 mysql
+    # Spring Boot automatically creates the schema of an embedded DataSource.
+    # This behaviour can be customized by using the spring.datasource.initialization-mode property.
+    initialization-mode: always
+
+    druid:
+      # 初始连接数
+      initial-size: 1
+      # 最大连接数
+      max-active: 10
+      # 最小连接数
+      min-idle: 1
+      # 获取连接等待超时的时间 单位：毫秒
+      max-wait: 10000
+      # 验证连接的sql
+      validation-query: select 1
+

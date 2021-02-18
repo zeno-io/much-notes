@@ -1,0 +1,26 @@
+wx:
+  miniapp:
+    # 公众号配置(必填)
+    appid: wxfbf8cccc79c5c29b
+    # 微信小程序的 Secret
+    secret: yourSecret
+    # 微信小程序消息推送器配置的 token
+    token: yourToken
+    # 微信小程序消息推送配置的 EncodingAESKey
+    aesKey: youraseKey
+    # 消息格式，XML或者JSON.
+    msgDataFormat: JSON
+    config-storage:
+      # 配置类型: Memory(默认), Jedis, RedisTemplate
+      type: Memory
+      key-prefix: wa
+      redis:
+        host: 127.0.0.1
+        port: 6379
+      # http客户端类型: HttpClient(默认), OkHttp, JoddHttp
+      http-client-type: HttpClient
+      http-proxy-host: ''
+      http-proxy-password: ''
+      http-proxy-port: ''
+      http-proxy-username: ''
+

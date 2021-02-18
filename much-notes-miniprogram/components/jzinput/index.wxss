@@ -99,7 +99,7 @@
 .jz-input-remark-input {
   display: flex;
   align-items: center;
-  width: 15vw;
+  width: 45vw;
   font-size: 3.5vw;
   justify-content: center;
   color: #797979;

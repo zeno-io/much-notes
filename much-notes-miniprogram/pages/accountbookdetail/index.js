@@ -1,6 +1,7 @@
 // pages/accountbookdetail/index.js
 let c = require('../../utils/common.js');
 import Dialog from '../../components/dist/dialog/dialog';
+
 Page({
 
   /**
@@ -21,8 +22,8 @@ Page({
         openType: 'share'
       },
       {
-        name: '退出账单',
-        subname: '所记账单不会清除',
+        name: '退出账本',
+        subname: '所记账本不会清除',
         loading: false
       },
     ],
@@ -51,27 +52,27 @@ Page({
   },
   getData: function() {
     let vm = this;
-    c.request('/AccountBooks/getUsers', {
+    c.requestGet('/mp/account/book/getAccountBookUsersById', {
         id: getApp().globalData.account_book_id
       },
-      function(success, data) {
+      function (success, data) {
         let uid = '';
-        data.data.user_roles.forEach(v => {
-          if(v.is_owner==5){
+        data.result.user_roles.forEach(v => {
+          if (v.is_owner == 5) {
             uid = v.uid;
           }
         })
         vm.setData({
           adminUid:uid,
-          list: data.data.data
+          list: data.result.data
         })
-        
+
       }
     );
   },
   onShareAppMessage: function() {
     return {
-      title: getApp().globalData.userInfo.nickName + "邀请您加入账单",
+      title: getApp().globalData.userInfo.nickName + "邀请您加入账本",
       imageUrl: getApp().globalData.userInfo.avatarUrl,
       path: "/pages/index/index?type=share&key=" + this.data.shareKey
     }
@@ -79,13 +80,13 @@ Page({
   },
   getShareKey: function() {
     let vm = this;
-    c.request('/AccountBooks/getShareKey', {
+    c.requestGet('/mp/account/book/getShareKey', {
         id: getApp().globalData.account_book_id
       },
-      function(success, data) {
-        if (success){
+      function (success, data) {
+        if (success) {
           vm.setData({
-            shareKey: data.data,
+            shareKey: data.result,
             ['actions[0].loading']: false
           });
         }
@@ -99,7 +100,7 @@ Page({
     this.getShareKey();
   },
   onSelect: function(event) {
-    if (event.detail.name == '退出账单') {
+    if (event.detail.name == '退出账本') {
       this.doOut()
 
     }
@@ -134,9 +135,9 @@ Page({
     let vm = this;
     Dialog.confirm({
       title: '确认退出吗？',
-      message: '所记账单依然会留存'
+      message: '所记账本依然会留存'
     }).then(() => {
-      c.request('/AccountBooks/out', {
+      c.requestGet('/mp/account/book/exitFromAccountBook', {
         id: getApp().globalData.account_book_id
       }, (succ, data) => {
         if (succ) {
@@ -151,9 +152,9 @@ Page({
     let vm = this;
     Dialog.confirm({
       title: '确认移除吗？',
-      message: '用户所记账单依然会留存'
+      message: '用户所记账本依然会留存'
     }).then(() => {
-      c.request('/AccountBooks/removeUserByUid', {
+      c.requestGet('/mp/account/book/removeUserFromAccountBook', {
         uid: this.data.cuid,
         id: getApp().globalData.account_book_id
       }, (succ, data) => {
@@ -170,7 +171,7 @@ Page({
       title: '确认移交吗？',
       message: '管理员移交后你将失去用户管理权限'
     }).then(() => {
-      c.request('/AccountBooks/changeAdmin', {
+      c.requestGet('/mp/account/book/changeAdmin', {
         uid: this.data.cuid,
         id: getApp().globalData.account_book_id
       }, (succ, data) => {

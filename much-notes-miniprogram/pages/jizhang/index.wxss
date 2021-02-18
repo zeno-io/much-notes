@@ -68,7 +68,7 @@
   color: white;
 }
 
-/* 账单明细-start */
+/* 账本明细-start */
 
 .list-wrap {
   height: 75vh;
@@ -205,4 +205,4 @@
   margin-left: 2vw;
 }
 
-/* 账单明细-end */
+/* 账本明细-end */

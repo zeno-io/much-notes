@@ -42,7 +42,7 @@ Page({
     for (let index in this.data.accountList) {
       if(this.data.accountList[index].type == type){
         this.setData({
-          type:type,
+          type: this.data.accountList[index].type,
           balance: balance,
           icon: this.data.accountList[index].icon,
           name: this.data.accountList[index].name
@@ -55,11 +55,12 @@ Page({
     this.data.balance = parseFloat(e.detail)*100;
   },
   submit(){
-    c.request('/Account/balanceEdit',{type:this.data.type,balance:this.data.balance},(succ,data)=>{
-      if(succ){
-        wx.navigateBack();
-      }
-    })
+    c.requestGet('/mp/account/info/balanceEdit',
+      {type: this.data.type, balance: this.data.balance}, (succ, data) => {
+        if (succ) {
+          wx.navigateBack();
+        }
+      })
   }
 
 })

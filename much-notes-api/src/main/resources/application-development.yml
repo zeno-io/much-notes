@@ -1,0 +1,17 @@
+logging:
+  level:
+    xyz:
+      flysium:
+        web: DEBUG
+        service: DEBUG
+        dao: DEBUG
+    com:
+      alibaba:
+        druid: DEBUG
+
+# server
+server:
+  port: 8080
+
+
+

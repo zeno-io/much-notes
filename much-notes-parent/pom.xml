@@ -1,0 +1,891 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  ~ MIT License
+  ~
+  ~ Copyright (c) 2020 SvenAugustus
+  ~
+  ~ Permission is hereby granted, free of charge, to any person obtaining a copy
+  ~ of this software and associated documentation files (the "Software"), to deal
+  ~ in the Software without restriction, including without limitation the rights
+  ~ to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+  ~ copies of the Software, and to permit persons to whom the Software is
+  ~ furnished to do so, subject to the following conditions:
+  ~
+  ~ The above copyright notice and this permission notice shall be included in all
+  ~ copies or substantial portions of the Software.
+  ~
+  ~ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+  ~ IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+  ~ FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+  ~ AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+  ~ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+  ~ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+  ~ SOFTWARE.
+  -->
+<project xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xmlns="http://maven.apache.org/POM/4.0.0"
+  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <groupId>xyz.flysium.much-notes</groupId>
+  <artifactId>much-notes-parent</artifactId>
+  <version>1.0.0-SNAPSHOT</version>
+  <packaging>pom</packaging>
+  <inceptionYear>2021</inceptionYear>
+  <licenses>
+    <license>
+      <name>The MIT License</name>
+      <url>https://opensource.org/licenses/MIT</url>
+      <distribution>repo</distribution>
+    </license>
+  </licenses>
+
+  <properties>
+    <java.version>1.8</java.version>
+    <!--               Maven Plugin            -->
+    <!-- 使用最新版本 Maven 插件，覆盖 spring-boot-dependencies 中定义的部分插件版本   -->
+    <!-- https://maven.apache.org/plugins/index.html -->
+    <maven-failsafe-plugin.version>3.0.0-M5</maven-failsafe-plugin.version>
+    <maven-surefire-plugin.version>3.0.0-M5</maven-surefire-plugin.version>
+    <maven-install-plugin.version>3.0.0-M1</maven-install-plugin.version>
+    <maven-deploy-plugin.version>3.0.0-M1</maven-deploy-plugin.version>
+    <!--               Spring Technologies            -->
+    <!-- Spring Boot -->
+    <spring-boot.version>2.3.9.RELEASE</spring-boot.version>
+    <!-- Spring Cloud -->
+    <spring-cloud.version>Hoxton.SR10</spring-cloud.version>
+    <!-- Spring Cloud Alibaba -->
+    <spring-cloud-alibaba.version>2.2.4.RELEASE</spring-cloud-alibaba.version>
+    <spring-cloud-alibaba-seata.version>2.2.0.RELEASE</spring-cloud-alibaba-seata.version>
+    <!-- Spring Cloud Netflix -->
+    <spring-cloud-netflix.version>2.2.7.RELEASE</spring-cloud-netflix.version>
+    <!-- Spring Cloud Zookeeper -->
+    <spring-cloud-zookeeper.version>2.2.4.RELEASE</spring-cloud-zookeeper.version>
+    <!-- Spring Cloud Consul -->
+    <spring-cloud-consul.version>2.2.6.RELEASE</spring-cloud-consul.version>
+    <!--               Spring Extend Technologies            -->
+    <!-- Admin Server -->
+    <de.codecentric-spring-cloud-admin-server.version>2.3.1
+    </de.codecentric-spring-cloud-admin-server.version>
+    <!-- <springfox.version>2.10.5</springfox.version>  -->   <!-- control by knife4j -->
+    <!-- <swagger-bootstrap-ui.version>1.9.6</swagger-bootstrap-ui.version> -->  <!-- upgrade to knife4j -->
+    <knife4j.version>3.0.2</knife4j.version>
+    <!--               Database Technologies            -->
+    <mysql-connector-java.version>8.0.23</mysql-connector-java.version> <!-- 5.1.49 -->
+    <mybatis-spring-boot-starter.version>2.1.4</mybatis-spring-boot-starter.version>
+    <mybatis-dynamic-sql.version>1.2.1</mybatis-dynamic-sql.version>
+    <mybatis-generator-core.version>1.4.0</mybatis-generator-core.version>
+    <pagehelper-spring-boot-starter.version>1.3.0</pagehelper-spring-boot-starter.version>
+    <mybatis-plus-boot-starter.version>3.4.2</mybatis-plus-boot-starter.version>
+    <druid-spring-boot-starter.version>1.2.5</druid-spring-boot-starter.version>
+    <zookeeper.version>3.5.8</zookeeper.version>
+    <curator.version>4.3.0</curator.version>
+    <jetcd-core.version>0.5.3</jetcd-core.version>
+    <!--               BigData Technologies            -->
+    <hadoop.version>3.2.1</hadoop.version>
+    <hbase.version>2.3.3</hbase.version>
+    <flink.version>1.11.3</flink.version>
+    <!--               Storage Technologies            -->
+    <!--               Cache Technologies            -->
+    <ehcache.version>3.8.1</ehcache.version>
+    <redisson.version>3.14.1</redisson.version>
+    <!--               Messaging Technologies            -->
+    <!--               Network Protocol && Utilities            -->
+    <netty3.version>3.10.6.Final</netty3.version>
+    <netty-all.version>4.1.59.Final</netty-all.version>
+    <cxf-spring-boot-starter.version>3.4.2</cxf-spring-boot-starter.version>
+    <commons-net.version>3.7</commons-net.version>
+    <jcraft.version>0.1.55</jcraft.version>
+    <!--               Task Scheduling Technologies            -->
+    <!--               Workflow Technologies            -->
+    <activiti.version>7.1.0.M6</activiti.version>
+    <!--               Authentication            -->
+    <java-jwt.version>3.2.0</java-jwt.version>
+    <jjwt.version>0.9.1</jjwt.version>
+    <!--               Encryption and Decryption            -->
+    <bcprov.version>1.68</bcprov.version>
+    <!--               Common Utilities            -->
+    <groovy.version>3.0.7</groovy.version>
+    <jython-standalone.version>2.7.2</jython-standalone.version>
+    <guava.version>30.1-jre</guava.version>
+    <commons-collections4.version>4.4</commons-collections4.version>
+    <commons-codec.version>1.15</commons-codec.version>
+    <commons-fileupload.version>1.4</commons-fileupload.version>
+    <java-object-diff.version>0.95</java-object-diff.version>
+    <!--               Logging System          -->
+    <logback.version>1.2.3</logback.version>
+    <slf4j.version>1.7.30</slf4j.version>
+    <jcl-over-slf4j.version>1.7.30</jcl-over-slf4j.version>
+    <!--               Dynamic Proxy  Utilities          -->
+    <javassist.version>3.27.0-GA</javassist.version>
+    <!--               Serialization Technologies            -->
+    <kryo-shaded.vesion>4.0.2</kryo-shaded.vesion>
+    <!--               Document  Utilities            -->
+    <poi.version>4.1.2</poi.version>
+    <openpdf.version>1.3.20</openpdf.version>
+    <org.dom4j.version>2.1.3</org.dom4j.version>
+    <batik.version>1.13</batik.version>
+    <!--               Math && Scientific          -->
+    <QLExpress.version>3.2.4</QLExpress.version>
+    <!--               Development  Tools            -->
+    <lombok.version>1.18.18</lombok.version> <!-- If you are using Lombok 1.18.16 or newer
+                you also need to add lombok-mapstruct-binding (https://search.maven.org/artifact/org.projectlombok/lombok-mapstruct-binding)
+                in order to make Lombok and MapStruct work together. -->
+    <lombok-mapstruct-binding.version>0.2.0</lombok-mapstruct-binding.version>
+    <org.mapstruct.version>1.4.2.Final</org.mapstruct.version>
+    <dozer-core.version>6.5.0</dozer-core.version>
+    <!--               Test  Utilities            -->
+    <junit.version>4.13.2</junit.version>
+    <powermock.version>2.0.9</powermock.version>
+    <jmh.version>1.27</jmh.version>
+    <redis-mock.version>0.1.6</redis-mock.version>
+    <mockserver-netty.version>5.11.2</mockserver-netty.version>
+    <!--               Professional Technologies            -->
+    <wx-java-spring-boot-starter.version>4.0.0</wx-java-spring-boot-starter.version>
+  </properties>
+
+  <dependencyManagement>
+    <dependencies>
+      <dependency>
+        <!-- Import dependency management from Spring Boot -->
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-dependencies</artifactId>
+        <version>${spring-boot.version}</version>
+        <type>pom</type>
+        <scope>import</scope>
+      </dependency>
+      <dependency>
+        <!-- Import dependency management from Spring Cloud -->
+        <groupId>org.springframework.cloud</groupId>
+        <artifactId>spring-cloud-dependencies</artifactId>
+        <version>${spring-cloud.version}</version>
+        <type>pom</type>
+        <scope>import</scope>
+      </dependency>
+      <dependency>
+        <!-- Import dependency management from Spring Cloud Alibaba -->
+        <groupId>com.alibaba.cloud</groupId>
+        <artifactId>spring-cloud-alibaba-dependencies</artifactId>
+        <version>${spring-cloud-alibaba.version}</version>
+        <type>pom</type>
+        <scope>import</scope>
+      </dependency>
+
+      <!--               Spring Technologies            -->
+      <!-- Spring Cloud Nacos Service Discovery -->
+      <dependency>
+        <groupId>com.alibaba.cloud</groupId>
+        <artifactId>spring-cloud-starter-alibaba-nacos-discovery</artifactId>
+        <version>${spring-cloud-alibaba.version}</version>
+      </dependency>
+
+      <!-- Spring Cloud Consul Service Discovery -->
+      <dependency>
+        <groupId>org.springframework.cloud</groupId>
+        <artifactId>spring-cloud-starter-consul-discovery</artifactId>
+        <version>${spring-cloud-consul.version}</version>
+      </dependency>
+
+      <!-- Eureka Service Discovery -->
+      <dependency>
+        <groupId>org.springframework.cloud</groupId>
+        <artifactId>spring-cloud-starter-netflix-eureka-client</artifactId>
+        <version>${spring-cloud-netflix.version}</version>
+      </dependency>
+
+      <!-- Zookeeper Service Discovery -->
+      <dependency>
+        <groupId>org.springframework.cloud</groupId>
+        <artifactId>spring-cloud-starter-zookeeper-discovery</artifactId>
+        <version>${spring-cloud-zookeeper.version}</version>
+      </dependency>
+
+      <!-- Hystrix -->
+      <dependency>
+        <groupId>org.springframework.cloud</groupId>
+        <artifactId>spring-cloud-starter-netflix-hystrix</artifactId>
+        <version>${spring-cloud-netflix.version}</version>
+      </dependency>
+
+      <!-- Dubbo Spring Cloud Starter -->
+      <dependency>
+        <groupId>com.alibaba.cloud</groupId>
+        <artifactId>spring-cloud-starter-dubbo</artifactId>
+        <version>${spring-cloud-alibaba.version}</version>
+      </dependency>
+
+      <!-- Spring Cloud Alibaba Seata -->
+      <dependency>
+        <groupId>com.alibaba.cloud</groupId>
+        <artifactId>spring-cloud-alibaba-seata</artifactId>
+        <version>${spring-cloud-alibaba-seata.version}</version>
+      </dependency>
+
+      <!--               Spring Extend Technologies            -->
+      <!-- Spring Cloud Admin Server -->
+      <!-- https://mvnrepository.com/artifact/de.codecentric/spring-boot-admin-starter-server -->
+      <dependency>
+        <groupId>de.codecentric</groupId>
+        <artifactId>spring-boot-admin-starter-server</artifactId>
+        <version>${de.codecentric-spring-cloud-admin-server.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>de.codecentric</groupId>
+        <artifactId>spring-boot-admin-server-ui</artifactId>
+        <version>${de.codecentric-spring-cloud-admin-server.version}</version>
+      </dependency>
+
+      <!-- Swagger2 , JSON API documentation for spring based applications -->
+      <!-- springfox 需要 guava >= 20.0    -->
+      <!-- https://mvnrepository.com/artifact/io.springfox/springfox-swagger2 -->
+      <!--  <dependency>
+          <groupId>io.springfox</groupId>
+          <artifactId>springfox-swagger2</artifactId>
+          <version>${springfox.version}</version>
+        </dependency>
+        <dependency>
+          <groupId>io.springfox</groupId>
+          <artifactId>springfox-swagger-ui</artifactId>
+          <version>${springfox.version}</version>
+        </dependency> -->       <!-- control by knife4j -->
+      <!--  Swagger-Bootstrap-UI is the front of the UI Swagger implementation,
+        using jQuery+bootstrap implementation,
+        the purpose is to replace the default UI Swagger implementation of the Swagger-UI,
+        so that the document is more friendly...  -->
+      <!-- https://mvnrepository.com/artifact/com.github.xiaoymin/swagger-bootstrap-ui -->
+      <!--      <dependency>
+        <groupId>com.github.xiaoymin</groupId>
+        <artifactId>swagger-bootstrap-ui</artifactId>
+        <version>${swagger-bootstrap-ui.version}</version>
+      </dependency>-->
+      <!-- https://gitee.com/xiaoym/knife4j -->
+      <!-- https://mvnrepository.com/artifact/com.github.xiaoymin/knife4j-spring-boot-starter -->
+      <dependency>
+        <groupId>com.github.xiaoymin</groupId>
+        <artifactId>knife4j-spring-boot-starter</artifactId>
+        <version>${knife4j.version}</version>
+      </dependency>
+
+      <!--               Database Technologies            -->
+      <!-- https://mvnrepository.com/artifact/mysql/mysql-connector-java -->
+      <dependency>
+        <groupId>mysql</groupId>
+        <artifactId>mysql-connector-java</artifactId>
+        <version>${mysql-connector-java.version}</version>
+      </dependency>
+
+      <!-- Mybatis -->
+      <!-- https://mvnrepository.com/artifact/org.mybatis.spring.boot/mybatis-spring-boot-starter -->
+      <dependency>
+        <groupId>org.mybatis.spring.boot</groupId>
+        <artifactId>mybatis-spring-boot-starter</artifactId>
+        <version>${mybatis-spring-boot-starter.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>org.mybatis.dynamic-sql</groupId>
+        <artifactId>mybatis-dynamic-sql</artifactId>
+        <version>${mybatis-dynamic-sql.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>org.mybatis.generator</groupId>
+        <artifactId>mybatis-generator-core</artifactId>
+        <version>${mybatis-generator-core.version}</version>
+      </dependency>
+
+      <!-- PageHelper for Mybatis -->
+      <!-- https://mvnrepository.com/artifact/com.github.pagehelper/pagehelper-spring-boot-starter -->
+      <dependency>
+        <groupId>com.github.pagehelper</groupId>
+        <artifactId>pagehelper-spring-boot-starter</artifactId>
+        <version>${pagehelper-spring-boot-starter.version}</version>
+      </dependency>
+
+      <!-- Mybatis-plus: https://mp.baomidou.com/ -->
+      <!-- https://mvnrepository.com/artifact/com.baomidou/mybatis-plus-boot-starter -->
+      <dependency>
+        <groupId>com.baomidou</groupId>
+        <artifactId>mybatis-plus-boot-starter</artifactId>
+        <version>${mybatis-plus-boot-starter.version}</version>
+      </dependency>
+      <!-- 代码生成，目前问题，默认模板生成的依赖 lombok  -->
+      <dependency>
+        <groupId>com.baomidou</groupId>
+        <artifactId>mybatis-plus-generator</artifactId>
+        <version>${mybatis-plus-boot-starter.version}</version>
+        <scope>provided</scope>
+      </dependency>
+
+      <!-- druid,  A JDBC datasource implementation.  -->
+      <!-- https://mvnrepository.com/artifact/com.alibaba/druid-spring-boot-starter -->
+      <dependency>
+        <groupId>com.alibaba</groupId>
+        <artifactId>druid-spring-boot-starter</artifactId>
+        <version>${druid-spring-boot-starter.version}</version>
+      </dependency>
+
+      <!-- Zookeeper  -->
+      <dependency>
+        <groupId>org.apache.zookeeper</groupId>
+        <artifactId>zookeeper</artifactId>
+        <version>${zookeeper.version}</version>
+        <exclusions>
+          <exclusion>
+            <artifactId>slf4j-log4j12</artifactId>
+            <groupId>org.slf4j</groupId>
+          </exclusion>
+        </exclusions>
+      </dependency>
+      <!-- https://mvnrepository.com/artifact/org.apache.curator/curator-client -->
+      <!--  Low-level API using ZooKeeper -->
+      <dependency>
+        <groupId>org.apache.curator</groupId>
+        <artifactId>curator-client</artifactId>
+        <version>${curator.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>org.apache.curator</groupId>
+        <artifactId>curator-recipes</artifactId>
+        <version>${curator.version}</version>
+      </dependency>
+      <!--  High-level API that greatly simplifies using ZooKeeper.  -->
+      <dependency>
+        <groupId>org.apache.curator</groupId>
+        <artifactId>curator-framework</artifactId>
+        <version>${curator.version}</version>
+      </dependency>
+
+      <!-- Etcd  -->
+      <!-- https://mvnrepository.com/artifact/io.etcd/jetcd-core -->
+      <dependency>
+        <groupId>io.etcd</groupId>
+        <artifactId>jetcd-core</artifactId>
+        <version>${jetcd-core.version}</version>
+      </dependency>
+
+      <!--               BigData Technologies            -->
+
+      <!-- hadoop -->
+      <!-- https://mvnrepository.com/artifact/org.apache.hadoop/hadoop-hdfs-client -->
+      <dependency>
+        <groupId>org.apache.hadoop</groupId>
+        <artifactId>hadoop-hdfs-client</artifactId>
+        <version>${hadoop.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>org.apache.hadoop</groupId>
+        <artifactId>hadoop-client</artifactId>
+        <version>${hadoop.version}</version>
+      </dependency>
+      <!-- hbase -->
+      <!-- https://mvnrepository.com/artifact/org.apache.hbase/hbase-client -->
+      <dependency>
+        <groupId>org.apache.hbase</groupId>
+        <artifactId>hbase-client</artifactId>
+        <version>${hbase.version}</version>
+      </dependency>
+
+      <!--  flink  -->
+      <!-- https://mvnrepository.com/artifact/org.apache.flink/flink-clients -->
+      <dependency>
+        <groupId>org.apache.flink</groupId>
+        <artifactId>flink-clients_2.12</artifactId>
+        <version>${flink.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>org.apache.flink</groupId>
+        <artifactId>flink-sql-parser</artifactId>
+        <version>${flink.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>org.apache.flink</groupId>
+        <artifactId>flink-table-common</artifactId>
+        <version>${flink.version}</version>
+      </dependency>
+
+      <!--               Storage Technologies            -->
+
+      <!--               Cache Technologies            -->
+
+      <!-- Ehcache -->
+      <!-- Ehcache is an open source, standards-based cache that boosts performance, offloads your database, and simplifies scalability.
+         It's the most widely-used Java-based cache because it's robust, proven, full-featured, and integrates with other popular libraries and frameworks.
+         Ehcache scales from in-process caching, all the way to mixed in-process/out-of-process deployments with terabyte-sized caches. -->
+      <!-- https://mvnrepository.com/artifact/org.ehcache/ehcache -->
+      <dependency>
+        <groupId>org.ehcache</groupId>
+        <artifactId>ehcache</artifactId>
+        <version>${ehcache.version}</version>
+      </dependency>
+
+      <!-- Redisson  -->
+      <!--  Redis Java client with features of In-Memory Data Grid -->
+      <!-- https://mvnrepository.com/artifact/org.redisson/redisson-spring-boot-starter -->
+      <dependency>
+        <groupId>org.redisson</groupId>
+        <artifactId>redisson-spring-boot-starter</artifactId>
+        <version>${redisson.version}</version>
+      </dependency>
+
+
+      <!--               Messaging Technologies            -->
+
+      <!-- rocketmq -->
+      <dependency>
+        <groupId>com.alibaba.cloud</groupId>
+        <artifactId>spring-cloud-starter-stream-rocketmq</artifactId>
+        <version>${spring-cloud-alibaba.version}</version>
+      </dependency>
+
+      <!--               Network Protocol && Utilities            -->
+      <!-- netty -->
+      <dependency>
+        <groupId>io.netty</groupId>
+        <artifactId>netty</artifactId>
+        <version>${netty3.version}</version>
+      </dependency>
+      <!-- https://mvnrepository.com/artifact/io.netty/netty-all -->
+      <dependency>
+        <groupId>io.netty</groupId>
+        <artifactId>netty-all</artifactId>
+        <version>${netty-all.version}</version>
+      </dependency>
+
+      <!-- cxf -->
+      <!--  Apache CXF Runtime JAX-RS, JAX-WS Frontend  -->
+      <!-- https://mvnrepository.com/artifact/org.apache.cxf/cxf-spring-boot-starter-jaxrs -->
+      <dependency>
+        <groupId>org.apache.cxf</groupId>
+        <artifactId>cxf-spring-boot-starter-jaxrs</artifactId>
+        <version>${cxf-spring-boot-starter.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>org.apache.cxf</groupId>
+        <artifactId>cxf-spring-boot-starter-jaxws</artifactId>
+        <version>${cxf-spring-boot-starter.version}</version>
+      </dependency>
+
+      <!-- <dependency>
+        <groupId>wsdl4j</groupId>
+        <artifactId>wsdl4j</artifactId>
+      </dependency> -->
+
+      <!--  Apache Commons Net library contains a collection of network utilities and protocol implementations.
+          Supported protocols include:
+          Echo, Finger, FTP, NNTP, NTP, POP3(S), SMTP(S), Telnet, Whois  -->
+      <!-- https://mvnrepository.com/artifact/commons-net/commons-net -->
+      <dependency>
+        <groupId>commons-net</groupId>
+        <artifactId>commons-net</artifactId>
+        <version>${commons-net.version}</version>
+      </dependency>
+
+      <!--  JSch is a pure Java implementation of SSH2 -->
+      <!-- https://mvnrepository.com/artifact/com.jcraft/jsch -->
+      <dependency>
+        <groupId>com.jcraft</groupId>
+        <artifactId>jsch</artifactId>
+        <version>${jcraft.version}</version>
+      </dependency>
+
+      <!--               Task Scheduling Technologies            -->
+      <!-- <dependency>
+         <groupId>org.quartz-scheduler</groupId>
+         <artifactId>quartz</artifactId>
+       </dependency> -->
+
+      <!--               Workflow Technologies            -->
+
+      <!-- Activiti is a light-weight workflow and Business Process Management (BPM) Platform
+          targeted at business people, developers and system admins.  -->
+      <!-- https://mvnrepository.com/artifact/org.activiti/activiti-spring-boot-starter -->
+      <dependency>
+        <groupId>org.activiti</groupId>
+        <artifactId>activiti-spring-boot-starter</artifactId>
+        <version>${activiti.version}</version>
+      </dependency>
+
+      <!--               Authentication            -->
+
+      <!--  Java implementation of JSON Web Token (JWT)  -->
+      <!-- https://mvnrepository.com/artifact/com.auth0/java-jwt -->
+      <dependency>
+        <groupId>com.auth0</groupId>
+        <artifactId>java-jwt</artifactId>
+        <version>${java-jwt.version}</version>
+      </dependency>
+
+      <!--  JSON Web Token Support For The JVM  -->
+      <!-- https://mvnrepository.com/artifact/io.jsonwebtoken/jjwt -->
+      <dependency>
+        <groupId>io.jsonwebtoken</groupId>
+        <artifactId>jjwt</artifactId>
+        <version>${jjwt.version}</version>
+      </dependency>
+
+      <!--               Encryption and Decryption            -->
+      <!--  The Bouncy Castle Crypto package is a Java implementation of cryptographic algorithms.
+        This jar contains JCE provider and lightweight API for the Bouncy Castle Cryptography APIs for JDK 1.5 and up.  -->
+      <!-- https://mvnrepository.com/artifact/org.bouncycastle/bcprov-jdk15on -->
+      <dependency>
+        <groupId>org.bouncycastle</groupId>
+        <artifactId>bcprov-jdk15on</artifactId>
+        <version>${bcprov.version}</version>
+      </dependency>
+
+      <!--               Common Utilities            -->
+
+      <!--  Groovy: A powerful, dynamic language for the JVM  -->
+      <!-- https://mvnrepository.com/artifact/org.codehaus.groovy/groovy -->
+      <dependency>
+        <groupId>org.codehaus.groovy</groupId>
+        <artifactId>groovy</artifactId>
+        <version>${groovy.version}</version>
+      </dependency>
+
+      <!--  Jython is an implementation of the high-level, dynamic, object-oriented language Python written in 100% Pure Java,
+            and seamlessly integrated with the Java platform.
+            It thus allows you to run Python on any Java platform.  -->
+      <!-- https://mvnrepository.com/artifact/org.python/jython-standalone -->
+      <dependency>
+        <groupId>org.python</groupId>
+        <artifactId>jython-standalone</artifactId>
+        <version>${jython-standalone.version}</version>
+      </dependency>
+
+      <!--  Guava is a suite of core and expanded libraries that include utility classes,
+          google's collections, io classes, and much much more.  -->
+      <!-- https://mvnrepository.com/artifact/com.google.guava/guava -->
+      <dependency>
+        <artifactId>guava</artifactId>
+        <groupId>com.google.guava</groupId>
+        <version>${guava.version}</version>
+      </dependency>
+
+      <!-- https://mvnrepository.com/artifact/org.apache.commons/commons-collections4 -->
+      <dependency>
+        <groupId>org.apache.commons</groupId>
+        <artifactId>commons-collections4</artifactId>
+        <version>${commons-collections4.version}</version>
+      </dependency>
+      <!-- https://mvnrepository.com/artifact/commons-codec/commons-codec -->
+      <dependency>
+        <groupId>commons-codec</groupId>
+        <artifactId>commons-codec</artifactId>
+        <version>${commons-codec.version}</version>
+      </dependency>
+      <!-- https://mvnrepository.com/artifact/commons-fileupload/commons-fileupload -->
+      <dependency>
+        <groupId>commons-fileupload</groupId>
+        <artifactId>commons-fileupload</artifactId>
+        <version>${commons-fileupload.version}</version>
+      </dependency>
+
+      <!-- https://github.com/SQiShER/java-object-diff -->
+      <!-- https://mvnrepository.com/artifact/de.danielbechler/java-object-diff -->
+      <dependency>
+        <groupId>de.danielbechler</groupId>
+        <artifactId>java-object-diff</artifactId>
+        <version>${java-object-diff.version}</version>
+      </dependency>
+
+      <!--               Logging System          -->
+      <dependency>
+        <groupId>ch.qos.logback</groupId>
+        <artifactId>logback-classic</artifactId>
+        <version>${logback.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>ch.qos.logback</groupId>
+        <artifactId>logback-core</artifactId>
+        <version>${logback.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>org.slf4j</groupId>
+        <artifactId>slf4j-api</artifactId>
+        <version>${slf4j.version}</version>
+        <scope>compile</scope>
+      </dependency>
+      <dependency>
+        <groupId>org.slf4j</groupId>
+        <artifactId>jcl-over-slf4j</artifactId>
+        <version>${jcl-over-slf4j.version}</version>
+      </dependency>
+
+      <!--               Dynamic Proxy  Utilities          -->
+      <!--  <dependency>
+          <groupId>org.javassist</groupId>
+          <artifactId>javassist</artifactId>
+          <version>${javassist.version}</version>
+        </dependency> -->
+
+      <!--               Serialization Technologies            -->
+      <!-- kryo -->
+      <!-- https://mvnrepository.com/artifact/com.esotericsoftware/kryo-shaded -->
+      <dependency>
+        <groupId>com.esotericsoftware</groupId>
+        <artifactId>kryo-shaded</artifactId>
+        <version>${kryo-shaded.vesion}</version>
+      </dependency>
+
+      <!--               Document  Utilities            -->
+
+      <!--  Apache POI - Java API To Access Microsoft Format Files  -->
+      <!-- https://mvnrepository.com/artifact/org.apache.poi/poi -->
+      <dependency>
+        <groupId>org.apache.poi</groupId>
+        <artifactId>poi</artifactId>
+        <version>${poi.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>org.apache.poi</groupId>
+        <artifactId>poi-ooxml</artifactId>
+        <version>${poi.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>org.apache.poi</groupId>
+        <artifactId>poi-ooxml-schemas</artifactId>
+        <version>${poi.version}</version>
+      </dependency>
+
+      <!-- https://mvnrepository.com/artifact/com.github.librepdf/openpdf -->
+      <dependency>
+        <groupId>com.github.librepdf</groupId>
+        <artifactId>openpdf</artifactId>
+        <version>${openpdf.version}</version>
+      </dependency>
+
+      <!--  flexible XML framework for Java  -->
+      <!-- https://mvnrepository.com/artifact/org.dom4j/dom4j -->
+      <dependency>
+        <groupId>org.dom4j</groupId>
+        <artifactId>dom4j</artifactId>
+        <version>${org.dom4j.version}</version>
+      </dependency>
+
+      <!-- Batik is a Java-based toolkit for applications or applets that want to
+        use images in the Scalable Vector Graphics (SVG) format for various purposes,
+        such as display, generation or manipulation.  -->
+      <!-- https://mvnrepository.com/artifact/org.apache.xmlgraphics/batik-transcoder -->
+      <dependency>
+        <groupId>org.apache.xmlgraphics</groupId>
+        <artifactId>batik-bridge</artifactId>
+        <version>${batik.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>org.apache.xmlgraphics</groupId>
+        <artifactId>batik-anim</artifactId>
+        <version>${batik.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>org.apache.xmlgraphics</groupId>
+        <artifactId>batik-codec</artifactId>
+        <version>${batik.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>org.apache.xmlgraphics</groupId>
+        <artifactId>batik-script</artifactId>
+        <version>${batik.version}</version>
+      </dependency>
+
+      <!--               Math && Scientific          -->
+
+      <!-- QLExpress is a powerful, lightweight, dynamic language for the Java platform
+            aimed at improving developers’ productivity in different business scenes. -->
+      <!-- https://mvnrepository.com/artifact/com.alibaba/QLExpress -->
+      <dependency>
+        <groupId>com.alibaba</groupId>
+        <artifactId>QLExpress</artifactId>
+        <version>${QLExpress.version}</version>
+      </dependency>
+
+      <!--               Development  Tools            -->
+      <dependency>
+        <groupId>org.projectlombok</groupId>
+        <artifactId>lombok</artifactId>
+        <version>${lombok.version}</version>
+        <scope>provided</scope>
+      </dependency>
+
+      <dependency>
+        <groupId>org.projectlombok</groupId>
+        <artifactId>lombok-mapstruct-binding</artifactId>
+        <version>${lombok-mapstruct-binding.version}</version>
+      </dependency>
+
+      <!-- MapStruct  -->
+      <!-- An annotation processor for generating type-safe bean mappers  -->
+      <!-- https://mvnrepository.com/artifact/org.mapstruct/mapstruct -->
+      <dependency>
+        <groupId>org.mapstruct</groupId>
+        <artifactId>mapstruct</artifactId>
+        <version>${org.mapstruct.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>org.mapstruct</groupId>
+        <artifactId>mapstruct-processor</artifactId>
+        <version>${org.mapstruct.version}</version>
+        <scope>provided</scope>
+      </dependency>
+      <dependency>
+        <groupId>javax.inject</groupId>
+        <artifactId>javax.inject</artifactId>
+        <version>1</version>
+      </dependency>
+
+      <!--  Dozer is a Java Bean to Java Bean mapper that recursively copies data from one object to another.  -->
+      <!-- https://github.com/DozerMapper/dozer -->
+      <!-- https://mvnrepository.com/artifact/com.github.dozermapper/dozer-core -->
+      <dependency>
+        <groupId>com.github.dozermapper</groupId>
+        <artifactId>dozer-core</artifactId>
+        <version>${dozer-core.version}</version>
+      </dependency>
+
+      <dependency>
+        <groupId>com.github.spotbugs</groupId>
+        <artifactId>spotbugs-annotations</artifactId>
+        <version>3.1.9</version>
+        <scope>provided</scope>
+      </dependency>
+      <dependency>
+        <groupId>com.google.code.findbugs</groupId>
+        <artifactId>jsr305</artifactId>
+        <version>3.0.2</version>
+      </dependency>
+
+      <!--               Test  Utilities            -->
+      <dependency>
+        <groupId>junit</groupId>
+        <artifactId>junit</artifactId>
+        <version>${junit.version}</version>
+        <scope>test</scope>
+      </dependency>
+      <!-- https://mvnrepository.com/artifact/org.powermock/powermock-module-junit4 -->
+      <dependency>
+        <groupId>org.powermock</groupId>
+        <artifactId>powermock-module-junit4</artifactId>
+        <version>${powermock.version}</version>
+        <scope>test</scope>
+      </dependency>
+      <dependency>
+        <groupId>org.powermock</groupId>
+        <artifactId>powermock-api-mockito2</artifactId>
+        <version>${powermock.version}</version>
+        <scope>test</scope>
+      </dependency>
+
+      <!-- https://openjdk.java.net/projects/code-tools/jmh/ -->
+      <!-- https://mvnrepository.com/artifact/org.openjdk.jmh/jmh-core -->
+      <dependency>
+        <groupId>org.openjdk.jmh</groupId>
+        <artifactId>jmh-core</artifactId>
+        <version>${jmh.version}</version>
+        <scope>test</scope>
+      </dependency>
+      <dependency>
+        <groupId>org.openjdk.jmh</groupId>
+        <artifactId>jmh-generator-annprocess</artifactId>
+        <version>${jmh.version}</version>
+        <scope>test</scope>
+      </dependency>
+
+      <!--  Redis embedded server for Java integration testing. Project forked from https://github.com/kstyrc/embedded-redis  -->
+      <!-- https://mvnrepository.com/artifact/it.ozimov/embedded-redis -->
+      <!-- <dependency>
+         <groupId>it.ozimov</groupId>
+         <artifactId>embedded-redis</artifactId>
+         <version>0.7.3</version>
+         <scope>test</scope>
+         <exclusions>
+           <exclusion>
+             <groupId>org.slf4j</groupId>
+             <artifactId>slf4j-simple</artifactId>
+           </exclusion>
+         </exclusions>
+       </dependency> -->
+      <!-- https://mvnrepository.com/artifact/ai.grakn/redis-mock -->
+      <dependency>
+        <groupId>ai.grakn</groupId>
+        <artifactId>redis-mock</artifactId>
+        <version>${redis-mock.version}</version>
+        <scope>test</scope>
+      </dependency>
+      <!--  MockServer & Proxy Netty -->
+      <!-- https://mvnrepository.com/artifact/org.mock-server/mockserver-netty -->
+      <dependency>
+        <groupId>org.mock-server</groupId>
+        <artifactId>mockserver-netty</artifactId>
+        <version>${mockserver-netty.version}</version>
+        <scope>test</scope>
+        <exclusions>
+          <exclusion>
+            <groupId>org.slf4j</groupId>
+            <artifactId>slf4j-api</artifactId>
+          </exclusion>
+        </exclusions>
+      </dependency>
+
+      <!--               Professional Technologies            -->
+      <!-- https://github.com/Wechat-Group/WxJava -->
+      <!-- 微信开发 Java SDK ，支持包括微信支付，开放平台，小程序，企业微信，公众号等的后端开发 -->
+      <dependency>
+        <groupId>com.github.binarywang</groupId>
+        <artifactId>wx-java-miniapp-spring-boot-starter</artifactId>
+        <version>${wx-java-spring-boot-starter.version}</version>
+      </dependency>
+
+    </dependencies>
+  </dependencyManagement>
+
+  <build>
+    <pluginManagement>
+      <plugins>
+        <plugin>
+          <!-- https://maven.apache.org/plugins/maven-compiler-plugin/compile-mojo.html -->
+          <groupId>org.apache.maven.plugins</groupId>
+          <artifactId>maven-compiler-plugin</artifactId>
+          <configuration>
+            <source>${java.version}</source>
+            <target>${java.version}</target>
+            <encoding>UTF-8</encoding>
+            <showWarnings>true</showWarnings>
+            <showDeprecation>true</showDeprecation>
+            <compilerArgs>
+              <arg>-Xlint:all,-classfile,-options,-path,-processing</arg>
+            </compilerArgs>
+          </configuration>
+        </plugin>
+        <plugin>
+          <!-- https://maven.apache.org/surefire/maven-surefire-plugin/test-mojo.html -->
+          <groupId>org.apache.maven.plugins</groupId>
+          <artifactId>maven-surefire-plugin</artifactId>
+          <version>${maven-surefire-plugin.version}</version>
+          <configuration>
+            <!-- 默认为 true, 会导致不同的 SpringBootTest 测试类不能完全隔离导致单元测试失败 -->
+            <reuseForks>false</reuseForks>
+          </configuration>
+        </plugin>
+        <!-- Package as an executable jar -->
+        <plugin>
+          <groupId>org.springframework.boot</groupId>
+          <artifactId>spring-boot-maven-plugin</artifactId>
+          <version>${spring-boot.version}</version>
+          <executions>
+            <execution>
+              <goals>
+                <goal>repackage</goal>
+              </goals>
+            </execution>
+          </executions>
+        </plugin>
+      </plugins>
+    </pluginManagement>
+    <plugins>
+      <plugin>
+        <groupId>org.codehaus.mojo</groupId>
+        <artifactId>versions-maven-plugin</artifactId>
+        <version>2.2</version>
+      </plugin>
+    </plugins>
+  </build>
+
+</project>

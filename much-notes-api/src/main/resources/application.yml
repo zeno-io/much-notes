@@ -1,0 +1,29 @@
+spring:
+  profiles:
+    active: jdbc, wx-miniapp
+
+  jackson:
+    date-format: yyyy-MM-dd HH:mm:ss
+    time-zone: GMT+8
+
+logging:
+  level:
+    root: ERROR
+    xyz:
+      flysium:
+        dao: INFO
+    com:
+      alibaba:
+        druid: INFO
+
+# server
+server:
+  port: 8080
+
+app:
+  product: 慕夏手记
+  version: v0.1
+  company: '@宗离'
+  toYou: I'm glad to meet you（终于等到你！）
+
+

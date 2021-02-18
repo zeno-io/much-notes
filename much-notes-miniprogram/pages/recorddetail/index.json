@@ -1,5 +1,5 @@
 {
-  "navigationBarTitleText": "账单编辑",
+  "navigationBarTitleText": "记账编辑",
   "usingComponents": {
     "van-dialog": "../../components/dist/dialog/index",
     "van-button": "../../components/dist/button/index",

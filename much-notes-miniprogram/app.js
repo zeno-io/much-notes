@@ -38,21 +38,20 @@ App({
     appUserInfo: null,
     userInfo: null,
     refreshJz:true,
-    // url:"https://jz.shangyee.site/miniprogram",
-    url: "https://jz.yqlife.net/miniprogram",
+    // url: "https://zeno.cn.utools.club",
+    url: "https://www.flysium.xyz",
     account_book_id: null,
     constants:{
-      SUCCESS:1,
-      ERROR_CODE:-1,
-      INVAILD_TOKEN:-14
-
+      SUCCESS:"100",
+      ERROR_CODE:"500",
+      INVALID_TOKEN:"501"
     },
     accountTypes:{
       // 3不选帐户 2微信  1支付宝 0现金
       3: "未选账户",
       2: "微信",
       1: "支付宝",
-      0:"现金"
+      0: "现金"
     },
     yunOSS:{
       YUN_OSS_URL:"http://dx-zhdjimg.oss-cn-hangzhou.aliyuncs.com/",

@@ -25,7 +25,7 @@
         "pagePath": "pages/home/index",
         "iconPath": "imgs/icon_account_book.png",
         "selectedIconPath": "imgs/icon_account_book_active.png",
-        "text": "账单"
+        "text": "账本"
       },
       {
         "pagePath": "pages/jizhang/index",

@@ -9,7 +9,7 @@
           <view class='type'>{{type}}</view>
         </view>
       </view>
-      <view class='money'>{{money/100}}</view>
+      <view class='money'>￥{{money/100}}</view>
     </view>
     <view class='info-info-wrap'>
       <view class='info-title'>账户</view>

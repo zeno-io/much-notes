@@ -8,9 +8,9 @@
           <view class='item-name'>{{item.name}}</view>
         </view>
         <image mode='widthFix' class='item-arrow' src='../../imgs/icon_arrow.png'></image>
-        
+
       </view>
     </block >
   </scroll-view>
-  <view class="btn-add" bindtap="createAb"> 创建账单 </view>
+  <view class="btn-add" bindtap="createAb"> 创建账本 </view>
 </view>

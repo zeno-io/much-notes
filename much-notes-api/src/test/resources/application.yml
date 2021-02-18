@@ -1,0 +1,9 @@
+spring:
+  profiles:
+    active: h2, wx-miniapp
+
+logging:
+  level:
+    org.springframework.transaction: WARN
+    org.springframework.test: WARN
+    xyz.flysium.dao: DEBUG

@@ -13,7 +13,7 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    
+
   },
 
   /**
@@ -47,13 +47,13 @@ Page({
   },
   getData: function(){
     let vm = this;
-    c.request('/AccountBooks/getList',{},function(success,data){
+    c.request('/mp/account/book/getList', {}, function (success, data) {
       console.log(data);
       vm.setData({
-        list: data.data
+        list: data.result
       })
     });
-    
+
   },
   onItemClick: function(e){
     let index = e.currentTarget.id;

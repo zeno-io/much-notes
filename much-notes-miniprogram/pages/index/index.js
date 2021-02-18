@@ -30,7 +30,7 @@ Page({
 
       }
     }
-    //在这里一进入就获取之前存储的账单id
+    //在这里一进入就获取之前存储的账本id
     app.globalData.account_book_id = wx.getStorageSync("account_book_id");
     //判断session是否过期
     wx.checkSession({
@@ -43,7 +43,7 @@ Page({
         that.getUserData();
       }
     })
-    
+
   },
   checkUserInfoAndOpenid: function(){
     let vm = this;
@@ -52,7 +52,7 @@ Page({
     //首先判断本地存储的信息是否还存在，不存在就去重新获取
     if (!userInfo.nickName) {
       vm.getUserData();
-    } else if (!user.openid){
+    } else if (!user.openId){
       vm.wxLogin();
     } else {
       app.globalData.userInfo = userInfo
@@ -72,7 +72,7 @@ Page({
         if (res.code) {
            //发起网络请求
           c.request(
-            "/index/wxlogin",
+            "/mp/wx/login",
             {
               encryptedData: encryptedData,
               iv: iv,
@@ -81,20 +81,20 @@ Page({
               nickName: app.globalData.userInfo.nickName
             },
             function (success, data) {
-              if(!success){
+              if (!success) {
                 vm.setData({
                   hasUserInfo: false
                 })
                 app.globalData.regetToken = false;
                 return;
               }
-              app.globalData.appUserInfo = data.data;
-              wx.setStorageSync('user', data.data);
+              app.globalData.appUserInfo = data.result;
+              wx.setStorageSync('user', data.result);
               vm.toHome();
             },
             'GET'
           );
-          
+
         } else {
           console.log('登录失败！' + res.errMsg)
         }
@@ -105,7 +105,7 @@ Page({
     let vm = this;
     //获取用户信息
     if (vm.data.canIUse) {
-      var userInfo = wx.getStorageSync('userInfo'); 
+      var userInfo = wx.getStorageSync('userInfo');
       // 由于 getUserInfo 是网络请求，可能会在 Page.onLoad 之后才返回
       // 所以此处加入 callback 以防止这种情况
       app.userInfoReadyCallback = res => {
@@ -136,7 +136,7 @@ Page({
           }else{
             vm.wxLogin();
           }
-          
+
         }
       })
     }
@@ -167,17 +167,17 @@ Page({
       url: '../jizhang/index'
     })
   },
-  addToAbUser:function(){
+  addToAbUser:function() {
     let vm = this;
-    c.request(
-      "/AccountBooks/addUserToAb",
+    c.requestGet(
+      "/mp/account/book/addUserToAccountBook",
       {
         key: vm.data.key
       },
       function (success, data) {
-        if(success){
-          app.globalData.account_book_id = data.data;
-          wx.setStorageSync('account_book_id', data.data);
+        if (success) {
+          app.globalData.account_book_id = data.result;
+          wx.setStorageSync('account_book_id', data.result);
         }
         vm.toHome();
       }

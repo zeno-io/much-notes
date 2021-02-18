@@ -2,6 +2,7 @@
 let c = require('../../utils/common.js');
 import Dialog from '../../components/dist/dialog/dialog';
 import Toast from '../../components/dist/toast/toast';
+
 Page({
 
   /**
@@ -38,24 +39,25 @@ Page({
   },
   getData(){
     let vm = this
-    c.request('/Record/getById',{id:this.data.id},(succ,data)=>{
-      if(succ){
-        vm.setInfo(data.data)
-      }
-    })
+    c.requestGet('/mp/account/record/getRecordById', {id: this.data.id},
+      (succ, data) => {
+        if (succ) {
+          vm.setInfo(data.result)
+        }
+      })
   },
   setInfo(data) {
     let icon = JSON.parse(data.category.icon)[1];
     this.setData({
-      categoryNmae: data.category.name,
+      categoryNmae: data.categoryName,
       money: data.money,
-      account_type_name: getApp().globalData.accountTypes[data.account_type],
-      nickname: data.nickname,
-      date: data.update_time,
+      account_type_name: getApp().globalData.accountTypes[data.accountType],
+      nickname: data.nickName,
+      date: data.updateTime,
       time: data.time,
       remark: data.remark,
       uid: data.uid,
-      account_type: data.account_type,
+      account_type: data.accountType,
       icon: icon,
       type:(data.type==1)?"收入":"支出"
     })
@@ -65,17 +67,18 @@ Page({
       title: '确认删除吗？',
       message: '删除后无法恢复'
     }).then(() => {
-      c.request('/Record/del',{record_id:this.data.id},(succ,data)=>{
-        if(succ){
-          getApp().globalData.refreshJz = true;
-          Toast.success({
-            type: 'success',
-            duration: 2000,
-            message: '删除成功',
-            onClose: function () {
-              wx.navigateBack();
-            }
-          });
+      c.requestGet('/mp/account/record/deleteRecord', {recordId: this.data.id},
+        (succ, data) => {
+          if (succ) {
+            getApp().globalData.refreshJz = true;
+            Toast.success({
+              type: 'success',
+              duration: 2000,
+              message: '删除成功',
+              onClose: function () {
+                wx.navigateBack();
+              }
+            });
         }
       })
     }).catch(() => {

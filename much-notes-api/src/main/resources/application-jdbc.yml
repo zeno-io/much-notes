@@ -1,0 +1,79 @@
+spring:
+  datasource:
+    url: jdbc:mysql://localhost:3306/much_notes?useSSL=false&allowPublicKeyRetrieval=true&serverTimezone=Asia/Shanghai
+    username: root
+    password: root123
+    driverClassName: com.mysql.jdbc.Driver  #配置JDBC Driver
+    ## 数据初始化设置, Spring Boot 会自动读取 classpath:schema-${platform}.sql 以及 data-${platform}.sql
+    platform: mysql  #表明使用的数据库平台是 mysql
+    # Spring Boot automatically creates the schema of an embedded DataSource.
+    # This behaviour can be customized by using the spring.datasource.initialization-mode property.
+    # initialization-mode: always
+
+    druid:
+      # 初始连接数
+      initial-size: 1
+      # 最大连接数
+      max-active: 10
+      # 最小连接数
+      min-idle: 1
+      # 获取连接等待超时的时间 单位：毫秒
+      max-wait: 10000
+      # pool-prepared-statements:
+      # max-pool-prepared-statement-per-connection-size:
+      # 和上面的等价
+      # max-open-prepared-statements:
+      # 验证连接的sql
+      validation-query: select 1
+      # 申请连接时执行 validationQuery 检测连接是否有效（默认 false）
+      test-on-borrow: false
+      # 归还连接时执行 validationQuery 检测连接是否有效（默认 false）
+      test-on-return: false
+      # 如果为true（默认true），当应用向连接池申请连接，并且 testOnBorrow为false 时，连接池将会判断连接是否空闲时间大于 timeBetweenEvictionRunsMillis，
+      # 如果是，则执行 validationQuery 检测连接是否有效
+      test-while-idle: true
+      # 检测需要关闭的空闲连接的间隔时间 单位：毫秒  默认1分钟
+      time-between-eviction-runs-millis: 60000
+      # 连接保持空闲而不被关闭的最小时间 单位：毫秒  默认30分钟
+      min-evictable-idle-time-millis: 1800000
+      # 连接保持空闲而不被关闭的最大时间 单位：毫秒  默认7个小时
+      max-evictable-idle-time-millis: 3600000
+      # 是否关闭长时间不使用的连接, druid不建议生产使用:  removeAbandoned is true, not use in production.
+      # remove-abandoned: false
+      # 连接长时间不使用的阈值 单位：毫秒
+      # mysql默认28800s/60/60=8h后单方面关闭空闲连接,druid 默认经过300 秒释放
+      # remove-abandoned-timeout-millis: 300000
+      # 关闭长时间不使用的连接时输出错误日志
+      log-abandoned: true
+      filter:
+        stat:
+          # 慢 SQL
+          log-slow-sql: true
+          # 慢 SQL 阈值。单位：毫秒
+          slow-sql-millis: 5000
+      # 监控配置
+      # 是否启用StatFilter默认值false
+      web-stat-filter.enabled: false
+      # web-stat-filter.url-pattern:
+      # web-stat-filter.exclusions:
+      # web-stat-filter.session-stat-enable:
+      # web-stat-filter.session-stat-max-count:
+      # web-stat-filter.principal-session-name:
+      # web-stat-filter.principal-cookie-name:
+      # web-stat-filter.profile-enable:
+      # 是否启用StatViewServlet（监控页面）默认值为false（考虑到安全问题默认并未启动，如需启用建议设置密码或白名单以保障安全）
+      stat-view-servlet.enabled: false
+      # stat-view-servlet.url-pattern:
+      # stat-view-servlet.reset-enable:
+      # stat-view-servlet.login-username:
+      # stat-view-servlet.login-password:
+      # stat-view-servlet.allow:
+      # stat-view-servlet.deny:
+      # Spring监控配置，说明请参考Druid Github Wiki，配置_Druid和Spring关联监控配置
+      # Spring监控AOP切入点，如x.y.z.service.*,配置多个英文逗号分隔
+      # aop-patterns: xyz.flysium.service.*
+
+
+mybatis:
+  mapper-locations: classpath:mybatis/mapper/*.xml
+

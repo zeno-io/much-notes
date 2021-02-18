@@ -69,20 +69,20 @@ Page({
   },
   submit: function() {
     //发起网络请求
-    c.request(
-      "/AccountBooks/addNormal", {
+    c.requestGet(
+      "/mp/account/book/addNormal", {
         name: this.data.value
       },
-      function(success, data) {
+      function (success, data) {
         Toast.success({
           type: 'success',
-          duration:2000,
+          duration: 2000,
           message: '创建成功',
-          onClose: function(){
+          onClose: function () {
             wx.navigateBack();
           }
         });
-        
+
       }
     );
   },

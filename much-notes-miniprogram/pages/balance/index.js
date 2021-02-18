@@ -36,7 +36,7 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    
+
   },
 
   /**
@@ -47,12 +47,12 @@ Page({
   },
   getData(){
     let vm = this;
-    c.request('/Account/getBalance',{},(succ,data)=>{
-      if(succ){
+    c.request('/mp/account/info/getBalance', {}, (succ, data) => {
+      if (succ) {
         let total = 0;
-        vm.data.accountList.forEach(v=>{
-          v.balance = data.data[v.type].balance 
-          total+=v.balance
+        vm.data.accountList.forEach(v => {
+          v.balance = data.result[v.type]
+          total += v.balance
         });
         vm.setData({
           accountList: vm.data.accountList,

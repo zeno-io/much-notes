@@ -1,4 +1,4 @@
-const WARNING = 1; 
+const WARNING = 1;
 var app = getApp();
 const constants = app.globalData.constants;
 const yunOSS = app.globalData.yunOSS;
@@ -22,7 +22,6 @@ function showToast (content,type = null) {
   }
 }
 
-
 /**
  * 数据获取通用方法，主要用于登陆后的一般的数据请求
  */
@@ -39,16 +38,16 @@ function requestCommon(url, params, callBack,method = 'POST') {
     data: params,
     method: method,
     header: {
-      'content-type': 'application/json', // 默认值
+      'Content-type': 'application/json;charset=utf-8', // 默认值
       'token': app.globalData.appUserInfo==null?"":app.globalData.appUserInfo.token
     },
     success: function (res) {
       wx.hideNavigationBarLoading();
       // wx.hideLoading();
       //如果是token失效了，重启去首页
-      if (res.data.code === constants.INVAILD_TOKEN){
+      if (res.data.code === constants.INVALID_TOKEN){
         showToast("登陆过期", WARNING);
-       
+
         try {
           // app.globalData.userInfo = null;
           app.globalData.appUserInfo = null;
@@ -64,12 +63,12 @@ function requestCommon(url, params, callBack,method = 'POST') {
           })
           app.globalData.regetToken = true;
         }
-        
+
         // callBack(false, null);
         return;
       }
       if (res.data.code !== constants.SUCCESS) {
-        showToast(checkStrNotNull(res.data.msg) ? res.data.msg:"访问失败", WARNING);
+        showToast(checkStrNotNull(res.data.message) ? res.data.message:"访问失败", WARNING);
         console.log(res);
         //TODO 具体哪些错误这里可以统一处理
       } else {
@@ -84,6 +83,12 @@ function requestCommon(url, params, callBack,method = 'POST') {
   })
 }
 
+/**
+ * 数据获取通用方法，主要用于登陆后的一般的数据请求
+ */
+function requestGetCommon(url, params, callback) {
+  requestCommon(url, params, callback, "GET");
+}
 
 /**
  * 用于获取str内容，避免对每个str进行n非ull判断
@@ -141,7 +146,7 @@ function formateImg(str) {
       }
     }
   }
-  
+
   return titlurl;
 
 }
@@ -189,6 +194,7 @@ function formatDate(format, timestamp, full) {
 module.exports = {
   showToast: showToast,
   request: requestCommon,
+  requestGet: requestGetCommon,
   getString: getString,
   checkStrNotNull: checkStrNotNull,
   dateString: dateString,
