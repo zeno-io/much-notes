@@ -3,11 +3,10 @@ package xyz.flysium.dto;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
-
 import java.util.Date;
 
 @ApiModel("天资产统计信息")
-public class AccountDayStatDTO implements java.io.Serializable {
+public class AccountInfoDayStatDTO implements java.io.Serializable {
 
   private static final long serialVersionUID = 1L;
 

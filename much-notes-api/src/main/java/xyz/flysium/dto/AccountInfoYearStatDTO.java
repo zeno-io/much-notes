@@ -4,7 +4,7 @@ import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 
 @ApiModel("年资产统计信息")
-public class AccountYearStatDTO implements java.io.Serializable {
+public class AccountInfoYearStatDTO implements java.io.Serializable {
 
   private static final long serialVersionUID = 1L;
 

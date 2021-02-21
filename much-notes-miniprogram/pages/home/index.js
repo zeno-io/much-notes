@@ -1,6 +1,5 @@
 //x.js 逻辑处理，这里还需要引入 F2 用于绘制图表，结构如下，注意路径正确。
 // index.js
-import F2 from '@antv/wx-f2'; // 注：也可以不引入， initChart 方法已经将 F2 传入，如果需要引入，注意需要安装 @antv/wx-f2 依赖
 let c = require('../../utils/common.js');
 
 let chart = null;
@@ -99,14 +98,6 @@ Page({
       })
     }
   },
-  getMonthData() {
-    c.requestGet('/mp/stat/getTotalByMonth', {
-      id: this.data.abid,
-      month: '07'
-    }, (succ, data) => {
-
-    })
-  },
   getYearData() {
     c.requestGet('/mp/stat/getTotalByYear', {
       id: this.data.abid,
@@ -115,7 +106,6 @@ Page({
       if (data.result != null && data.result.length > 0) {
         let formatData = [];
         data.result.forEach(v => {
-
           formatData.push({
             type: '收入',
             count: parseInt((v.sr) / 100),
@@ -136,12 +126,10 @@ Page({
       }else{
         chart.changeData([]);
       }
-
     })
   },
   swiper(e) {
     let type = e.currentTarget.dataset.type;
-
     if (type == 0) {
       if (this.data.years.length > this.data.cIndex + 1) {
         this.data.cIndex++;

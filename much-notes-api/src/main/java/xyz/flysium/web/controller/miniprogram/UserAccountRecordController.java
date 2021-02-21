@@ -5,17 +5,13 @@ import com.github.dozermapper.core.Mapper;
 import com.github.pagehelper.PageInfo;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
-
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.ZoneId;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 import java.util.Set;
 import java.util.stream.Collectors;
 import javax.validation.constraints.NotNull;
-
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -31,12 +27,13 @@ import xyz.flysium.dao.entity.CategoryDO;
 import xyz.flysium.dao.entity.NoteUserDO;
 import xyz.flysium.dao.entity.UserAccountRecordDO;
 import xyz.flysium.dao.vo.AccountDayStatDO;
-import xyz.flysium.dto.AccountDayStatDTO;
+import xyz.flysium.dto.AccountDayStatsDTO;
+import xyz.flysium.dto.AccountInfoDayStatDTO;
 import xyz.flysium.dto.CategoryDTO;
 import xyz.flysium.dto.ResultResponse;
 import xyz.flysium.dto.UserAccountRecordDTO;
-import xyz.flysium.dto.request.UserAccountRecordRequest;
 import xyz.flysium.dto.UserInfo;
+import xyz.flysium.dto.request.UserAccountRecordRequest;
 import xyz.flysium.service.CategoryService;
 import xyz.flysium.service.StatService;
 import xyz.flysium.service.UserAccountRecordService;
@@ -69,7 +66,8 @@ public class UserAccountRecordController {
 
   @PostMapping("/addRecord")
   @ApiOperation("新增记账")
-  public ResultResponse<Long> addRecord(@Validated @NotNull @RequestBody UserAccountRecordRequest record) {
+  public ResultResponse<Long> addRecord(
+    @Validated @NotNull @RequestBody UserAccountRecordRequest record) {
     UserInfo userInfo = UserInfoHolder.getUserInfo();
     Long uid = userInfo.getUid();
     LOGGER.debug("[新增记账] addRecord.request [uid={}]: {}", uid, record);
@@ -86,7 +84,8 @@ public class UserAccountRecordController {
 
   @PostMapping("/editRecord")
   @ApiOperation("编辑记账")
-  public ResultResponse<Long> editRecord(@Validated @NotNull @RequestBody UserAccountRecordRequest record) {
+  public ResultResponse<Long> editRecord(
+    @Validated @NotNull @RequestBody UserAccountRecordRequest record) {
     UserInfo userInfo = UserInfoHolder.getUserInfo();
     Long uid = userInfo.getUid();
     LOGGER.debug("[编辑记账] editRecord.request [uid={}]: {}", uid, record);
@@ -109,7 +108,8 @@ public class UserAccountRecordController {
 
   @GetMapping("/deleteRecord")
   @ApiOperation("删除记账")
-  public ResultResponse<Long> deleteRecord(@Validated @NotNull @RequestParam(name = "recordId") Long recordId) {
+  public ResultResponse<Long> deleteRecord(
+    @Validated @NotNull @RequestParam(name = "recordId") Long recordId) {
     UserInfo userInfo = UserInfoHolder.getUserInfo();
     Long uid = userInfo.getUid();
     LOGGER.debug("[删除记账] deleteRecord.request [uid={}]: recordId={}", uid, recordId);
@@ -152,7 +152,7 @@ public class UserAccountRecordController {
 
   @GetMapping("/getListByAccountBookId")
   @ApiOperation("分页查询某一个账本的记账记录")
-  public ResultResponse<Map<String, Object>> getListByAccountBookId(
+  public ResultResponse<AccountDayStatsDTO> getListByAccountBookId(
     @RequestParam(name = "page", required = false) Integer pageNumber,
     @RequestParam(name = "size", required = false) Integer pageSize,
     @Validated @NotNull @RequestParam(name = "id") Long accountBookId) {
@@ -165,21 +165,23 @@ public class UserAccountRecordController {
     PageInfo<UserAccountRecordDTO> dtoPageInfo = PageSupport
       .transformTo(pageInfo, r -> dozerBeanMapper.map(r, UserAccountRecordDTO.class));
     Set<LocalDate> times = pageInfo.getList().stream()
-      .map(r -> LocalDateTime.ofInstant(r.getTime().toInstant(), ZoneId.systemDefault()).toLocalDate())
+      .map(
+        r -> LocalDateTime.ofInstant(r.getTime().toInstant(), ZoneId.systemDefault()).toLocalDate())
       .collect(Collectors.toSet());
-    List<AccountDayStatDO> stats = statService.queryAccountDayStatByAccountBookId(accountBookId, times);
+    List<AccountDayStatDO> stats = statService
+      .queryAccountDayStatByAccountBookId(accountBookId, times);
 
-    Map<String, Object> res = new HashMap<>(16);
-    res.put("total", dtoPageInfo.getTotal());
-    res.put("data", dtoPageInfo.getList());
-    res.put("days", stats.stream().map(stat -> {
-      AccountDayStatDTO dto = new AccountDayStatDTO();
-      dto.setZc(stat.getSumSpend());
-      dto.setSr(stat.getSumIncome());
-      dto.setTime(stat.getTime());
-      return dto;
+    AccountDayStatsDTO dto = new AccountDayStatsDTO();
+    dto.setTotal(dtoPageInfo.getTotal());
+    dto.setData(dtoPageInfo.getList());
+    dto.setDays(stats.stream().map(stat -> {
+      AccountInfoDayStatDTO infoDayStatDTO = new AccountInfoDayStatDTO();
+      infoDayStatDTO.setZc(stat.getSumSpend());
+      infoDayStatDTO.setSr(stat.getSumIncome());
+      infoDayStatDTO.setTime(stat.getTime());
+      return infoDayStatDTO;
     }).collect(Collectors.toList()));
-    return ResultResponse.success(res);
+    return ResultResponse.success(dto);
   }
 
 }
