@@ -175,19 +175,17 @@ public class UserAccountBookService {
   /**
    * 获取账本下的所有用户列表
    */
-  public List<Long> queryAccountBookUsersById(Long accountBookId) {
+  public List<UserAccountBookAuthDO> queryAccountBookUsersById(Long accountBookId) {
     Objects.requireNonNull(accountBookId);
 
     UserAccountBookAuthDOExample example = new UserAccountBookAuthDOExample();
     example.createCriteria()
       .andAccountBookIdEqualTo(accountBookId)
       .andIsDeletedEqualTo(IsOrNot.False.getKeyByte());
-    List<UserAccountBookAuthDO> userAccountBookAuths = QuerySupport.queryAll((rowBounds -> {
+
+    return QuerySupport.queryAll((rowBounds -> {
       return userAccountBookAuthMapper.selectByExampleWithRowbounds(example, rowBounds);
     }));
-
-    return userAccountBookAuths.stream().map(UserAccountBookAuthDO::getUid)
-      .collect(Collectors.toList());
   }
 
 

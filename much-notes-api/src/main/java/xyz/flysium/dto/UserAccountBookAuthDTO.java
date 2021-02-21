@@ -10,6 +10,9 @@ public class UserAccountBookAuthDTO implements Serializable {
   private static final long serialVersionUID = 1L;
 
   @ApiModelProperty
+  private Long uid;
+
+  @ApiModelProperty
   private Long accountBookId;
 
   @ApiModelProperty

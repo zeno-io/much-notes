@@ -56,17 +56,16 @@ Page({
         id: getApp().globalData.account_book_id
       },
       function (success, data) {
-        let uid = '';
-        data.result.user_roles.forEach(v => {
-          if (v.is_owner == 5) {
-            uid = v.uid;
+        let adminUid = '';
+        data.result.auths.forEach(v => {
+          if (v.isAdmin == 1) {
+            adminUid = v.uid;
           }
         })
         vm.setData({
-          adminUid:uid,
-          list: data.result.data
+          adminUid: adminUid,
+          list: data.result.users
         })
-
       }
     );
   },

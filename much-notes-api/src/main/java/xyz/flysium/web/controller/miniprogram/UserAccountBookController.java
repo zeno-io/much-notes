@@ -4,14 +4,10 @@ import com.github.dozermapper.core.DozerBeanMapperBuilder;
 import com.github.dozermapper.core.Mapper;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
-
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 import java.util.stream.Collectors;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
-
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,8 +18,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import xyz.flysium.dao.entity.NoteUserDO;
+import xyz.flysium.dao.entity.UserAccountBookAuthDO;
 import xyz.flysium.dao.entity.UserAccountBookDO;
+import xyz.flysium.dto.AccountUsersDTO;
 import xyz.flysium.dto.ResultResponse;
+import xyz.flysium.dto.UserAccountBookAuthDTO;
 import xyz.flysium.dto.UserAccountBookDTO;
 import xyz.flysium.dto.UserAccountBookWithCountDTO;
 import xyz.flysium.dto.UserDTO;
@@ -56,7 +55,8 @@ public class UserAccountBookController {
 
   @GetMapping("/addNormal")
   @ApiOperation("创建账本")
-  public ResultResponse<Long> addNormalAccountBook(@Validated @NotBlank @RequestParam(name = "name") String name) {
+  public ResultResponse<Long> addNormalAccountBook(
+    @Validated @NotBlank @RequestParam(name = "name") String name) {
     UserInfo userInfo = UserInfoHolder.getUserInfo();
     Long uid = userInfo.getUid();
     LOGGER.debug("[创建账本] addNormalAccountBook.request [uid={}]: name={}", uid, name);
@@ -67,10 +67,12 @@ public class UserAccountBookController {
 
   @GetMapping("/getShareKey")
   @ApiOperation("生成一个分享的临时邀请链接")
-  public ResultResponse<String> getShareKey(@Validated @NotNull @RequestParam(name = "id") Long accountBookId) {
+  public ResultResponse<String> getShareKey(
+    @Validated @NotNull @RequestParam(name = "id") Long accountBookId) {
     UserInfo userInfo = UserInfoHolder.getUserInfo();
     Long uid = userInfo.getUid();
-    LOGGER.debug("[生成一个分享的临时邀请链接] getShareKey.request [uid={}]: accountBookId={}", uid, accountBookId);
+    LOGGER
+      .debug("[生成一个分享的临时邀请链接] getShareKey.request [uid={}]: accountBookId={}", uid, accountBookId);
     if (!userInfo.checkAdminAuth(accountBookId)) {
       return ResultResponse.fail("您没有管理员权限");
     }
@@ -81,7 +83,8 @@ public class UserAccountBookController {
 
   @GetMapping("/addUserToAccountBook")
   @ApiOperation("用户加入到账本")
-  public ResultResponse<Long> addUserToAccountBook(@Validated @NotBlank @RequestParam(name = "key") String key) {
+  public ResultResponse<Long> addUserToAccountBook(
+    @Validated @NotBlank @RequestParam(name = "key") String key) {
     UserInfo userInfo = UserInfoHolder.getUserInfo();
     Long uid = userInfo.getUid();
     LOGGER.debug("[用户加入到账本] addUserToAccountBook.request [uid={}]: key={}", uid, key);
@@ -111,7 +114,8 @@ public class UserAccountBookController {
     UserInfo userInfo = UserInfoHolder.getUserInfo();
     Long uid = userInfo.getUid();
     LOGGER
-      .debug("[将用户从账本移除] addUserToAccountBook.request [uid={}]: accountBookId={}, uid={}", uid, accountBookId, thatUid);
+      .debug("[将用户从账本移除] addUserToAccountBook.request [uid={}]: accountBookId={}, uid={}", uid,
+        accountBookId, thatUid);
     if (thatUid.equals(uid)) {
       return ResultResponse.fail("不能将自己移除");
     }
@@ -133,10 +137,12 @@ public class UserAccountBookController {
 
   @GetMapping("/exitFromAccountBook")
   @ApiOperation("用户主动退出")
-  public ResultResponse<Long> exitFromAccountBook(@Validated @NotNull @RequestParam(name = "id") Long accountBookId) {
+  public ResultResponse<Long> exitFromAccountBook(
+    @Validated @NotNull @RequestParam(name = "id") Long accountBookId) {
     UserInfo userInfo = UserInfoHolder.getUserInfo();
     Long uid = userInfo.getUid();
-    LOGGER.debug("[用户主动退出] exitFromAccountBook.request [uid={}]: accountBookId={}", uid, accountBookId);
+    LOGGER
+      .debug("[用户主动退出] exitFromAccountBook.request [uid={}]: accountBookId={}", uid, accountBookId);
     if (!userInfo.checkAuth(accountBookId)) {
       return ResultResponse.success();
     }
@@ -158,11 +164,14 @@ public class UserAccountBookController {
 
   @GetMapping("/changeAdmin")
   @ApiOperation("移交管理员")
-  public ResultResponse<Long> changeAdmin(@Validated @NotNull @RequestParam(name = "id") Long accountBookId,
+  public ResultResponse<Long> changeAdmin(
+    @Validated @NotNull @RequestParam(name = "id") Long accountBookId,
     @Validated @NotNull @RequestParam(name = "uid") Long thatUid) {
     UserInfo userInfo = UserInfoHolder.getUserInfo();
     Long uid = userInfo.getUid();
-    LOGGER.debug("[移交管理员] changeAdmin.request [uid={}]: accountBookId={}, uid={}", uid, accountBookId, thatUid);
+    LOGGER
+      .debug("[移交管理员] changeAdmin.request [uid={}]: accountBookId={}, uid={}", uid, accountBookId,
+        thatUid);
     if (!userInfo.checkAdminAuth(accountBookId)) {
       return ResultResponse.fail("您没有管理员权限");
     }
@@ -189,7 +198,8 @@ public class UserAccountBookController {
     }
     UserAccountBookDO book = userAccountBookService.getAccountBookById(accountBookId);
     long count = userAccountBookService.countAccountBookById(accountBookId);
-    UserAccountBookWithCountDTO accountBookDTO = dozerBeanMapper.map(book, UserAccountBookWithCountDTO.class);
+    UserAccountBookWithCountDTO accountBookDTO = dozerBeanMapper
+      .map(book, UserAccountBookWithCountDTO.class);
     accountBookDTO.setCount(count);
     return ResultResponse.success(accountBookDTO);
   }
@@ -202,24 +212,30 @@ public class UserAccountBookController {
 
     List<UserAccountBookDO> books = userAccountBookService.queryAccountBookListByUid(uid);
     return ResultResponse.success(
-      books.stream().map(book -> dozerBeanMapper.map(book, UserAccountBookDTO.class)).collect(Collectors.toList()));
+      books.stream().map(book -> dozerBeanMapper.map(book, UserAccountBookDTO.class))
+        .collect(Collectors.toList()));
   }
 
   @GetMapping("/getAccountBookUsersById")
   @ApiOperation("获取当前账本的用户列表")
-  public ResultResponse<Map<String, Object>> getAccountBookUsersById(
+  public ResultResponse<AccountUsersDTO> getAccountBookUsersById(
     @Validated @NotNull @RequestParam(name = "id") Long accountBookId) {
     UserInfo userInfo = UserInfoHolder.getUserInfo();
     if (!userInfo.checkAuth(accountBookId)) {
       return ResultResponse.fail("没有查看权限");
     }
-    List<Long> uidList = userAccountBookService.queryAccountBookUsersById(accountBookId);
+    List<UserAccountBookAuthDO> auths = userAccountBookService
+      .queryAccountBookUsersById(accountBookId);
+    List<Long> uidList = auths.stream().map(UserAccountBookAuthDO::getUid).distinct()
+      .collect(Collectors.toList());
     List<NoteUserDO> users = userService.getUsersByIds(uidList);
 
-    Map<String, Object> res = new HashMap<>(8);
-    res.put("user_roles", uidList);
-    res.put("data", users.stream().map(user -> dozerBeanMapper.map(user, UserDTO.class)).collect(Collectors.toList()));
-    return ResultResponse.success(res);
+    AccountUsersDTO dto = new AccountUsersDTO();
+    dto.setAuths(auths.stream().map(auth -> dozerBeanMapper.map(auth, UserAccountBookAuthDTO.class))
+      .collect(Collectors.toList()));
+    dto.setUsers(users.stream().map(user -> dozerBeanMapper.map(user, UserDTO.class))
+      .collect(Collectors.toList()));
+    return ResultResponse.success(dto);
   }
 
 }
