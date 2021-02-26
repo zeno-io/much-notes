@@ -33,11 +33,6 @@ Page({
     this.getCategory()
     if (getApp().globalData.account_book_id == -1) {
       this.getAccountBooks()
-      this.setData({
-        showAccountBookInfo: true,
-        accountBookSelectedIndex: 0,
-        accountBookId: this.data.accountBookList[0]
-      })
     }
     if (this.data.id != null) {
       this.getDetailById();
@@ -140,7 +135,8 @@ Page({
   },
   setInfo(data) {
     this.setData({
-      accountType: data.account_type,
+      accountType: data.accountType,
+      accountBookId: data.accountBookId,
       initDate: data.time,
       remark: data.remark,
       value: data.money / 100,
@@ -148,7 +144,7 @@ Page({
     })
     if (data.type == 0) {
       for (let i in this.data.zcCategoryList) {
-        if (data.category_id == this.data.zcCategoryList[i].id) {
+        if (data.categoryId == this.data.zcCategoryList[i].id) {
           this.setData({
             zcCategorySelectedIndex: i
           })
@@ -156,29 +152,26 @@ Page({
       }
     } else {
       for (let i in this.data.srCategoryList) {
-        if (data.category_id == this.data.srCategoryList[i].id) {
+        if (data.categoryId == this.data.srCategoryList[i].id) {
           this.setData({
             srCategorySelectedIndex: i
           })
         }
       }
     }
-    if (data.accountBookId != '') {
-      let index = 0;
-      for (let i in this.data.accountBookList) {
-        if (this.data.accountBookList[i].id == data.accountBookId) {
-          this.data.accountBookList[i].selected = true;
-          index = i;
-        } else {
-          this.data.accountBookList[i].selected = false;
-        }
+    let index = 0;
+    for (let i in this.data.accountBookList) {
+      if (this.data.accountBookList[i].id == data.accountBookId) {
+        this.data.accountBookList[i].selected = true;
+        index = i;
+      } else {
+        this.data.accountBookList[i].selected = false;
       }
-      this.setData({
-        accountBookSelectedIndex: index,
-        accountBookId: data.accountBookId,
-        accountBookList: this.data.accountBookList
-      })
     }
+    this.setData({
+      accountBookSelectedIndex: index,
+      accountBookList: this.data.accountBookList
+    })
   },
   // 分类被选中
   categroyItemSelect(e) {
@@ -194,14 +187,16 @@ Page({
     }
 
   },
-  //获取分类数据
+  //获取账本数据
   getAccountBooks() {
     let vm = this;
     c.requestGet('/mp/account/book/getList', {
       "all": false
     }, (success, data) => {
-      console.log('books-->' + data);
       vm.setData({
+        showAccountBookInfo: true,
+        accountBookSelectedIndex: 0,
+        accountBookId: data.result[0].id,
         accountBookList: data.result
       })
     })
