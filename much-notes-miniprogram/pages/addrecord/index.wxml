@@ -42,6 +42,7 @@
   </scroll-view>
 
    <view class='jz-input-ab' show="{{ showAccountBookInfo }}" bindtap='selectAccountBook'>
+      <view style='font-size:3.5vw;'>账本：</view>
       <image mode='widthFix' class='jz-input-ab-icon' src="../../imgs/icon_list_account_book.png"></image>
       <view class="jz-input-ab-name">{{accountBookList[accountBookSelectedIndex].name}}</view>
    </view>
