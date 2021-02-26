@@ -115,6 +115,9 @@ Page({
   },
   //到账本详情去
   toAbDetail: function() {
+    if (this.data.abid == -1) {
+      return;
+    }
     wx.navigateTo({
       url: '../accountbookdetail/index'
     });
