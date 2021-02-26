@@ -66,25 +66,25 @@ Component({
       {
         name: "现金",
         type: 0,
-        icon: "http://jz.wwfarm.cn/assets/account_type_icon/icon_zf_xj.png",
+        icon: "../../imgs/account_type_icon/icon_zf_xj.png",
         selected: false
       },
       {
         name: "支付宝",
         type: 1,
-        icon: "http://jz.wwfarm.cn/assets/account_type_icon/icon_zf_zfb.png",
+        icon: "../../imgs/account_type_icon/icon_zf_zfb.png",
         selected: false
       },
       {
         name: "微信",
         type: 2,
-        icon: "http://jz.wwfarm.cn/assets/account_type_icon/icon_zf_wx.png",
+        icon: "../../imgs/account_type_icon/icon_zf_wx.png",
         selected: false
       },
       {
         name: "不选",
         type: 3,
-        icon: "http://jz.wwfarm.cn/assets/account_type_icon/icon_zf_bx.png",
+        icon: "../../imgs/account_type_icon/icon_zf_bx.png",
         selected: true
       },
     ]
