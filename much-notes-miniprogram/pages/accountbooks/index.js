@@ -47,7 +47,9 @@ Page({
   },
   getData: function(){
     let vm = this;
-    c.request('/mp/account/book/getList', {}, function (success, data) {
+    c.requestGet('/mp/account/book/getList', {
+      "all": true
+    }, function (success, data) {
       console.log(data);
       vm.setData({
         list: data.result

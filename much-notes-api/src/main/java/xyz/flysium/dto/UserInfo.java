@@ -46,6 +46,17 @@ public class UserInfo implements java.io.Serializable {
    * 检查是否有账本的查看权限
    */
   public boolean checkAuth(Long accountBookId) {
+    // 用户的所有账本（虚拟）
+    if (accountBookId == -1) {
+      return true;
+    }
+    return checkRecordAuth(accountBookId);
+  }
+
+  /**
+   * 检查是否有账本的编辑权限
+   */
+  public boolean checkRecordAuth(Long accountBookId) {
     if (Objects.equals(type, UserType.ADMIN_USER.getKey())) {
       return true;
     }

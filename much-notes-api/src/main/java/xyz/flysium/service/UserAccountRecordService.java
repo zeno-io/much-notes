@@ -5,6 +5,7 @@ import com.github.pagehelper.PageInfo;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.ZoneId;
+import java.util.Collections;
 import java.util.Date;
 import java.util.List;
 import java.util.Objects;
@@ -17,6 +18,7 @@ import xyz.flysium.constant.enums.IsOrNot;
 import xyz.flysium.dao.entity.UserAccountRecordDO;
 import xyz.flysium.dao.entity.UserAccountRecordDOExample;
 import xyz.flysium.dao.repository.UserAccountRecordDOMapper;
+import xyz.flysium.support.page.PageSupport;
 
 /**
  * 记账
@@ -159,21 +161,24 @@ public class UserAccountRecordService {
   }
 
   /**
-   * 分页查询某一个账本的记账记录
+   * 分页查询某一批账本的记账记录
    */
-  public PageInfo<UserAccountRecordDO> getRecordByAccountBookId(Integer pageNumber,
-    Integer pageSize, Long accountBookId) {
-    Objects.requireNonNull(accountBookId);
-
+  public PageInfo<UserAccountRecordDO> getRecordByAccountBookIdList(Integer pageNumber,
+    Integer pageSize, List<Long> accountBookIds) {
+    Objects.requireNonNull(accountBookIds);
     if (pageNumber == null || pageNumber <= 0) {
       pageNumber = 1;
     }
     if (pageSize == null || pageSize <= 0) {
       pageSize = 20;
     }
+    if (CollectionUtils.isEmpty(accountBookIds)) {
+      return PageSupport.transform(Collections.emptyList(), pageNumber, pageSize, 0);
+    }
+
     UserAccountRecordDOExample example = new UserAccountRecordDOExample();
     example.createCriteria()
-      .andAccountBookIdEqualTo(accountBookId)
+      .andAccountBookIdIn(accountBookIds)
       .andIsDeletedEqualTo(IsOrNot.False.getKeyByte());
     example.setOrderByClause(" time DESC");
 

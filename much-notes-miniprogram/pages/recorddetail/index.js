@@ -9,18 +9,19 @@ Page({
    * 页面的初始数据
    */
   data: {
-    id:'',
-    icon:'',
-    categoryNmae:'',
-    money:0,
+    id: '',
+    icon: '',
+    categoryNmae: '',
+    money: 0,
+    account_book_name: '',
     account_type_name: '',
-    account_type:'',
-    nickname:'',
+    account_type: '',
+    nickname: '',
     time: '',
-    date:'',
-    remark:null,
-    uid:null,
-    type:'支出'
+    date: '',
+    remark: null,
+    uid: null,
+    type: '支出'
   },
 
   /**
@@ -51,6 +52,7 @@ Page({
     this.setData({
       categoryNmae: data.categoryName,
       money: data.money,
+      account_book_name: data.accountBookName,
       account_type_name: getApp().globalData.accountTypes[data.accountType],
       nickname: data.nickName,
       date: data.updateTime,
@@ -59,7 +61,7 @@ Page({
       uid: data.uid,
       account_type: data.accountType,
       icon: icon,
-      type:(data.type==1)?"收入":"支出"
+      type: (data.type == 1) ? "收入" : "支出"
     })
   },
   del(){

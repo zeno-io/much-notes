@@ -61,3 +61,45 @@
   display: flex;
   align-items: center;
 }
+
+.jz-input-ab-item-info-wrap {
+  display: flex;
+}
+
+.jz-input-ab-item {
+  padding: 2vw 5vw;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: #eee 1rpx solid;
+}
+
+.jz-input-ab-item-name{
+  font-size: 4vw;
+  color: #333;
+  display: flex;
+  align-items: center;
+}
+
+.jz-input-ab-item-selected {
+  color: rgb(196, 151, 3) !important;
+}
+
+
+.jz-input-ab {
+  margin-left: 4vw;
+  display: flex;
+  align-items: center;
+}
+
+.jz-input-ab-icon{
+  width: 8vw;
+  /* height: auto; */
+}
+
+.jz-input-ab-name {
+  font-size: 3.5vw;
+  color: #797979;
+  display: flex;
+  align-items: center;
+}

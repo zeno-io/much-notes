@@ -13,10 +13,10 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+import xyz.flysium.constant.enums.AccountBookType;
 import xyz.flysium.dao.entity.NoteUserDO;
 import xyz.flysium.dao.entity.UserAccountBookAuthDO;
 import xyz.flysium.dao.entity.UserAccountBookDO;
@@ -52,6 +52,15 @@ public class UserAccountBookController {
   private ShareService shareService;
 
   private final Mapper dozerBeanMapper = DozerBeanMapperBuilder.buildDefault();
+
+  public UserAccountBookDO all(Long uid) {
+    UserAccountBookDO all = new UserAccountBookDO();
+    all.setId(-1L);
+    all.setUid(uid);
+    all.setName("所有");
+    all.setType(AccountBookType.NORMAL.getKeyByte());
+    return all;
+  }
 
   @GetMapping("/addNormal")
   @ApiOperation("创建账本")
@@ -193,24 +202,37 @@ public class UserAccountBookController {
   public ResultResponse<UserAccountBookWithCountDTO> getAccountBookById(
     @Validated @NotNull @RequestParam(name = "id") Long accountBookId) {
     UserInfo userInfo = UserInfoHolder.getUserInfo();
-    if (!userInfo.checkAuth(accountBookId)) {
-      return ResultResponse.fail("没有查看权限");
+    Long uid = userInfo.getUid();
+    UserAccountBookDO book = null;
+    long count = 0L;
+    // 用户的所有账本（虚拟）
+    if (accountBookId == -1) {
+      book = all(uid);
+      count = 1L;
+    } else {
+      if (!userInfo.checkAuth(accountBookId)) {
+        return ResultResponse.fail("无查看权限");
+      }
+      book = userAccountBookService.getAccountBookById(accountBookId);
+      count = userAccountBookService.countAccountBookById(accountBookId);
     }
-    UserAccountBookDO book = userAccountBookService.getAccountBookById(accountBookId);
-    long count = userAccountBookService.countAccountBookById(accountBookId);
     UserAccountBookWithCountDTO accountBookDTO = dozerBeanMapper
       .map(book, UserAccountBookWithCountDTO.class);
     accountBookDTO.setCount(count);
     return ResultResponse.success(accountBookDTO);
   }
 
-  @PostMapping("/getList")
+  @GetMapping("/getList")
   @ApiOperation("获取用户下的所有账本信息")
-  public ResultResponse<List<UserAccountBookDTO>> getAccountBookList() {
+  public ResultResponse<List<UserAccountBookDTO>> getAccountBookList(
+    @Validated @NotNull @RequestParam(name = "all", required = false) Boolean all) {
     UserInfo userInfo = UserInfoHolder.getUserInfo();
     Long uid = userInfo.getUid();
 
     List<UserAccountBookDO> books = userAccountBookService.queryAccountBookListByUid(uid);
+    if (all != null && all) {
+      books.add(0, all(uid));
+    }
     return ResultResponse.success(
       books.stream().map(book -> dozerBeanMapper.map(book, UserAccountBookDTO.class))
         .collect(Collectors.toList()));
@@ -222,7 +244,7 @@ public class UserAccountBookController {
     @Validated @NotNull @RequestParam(name = "id") Long accountBookId) {
     UserInfo userInfo = UserInfoHolder.getUserInfo();
     if (!userInfo.checkAuth(accountBookId)) {
-      return ResultResponse.fail("没有查看权限");
+      return ResultResponse.fail("无查看权限");
     }
     List<UserAccountBookAuthDO> auths = userAccountBookService
       .queryAccountBookUsersById(accountBookId);

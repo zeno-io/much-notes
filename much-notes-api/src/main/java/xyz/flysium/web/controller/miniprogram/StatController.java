@@ -5,6 +5,7 @@ import io.swagger.annotations.ApiOperation;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.ZoneId;
+import java.util.Collections;
 import java.util.Date;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -21,6 +22,7 @@ import xyz.flysium.dao.vo.AccountYearStatDO;
 import xyz.flysium.dto.AccountInfoMonthStatDTO;
 import xyz.flysium.dto.AccountInfoYearStatDTO;
 import xyz.flysium.dto.ResultResponse;
+import xyz.flysium.dto.UserAccountBookAuthDTO;
 import xyz.flysium.dto.UserInfo;
 import xyz.flysium.service.StatService;
 import xyz.flysium.web.UserInfoHolder;
@@ -44,13 +46,19 @@ public class StatController {
     @Validated @NotNull @RequestParam(name = "id") Long accountBookId,
     @Validated @NotNull @DateTimeFormat(pattern = "yyyy-MM") @RequestParam(name = "date") Date date) {
     UserInfo userInfo = UserInfoHolder.getUserInfo();
-    if (!userInfo.checkAuth(accountBookId)) {
-      return ResultResponse.fail("没有账本权限");
-    }
-    final LocalDate localDate = LocalDateTime.ofInstant(date.toInstant(), ZoneId.systemDefault()).toLocalDate();
+    final LocalDate localDate = LocalDateTime.ofInstant(date.toInstant(), ZoneId.systemDefault())
+      .toLocalDate();
     int year = localDate.getYear();
     int monthOfYear = localDate.getMonthValue();
-    AccountMonthStatDO stat = statService.getAccountMonthStatByAccountBookId(accountBookId, year, monthOfYear);
+    if (!userInfo.checkAuth(accountBookId)) {
+      return ResultResponse.fail("无账本权限");
+    }
+    List<Long> accountBookIdList = (accountBookId == -1L) ?
+      userInfo.getAuthList().stream()
+        .map(UserAccountBookAuthDTO::getAccountBookId).distinct().collect(Collectors.toList())
+      : Collections.singletonList(accountBookId);
+    AccountMonthStatDO stat = statService
+      .getAccountMonthStatByAccountBookIdList(accountBookIdList, year, monthOfYear);
     AccountInfoMonthStatDTO dto = new AccountInfoMonthStatDTO();
     dto.setZc(stat.getSumSpend());
     dto.setSr(stat.getSumIncome());
@@ -64,9 +72,14 @@ public class StatController {
     @Validated @NotNull @RequestParam(name = "year") Integer year) {
     UserInfo userInfo = UserInfoHolder.getUserInfo();
     if (!userInfo.checkAuth(accountBookId)) {
-      return ResultResponse.fail("没有账本权限");
+      return ResultResponse.fail("无账本权限");
     }
-    List<AccountYearStatDO> list = statService.queryAccountYearStatByAccountBookId(accountBookId, year);
+    List<Long> accountBookIdList = (accountBookId == -1L) ?
+      userInfo.getAuthList().stream()
+        .map(UserAccountBookAuthDTO::getAccountBookId).distinct().collect(Collectors.toList())
+      : Collections.singletonList(accountBookId);
+    List<AccountYearStatDO> list = statService
+      .queryAccountYearStatByAccountBookIdList(accountBookIdList, year);
     List<AccountInfoYearStatDTO> res = list.stream().map(stat -> {
       AccountInfoYearStatDTO dto = new AccountInfoYearStatDTO();
       dto.setZc(stat.getSumSpend());

@@ -65,28 +65,24 @@ Component({
       // 3不选帐户 2微信  1支付宝 0现金
       {
         name: "现金",
-        balance: 0,
         type: 0,
         icon: "http://jz.wwfarm.cn/assets/account_type_icon/icon_zf_xj.png",
         selected: false
       },
       {
         name: "支付宝",
-        balance: 0,
         type: 1,
         icon: "http://jz.wwfarm.cn/assets/account_type_icon/icon_zf_zfb.png",
         selected: false
       },
       {
         name: "微信",
-        balance: 0,
         type: 2,
         icon: "http://jz.wwfarm.cn/assets/account_type_icon/icon_zf_wx.png",
         selected: false
       },
       {
         name: "不选",
-        balance: 0,
         type: 3,
         icon: "http://jz.wwfarm.cn/assets/account_type_icon/icon_zf_bx.png",
         selected: true
@@ -110,7 +106,7 @@ Component({
       if (this.data.initRemark != '') {
         this.setData({
           remark: this.data.initRemark
-        }) 
+        })
       }
       if (this.data.accountType != '') {
         let index = 0;

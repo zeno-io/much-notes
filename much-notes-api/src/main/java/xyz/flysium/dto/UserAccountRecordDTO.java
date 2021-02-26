@@ -3,7 +3,6 @@ package xyz.flysium.dto;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
-
 import java.io.Serializable;
 import java.util.Date;
 
@@ -44,6 +43,9 @@ public class UserAccountRecordDTO implements Serializable {
   private String remark;
 
   // ------------------
+
+  @ApiModelProperty
+  private String accountBookName;
 
   @ApiModelProperty
   private CategoryDTO category;
@@ -121,6 +123,14 @@ public class UserAccountRecordDTO implements Serializable {
 
   public void setRemark(String remark) {
     this.remark = remark;
+  }
+
+  public String getAccountBookName() {
+    return accountBookName;
+  }
+
+  public void setAccountBookName(String accountBookName) {
+    this.accountBookName = accountBookName;
   }
 
   public CategoryDTO getCategory() {

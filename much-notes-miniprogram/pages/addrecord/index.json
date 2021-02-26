@@ -1,8 +1,9 @@
 {
   "navigationBarTitleText": "记一笔",
   "usingComponents": {
-    "jz-input":"../../components/jzinput/index",
+    "jz-input": "../../components/jzinput/index",
     "van-tab": "../../components/dist/tab/index",
-    "van-tabs": "../../components/dist/tabs/index"
+    "van-tabs": "../../components/dist/tabs/index",
+    "van-action-sheet": "../../components/dist/action-sheet/index"
   }
 }

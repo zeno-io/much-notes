@@ -12,6 +12,10 @@
       <view class='money'>￥{{money/100}}</view>
     </view>
     <view class='info-info-wrap'>
+      <view class='info-title'>账本</view>
+      <view class='info-value'>{{account_book_name}}</view>
+    </view>
+    <view class='info-info-wrap'>
       <view class='info-title'>账户</view>
       <view class='info-value'>{{account_type_name}}</view>
     </view>
@@ -34,8 +38,8 @@
     </view>
   </view>
   <view class='container-btn'>
-    <view bindtap='del' class='btn del'>删除</view> 
-    <view bindtap='edit' class='btn edit'>编辑</view> 
+    <view bindtap='del' class='btn del'>删除</view>
+    <view bindtap='edit' class='btn edit'>编辑</view>
   </view>
 
 </view>

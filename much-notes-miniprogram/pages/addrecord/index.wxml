@@ -41,6 +41,21 @@
     </van-tabs>
   </scroll-view>
 
+   <view class='jz-input-ab' show="{{ showAccountBookInfo }}" bindtap='selectAccountBook'>
+      <image mode='widthFix' class='jz-input-ab-icon' src="../../imgs/icon_list_account_book.png"></image>
+      <view class="jz-input-ab-name">{{accountBookList[accountBookSelectedIndex].name}}</view>
+   </view>
+
+  <!-- 选择账户的 -->
+  <van-action-sheet show="{{ showAccountBookSelect }}" title="选择账本" bind:close="onAccountBookSelectClose">
+    <block wx:for="{{accountBookList}}">
+      <view class="jz-input-ab-item" data-index='{{index}}' bindtap='onAccountBookSelect'>
+        <view class='jz-input-ab-item-info-wrap'data-index='{{index}}'>
+          <view class="jz-input-ab-item-name {{item.selected?'jz-input-ab-item-selected':''}}">{{item.name}}</view>
+        </view>
+      </view>
+    </block>
+  </van-action-sheet>
 
   <jz-input bind:numChange="numChange" initDate='{{initDate}}' accountType='{{accountType}}' initRemark='{{remark}}' initValue='{{value}}' bind:submit='submit'>
   </jz-input>

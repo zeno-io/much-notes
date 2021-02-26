@@ -21,7 +21,7 @@
         <image class='jz-input-account-item-icon' src="{{item.icon}}"></image>
         <view class="jz-input-account-item-name {{item.selected?'jz-input-account-item-selected':''}}">{{item.name}}</view>
       </view>
-      <view class="jz-input-account-balance {{item.selected?'jz-input-account-item-selected':''}}">{{item.balance}}</view>
+     <!--  <view class="jz-input-account-balance {{item.selected?'jz-input-account-item-selected':''}}">{{item.balance}}</view>  -->
     </view>
   </block>
 </van-action-sheet>

@@ -15,54 +15,68 @@ Page({
     zcCategorySelectedIndex: 0,
     srCategorySelectedIndex: 0,
     tabActive: 0,
-    id:null
+    id: null,
+    showAccountBookInfo: false,
+    showAccountBookSelect: false,
+    accountBookId: null,
+    accountBookList: []
   },
-
 
   /**
    * 生命周期函数--监听页面加载
    */
-  onLoad: function(options) {
+  onLoad: function (options) {
     let id = options.id;
     if (id != undefined && id != null) {
       this.data.id = id;
     }
     this.getCategory()
+    if (getApp().globalData.account_book_id == -1) {
+      this.getAccountBooks()
+      this.setData({
+        showAccountBookInfo: true,
+        accountBookSelectedIndex: 0,
+        accountBookId: this.data.accountBookList[0]
+      })
+    }
+    if (this.data.id != null) {
+      this.getDetailById();
+    }
   },
 
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
-  onReady: function() {
+  onReady: function () {
 
   },
 
   /**
    * 生命周期函数--监听页面显示
    */
-  onShow: function() {
+  onShow: function () {
 
   },
 
   /**
    * 生命周期函数--监听页面隐藏
    */
-  onHide: function() {
+  onHide: function () {
 
   },
 
   /**
    * 生命周期函数--监听页面卸载
    */
-  onUnload: function() {
+  onUnload: function () {
 
   },
-  numChange: function(e) {
+  numChange: function (e) {
     this.setData({
       value: e.detail.value
     })
   },
-  submit: function(e) {
+  submit: function (e) {
     console.log(e);
     if (!c.checkStrNotNull(e.detail.value)) {
       c.showToast("请输入金额");
@@ -71,18 +85,22 @@ Page({
     let categoryItem = this.data.tabActive == 0 ?
       this.data.zcCategoryList[this.data.zcCategorySelectedIndex] :
       this.data.srCategoryList[this.data.srCategorySelectedIndex];
+    let accountBookId = getApp().globalData.account_book_id;//账本id
+    if (accountBookId == -1) {
+      accountBookId = this.data.accountBookId;
+    }
     let params = {
       money: parseFloat(e.detail.value) * 100,
       type: this.data.tabActive,
       accountType: e.detail.account,
-      accountBookId: getApp().globalData.account_book_id, //账本id
+      accountBookId: accountBookId,
       time: e.detail.date,
       categoryId: categoryItem.id,
       categoryName: categoryItem.name,
       remark: e.detail.remark
     }
     let url = '/mp/account/record/addRecord';
-    if(this.data.id!=null){
+    if (this.data.id != null) {
       params['recordId'] = this.data.id;
       url = '/mp/account/record/editRecord'
     }
@@ -109,9 +127,6 @@ Page({
         srCategoryList: res.result.srCategory,
         zcCategoryList: res.result.zcCategory
       })
-      if (vm.data.id != null) {
-        vm.getDetailById();
-      }
     })
   },
   getDetailById() {
@@ -148,6 +163,22 @@ Page({
         }
       }
     }
+    if (data.accountBookId != '') {
+      let index = 0;
+      for (let i in this.data.accountBookList) {
+        if (this.data.accountBookList[i].id == data.accountBookId) {
+          this.data.accountBookList[i].selected = true;
+          index = i;
+        } else {
+          this.data.accountBookList[i].selected = false;
+        }
+      }
+      this.setData({
+        accountBookSelectedIndex: index,
+        accountBookId: data.accountBookId,
+        accountBookList: this.data.accountBookList
+      })
+    }
   },
   // 分类被选中
   categroyItemSelect(e) {
@@ -162,6 +193,44 @@ Page({
       })
     }
 
+  },
+  //获取分类数据
+  getAccountBooks() {
+    let vm = this;
+    c.requestGet('/mp/account/book/getList', {
+      "all": false
+    }, (success, data) => {
+      console.log('books-->' + data);
+      vm.setData({
+        accountBookList: data.result
+      })
+    })
+  },
+  //显示选择账本
+  selectAccountBook() {
+    this.setData({
+      showAccountBookSelect: true
+    })
+  },
+  //关闭选择账本
+  onAccountBookSelectClose() {
+    this.setData({
+      showAccountBookSelect: false
+    })
+  },
+  //选中账户本后
+  onAccountBookSelect(e) {
+    let index = e.currentTarget.dataset.index
+    for (let i in this.data.accountBookList) {
+      i == index ? this.data.accountBookList[i].selected = true
+        : this.data.accountBookList[i].selected = false;
+    }
+    this.setData({
+      accountBookId: this.data.accountBookList[index].id,
+      accountBookSelectedIndex: index,
+      accountBookList: this.data.accountBookList
+    })
+    this.onAccountBookSelectClose();
   },
   // tabs切换
   onTabChange(e) {
