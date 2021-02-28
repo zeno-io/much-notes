@@ -135,6 +135,9 @@ public class UserAccountBookService {
     return userAccountBookMapper.selectByPrimaryKey(accountBookId);
   }
 
+  /**
+   * 统计单个账本的用户数
+   */
   public long countAccountBookById(Long accountBookId) {
     Objects.requireNonNull(accountBookId);
 

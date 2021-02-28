@@ -67,7 +67,7 @@ public class UserAccountRecordService {
     Objects.requireNonNull(record.getMoney());
 
     UserAccountRecordDO origin = getRecordById(recordId);
-    if (origin == null) {
+    if (origin == null || IsOrNot.True.getKeyByte() == origin.getIsDeleted()) {
       return false;
     }
     if (record.getTime() == null) {
@@ -97,7 +97,7 @@ public class UserAccountRecordService {
   public boolean deleteRecord(Long recordId) {
     Objects.requireNonNull(recordId);
     UserAccountRecordDO origin = getRecordById(recordId);
-    if (origin == null) {
+    if (origin == null || IsOrNot.True.getKeyByte() == origin.getIsDeleted()) {
       return true;
     }
     UserAccountRecordDO record = new UserAccountRecordDO();

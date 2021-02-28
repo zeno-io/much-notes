@@ -33,6 +33,10 @@ public class UserAccountRecordDTO implements Serializable {
   @ApiModelProperty
   private Date time;
 
+  @JsonFormat(locale = "zh", timezone = "GMT+8", pattern = "yyyy-MM-dd HH:mm:ss")
+  @ApiModelProperty
+  private Date updateTime;
+
   @ApiModelProperty
   private String categoryName;
 

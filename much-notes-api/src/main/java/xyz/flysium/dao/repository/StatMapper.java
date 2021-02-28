@@ -21,7 +21,8 @@ public interface StatMapper {
     " SUM(IF(type=1,money,0)) as sum_income, ",
     " time ",
     " from user_account_record ",
-    " where account_book_id IN ",
+    " where is_deleted = 0 ",
+    "  AND account_book_id IN ",
     "   <foreach item='item' collection='accountBookIds' separator=',' open='(' close=')' index='' >"
       + "  #{item}"
       + "</foreach>",
@@ -48,7 +49,8 @@ public interface StatMapper {
     "select SUM(IF(type=0,money,0)) as sum_spend,",
     " SUM(IF(type=1,money,0)) as sum_income ",
     " from user_account_record ",
-    " where account_book_id IN ",
+    " where is_deleted = 0 ",
+    "  AND account_book_id IN ",
     "   <foreach item='item' collection='accountBookIds' separator=',' open='(' close=')' index='' >"
       + "  #{item}"
       + "</foreach>",
@@ -75,7 +77,8 @@ public interface StatMapper {
       + "    0 as sum_income, "
       + "    time_month "
       + "    from user_account_record"
-      + "    where account_book_id IN ",
+      + " where is_deleted = 0 ",
+    "  AND account_book_id IN ",
     "   <foreach item='item' collection='accountBookIds' separator=',' open='(' close=')' index='' >"
       + "  #{item}"
       + "</foreach>"
@@ -87,7 +90,8 @@ public interface StatMapper {
       + "    SUM(money) as sum_income, "
       + "    time_month "
       + "    from user_account_record"
-      + "    where account_book_id IN ",
+      + " where is_deleted = 0 ",
+    "  AND account_book_id IN ",
     "   <foreach item='item' collection='accountBookIds' separator=',' open='(' close=')' index='' >"
       + "  #{item}"
       + "</foreach>"
