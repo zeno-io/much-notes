@@ -70,7 +70,7 @@ public class UserAccountRecordController {
 
   private final Mapper dozerBeanMapper = DozerBeanMapperBuilder.buildDefault();
 
-  @PostMapping("/checkRecordAuth")
+  @GetMapping("/checkRecordAuth")
   @ApiOperation("检查账本操作权限")
   public ResultResponse<String> checkRecordAuth(
     @Validated @NotNull @RequestParam(name = "id") Long accountBookId) {
