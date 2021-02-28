@@ -2,19 +2,20 @@ const WARNING = 1;
 var app = getApp();
 const constants = app.globalData.constants;
 const yunOSS = app.globalData.yunOSS;
-function showToast (content,type = null) {
-  let img=null;
-  switch(type){
+
+function showToast(content, type = null) {
+  let img = null;
+  switch (type) {
     case WARNING:
       img = '/imgs/icon_warning.png';
-    break
+      break
 
   }
-  if(type==null){
+  if (type == null) {
     wx.showToast({
       title: content
     })
-  }else{
+  } else {
     wx.showToast({
       title: content,
       image: img
@@ -25,7 +26,7 @@ function showToast (content,type = null) {
 /**
  * 数据获取通用方法，主要用于登陆后的一般的数据请求
  */
-function requestCommon(url, params, callBack,method = 'POST') {
+function requestCommon(url, params, callBack, method = 'POST') {
   wx.showNavigationBarLoading();
   // wx.showLoading({
   //   title: 'loading',
@@ -39,13 +40,14 @@ function requestCommon(url, params, callBack,method = 'POST') {
     method: method,
     header: {
       'Content-type': 'application/json;charset=utf-8', // 默认值
-      'token': app.globalData.appUserInfo==null?"":app.globalData.appUserInfo.token
+      'token': app.globalData.appUserInfo == null ? ""
+        : app.globalData.appUserInfo.token
     },
     success: function (res) {
       wx.hideNavigationBarLoading();
       // wx.hideLoading();
-      //如果是token失效了，重启去首页
-      if (res.data.code === constants.INVALID_TOKEN){
+      // 如果是token失效了，重启去首页
+      if (res.statusCode === 401 || res.data.code === constants.INVALID_TOKEN) {
         showToast("登陆过期", WARNING);
 
         try {
@@ -53,21 +55,17 @@ function requestCommon(url, params, callBack,method = 'POST') {
           app.globalData.appUserInfo = null;
           // app.globalData.account_book_id = null;
           wx.removeStorageSync('user');
-          // wx.clearStorage();
+          wx.clearStorage();
         } catch (e) {
 
         }
-        if (!app.globalData.regetToken){
+        if (!app.globalData.regetToken) {
           wx.reLaunch({
             url: '/pages/index/index'
           })
           app.globalData.regetToken = true;
         }
-
-        // callBack(false, null);
-        return;
-      }
-      if (res.data.code !== constants.SUCCESS) {
+      } else if (res.data.code !== constants.SUCCESS) {
         showToast(checkStrNotNull(res.data.message) ? res.data.message : "访问失败",
           WARNING);
         console.log(res);
@@ -93,12 +91,13 @@ function requestGetCommon(url, params, callback) {
 /**
  * 用于获取str内容，避免对每个str进行n非ull判断
  */
-function getString(str){
-  if(str==null||str==undefined){
+function getString(str) {
+  if (str == null || str == undefined) {
     return "";
   }
   return str;
 }
+
 /**
  * 对str进行n非ull判断
  */
@@ -108,33 +107,36 @@ function checkStrNotNull(str) {
   }
   return true;
 }
+
 /**
  * 将json格式的data转换成yyyy-MM-dd格式
  */
 function dateString(str) {
-  if(str==""||str==null||str==undefined){
+  if (str == "" || str == null || str == undefined) {
     return "";
   }
 
-  var date = new Date(parseInt(str.replace("/Date(", "").replace(")/", ""), 10));
-  var month = date.getMonth() + 1 < 10 ? "0" + (date.getMonth() + 1) : date.getMonth() + 1;
+  var date = new Date(
+    parseInt(str.replace("/Date(", "").replace(")/", ""), 10));
+  var month = date.getMonth() + 1 < 10 ? "0" + (date.getMonth() + 1)
+    : date.getMonth() + 1;
   var currentDate = date.getDate() < 10 ? "0" + date.getDate() : date.getDate();
   return date.getFullYear() + "-" + month + "-" + currentDate;
 
 }
+
 /**
  * 将图片字符串转化为标准图片链接
  */
 function formateImg(str) {
   let weburl = "http://dxdj.o2odj.cn"
   let titlurl = ''
-  if (str == undefined || str == "" || str.count==0) {
+  if (str == undefined || str == "" || str.count == 0) {
     return titlurl;
-  }
-  else {
-    try{
+  } else {
+    try {
       var b = JSON.parse(str); //JSON.parse(str);
-    }catch(err){
+    } catch (err) {
       var b = [];
       b.push(str)
     }
@@ -150,8 +152,9 @@ function formateImg(str) {
   return titlurl;
 
 }
+
 //替换为阿里云的小图片
-function  replaceToSmallImg(url) {
+function replaceToSmallImg(url) {
   if (url == null || url == undefined) {
     return "";
   }
@@ -159,6 +162,7 @@ function  replaceToSmallImg(url) {
   url += "?" + yunOSS.YUN_OSS_SMALL_IMG_SIZE;
   return url;
 }
+
 //替换为阿里云的小图片
 function replaceToYunOSSImg(url) {
   if (url == null || url == undefined) {
@@ -167,17 +171,22 @@ function replaceToYunOSSImg(url) {
   url = url.replace("~/upload/", yunOSS.YUN_OSS_URL);
   return url;
 }
+
 function formatDate(format, timestamp, full) {
   format = format.toLowerCase();
-  if (!format) format = "y-m-d h:i:s";
+  if (!format) {
+    format = "y-m-d h:i:s";
+  }
 
   function zeroFull(str) {
     // return (str >= 10 ? str : ('0' + str));
     return (str >= 10 ? str : str);
   }
+
   function timeZeroFull(str) {
     return (str >= 10 ? str : ('0' + str));
   }
+
   var time = new Date(timestamp),
     o = {
       y: time.getFullYear(),
@@ -191,6 +200,7 @@ function formatDate(format, timestamp, full) {
     return o[m];
   });
 }
+
 module.exports = {
   showToast: showToast,
   request: requestCommon,
