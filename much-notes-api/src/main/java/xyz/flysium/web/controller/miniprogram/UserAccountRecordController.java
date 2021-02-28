@@ -155,6 +155,9 @@ public class UserAccountRecordController {
     dto.setAccountBookName(book.getName());
     dto.setCategory(dozerBeanMapper.map(category, CategoryDTO.class));
     dto.setNickName(user.getNickname());
+    if (dto.getUpdateTime() == null) {
+      dto.setUpdateTime(record.getCreateTime());
+    }
 
     return ResultResponse.success(dto);
   }
