@@ -105,6 +105,14 @@ public class UserAccountRecordDTO implements Serializable {
     this.time = time;
   }
 
+  public Date getUpdateTime() {
+    return updateTime;
+  }
+
+  public void setUpdateTime(Date updateTime) {
+    this.updateTime = updateTime;
+  }
+
   public String getCategoryName() {
     return categoryName;
   }
