@@ -11,14 +11,16 @@ Page({
   data: {
     id: '',
     icon: '',
-    categoryNmae: '',
+    categoryName: '',
     money: 0,
-    account_book_name: '',
-    account_type_name: '',
+    accountBookId: '',
+    accountBookName: '',
+    accountTypeName: '',
     account_type: '',
-    nickname: '',
+    creatorName: '',
+    updaterName: '',
     time: '',
-    date: '',
+    updateTime: '',
     remark: null,
     uid: null,
     type: '支出'
@@ -38,7 +40,7 @@ Page({
   onShow: function () {
     this.getData();
   },
-  getData(){
+  getData() {
     let vm = this
     c.requestGet('/mp/account/record/getRecordById', {id: this.data.id},
       (succ, data) => {
@@ -50,21 +52,23 @@ Page({
   setInfo(data) {
     let icon = JSON.parse(data.category.icon)[1];
     this.setData({
-      categoryNmae: data.categoryName,
+      categoryName: data.categoryName,
       money: data.money,
-      account_book_name: data.accountBookName,
-      account_type_name: getApp().globalData.accountTypes[data.accountType],
-      nickname: data.nickName,
-      date: data.updateTime,
+      accountBookId: data.accountBookId,
+      accountBookName: data.accountBookName,
+      accountTypeName: getApp().globalData.accountTypes[data.accountType],
       time: data.time,
+      updateTime: data.updateTime,
+      creatorName: data.creatorName,
+      updaterName: data.updaterName,
       remark: data.remark,
       uid: data.uid,
       account_type: data.accountType,
       icon: icon,
       type: (data.type == 1) ? "收入" : "支出"
-    })
+    });
   },
-  del(){
+  del() {
     Dialog.confirm({
       title: '确认删除吗？',
       message: '删除后无法恢复'
@@ -81,20 +85,21 @@ Page({
                 wx.navigateBack();
               }
             });
-        }
-      })
+          }
+        })
     }).catch(() => {
       // on cancel
     });
   },
-  edit(){
-    let uid = getApp().globalData.appUserInfo.uid;
-    if(uid!=this.data.uid){
-      c.showToast('本人才能修改');
-    }else{
-      wx.navigateTo({
-        url: '../addrecord/index?id=' + this.data.id,
-      })
-    }
+  edit() {
+    c.requestGet('/mp/account/record/checkRecordAuth',
+      {id: this.data.accountBookId},
+      (succ, data) => {
+        if (succ) {
+          wx.navigateTo({
+            url: '../addrecord/index?id=' + this.data.id,
+          });
+        }
+      });
   }
-})
+});

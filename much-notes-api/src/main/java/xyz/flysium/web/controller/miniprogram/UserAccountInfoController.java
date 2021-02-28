@@ -2,13 +2,11 @@ package xyz.flysium.web.controller.miniprogram;
 
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
-
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
 import javax.validation.constraints.NotNull;
-
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -47,18 +45,21 @@ public class UserAccountInfoController {
 
     List<UserAccountInfoDO> list = userAccountInfoService.queryBalancesByUid(uid);
     return ResultResponse.success(list.stream().collect(
-      Collectors.toMap(UserAccountInfoDO::getAccountType, UserAccountInfoDO::getBalance, (u, v) -> v, HashMap::new)));
+      Collectors
+        .toMap(UserAccountInfoDO::getAccountType, UserAccountInfoDO::getBalance, (u, v) -> v,
+          HashMap::new)));
   }
 
   @GetMapping("/balanceEdit")
   @ApiOperation("更新资产信息")
-  public ResultResponse<Object> balanceEdit(@Validated @NotNull @RequestParam(name = "type") Integer type,
+  public ResultResponse<Object> balanceEdit(
+    @Validated @NotNull @RequestParam(name = "type") Integer type,
     @Validated @NotNull @RequestParam(name = "balance") Long balance) {
     UserInfo userInfo = UserInfoHolder.getUserInfo();
     Long uid = userInfo.getUid();
     LOGGER.debug("[更新资产信息] balanceEdit.request [uid={}]: type={}, balance={}", uid, type, balance);
     try {
-      userAccountInfoService.directUpdateBalanceByUid(uid, type, balance);
+      userAccountInfoService.directUpdateBalanceByUid(uid, uid, type, balance);
     } catch (Exception e) {
       LOGGER.error(e.getMessage(), e);
       return ResultResponse.fail("更新失败");

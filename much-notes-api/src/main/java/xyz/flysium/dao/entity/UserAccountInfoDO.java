@@ -4,21 +4,26 @@ import java.io.Serializable;
 import java.util.Date;
 
 public class UserAccountInfoDO implements Serializable {
-    private Long uid;
 
-    private Integer accountType;
+  private Long uid;
 
-    private Long balance;
+  private Integer accountType;
 
-    private Date createTime;
+  private Long balance;
 
-    private Date updateTime;
+  private Long creator;
 
-    private String remark;
+  private Long updater;
 
-    private static final long serialVersionUID = 1L;
+  private Date createTime;
 
-    public Long getUid() {
+  private Date updateTime;
+
+  private String remark;
+
+  private static final long serialVersionUID = 1L;
+
+  public Long getUid() {
         return uid;
     }
 
@@ -34,23 +39,39 @@ public class UserAccountInfoDO implements Serializable {
         this.accountType = accountType;
     }
 
-    public Long getBalance() {
-        return balance;
-    }
+  public Long getBalance() {
+    return balance;
+  }
 
-    public void setBalance(Long balance) {
-        this.balance = balance;
-    }
+  public void setBalance(Long balance) {
+    this.balance = balance;
+  }
 
-    public Date getCreateTime() {
-        return createTime;
-    }
+  public Long getCreator() {
+    return creator;
+  }
 
-    public void setCreateTime(Date createTime) {
-        this.createTime = createTime;
-    }
+  public void setCreator(Long creator) {
+    this.creator = creator;
+  }
 
-    public Date getUpdateTime() {
+  public Long getUpdater() {
+    return updater;
+  }
+
+  public void setUpdater(Long updater) {
+    this.updater = updater;
+  }
+
+  public Date getCreateTime() {
+    return createTime;
+  }
+
+  public void setCreateTime(Date createTime) {
+    this.createTime = createTime;
+  }
+
+  public Date getUpdateTime() {
         return updateTime;
     }
 
@@ -68,19 +89,21 @@ public class UserAccountInfoDO implements Serializable {
 
     @Override
     public String toString() {
-        StringBuilder sb = new StringBuilder();
-        sb.append(getClass().getSimpleName());
-        sb.append(" [");
-        sb.append("Hash = ").append(hashCode());
-        sb.append(", uid=").append(uid);
-        sb.append(", accountType=").append(accountType);
-        sb.append(", balance=").append(balance);
-        sb.append(", createTime=").append(createTime);
-        sb.append(", updateTime=").append(updateTime);
-        sb.append(", remark=").append(remark);
-        sb.append(", serialVersionUID=").append(serialVersionUID);
-        sb.append("]");
-        return sb.toString();
+      StringBuilder sb = new StringBuilder();
+      sb.append(getClass().getSimpleName());
+      sb.append(" [");
+      sb.append("Hash = ").append(hashCode());
+      sb.append(", uid=").append(uid);
+      sb.append(", accountType=").append(accountType);
+      sb.append(", balance=").append(balance);
+      sb.append(", creator=").append(creator);
+      sb.append(", updater=").append(updater);
+      sb.append(", createTime=").append(createTime);
+      sb.append(", updateTime=").append(updateTime);
+      sb.append(", remark=").append(remark);
+      sb.append(", serialVersionUID=").append(serialVersionUID);
+      sb.append("]");
+      return sb.toString();
     }
 
     @Override
@@ -95,24 +118,36 @@ public class UserAccountInfoDO implements Serializable {
             return false;
         }
         UserAccountInfoDO other = (UserAccountInfoDO) that;
-        return (this.getUid() == null ? other.getUid() == null : this.getUid().equals(other.getUid()))
-            && (this.getAccountType() == null ? other.getAccountType() == null : this.getAccountType().equals(other.getAccountType()))
-            && (this.getBalance() == null ? other.getBalance() == null : this.getBalance().equals(other.getBalance()))
-            && (this.getCreateTime() == null ? other.getCreateTime() == null : this.getCreateTime().equals(other.getCreateTime()))
-            && (this.getUpdateTime() == null ? other.getUpdateTime() == null : this.getUpdateTime().equals(other.getUpdateTime()))
-            && (this.getRemark() == null ? other.getRemark() == null : this.getRemark().equals(other.getRemark()));
+        return
+          (this.getUid() == null ? other.getUid() == null : this.getUid().equals(other.getUid()))
+            && (this.getAccountType() == null ? other.getAccountType() == null
+            : this.getAccountType().equals(other.getAccountType()))
+            && (this.getBalance() == null ? other.getBalance() == null
+            : this.getBalance().equals(other.getBalance()))
+            && (this.getCreator() == null ? other.getCreator() == null
+            : this.getCreator().equals(other.getCreator()))
+            && (this.getUpdater() == null ? other.getUpdater() == null
+            : this.getUpdater().equals(other.getUpdater()))
+            && (this.getCreateTime() == null ? other.getCreateTime() == null
+            : this.getCreateTime().equals(other.getCreateTime()))
+            && (this.getUpdateTime() == null ? other.getUpdateTime() == null
+            : this.getUpdateTime().equals(other.getUpdateTime()))
+            && (this.getRemark() == null ? other.getRemark() == null
+            : this.getRemark().equals(other.getRemark()));
     }
 
     @Override
     public int hashCode() {
-        final int prime = 31;
-        int result = 1;
-        result = prime * result + ((getUid() == null) ? 0 : getUid().hashCode());
-        result = prime * result + ((getAccountType() == null) ? 0 : getAccountType().hashCode());
-        result = prime * result + ((getBalance() == null) ? 0 : getBalance().hashCode());
-        result = prime * result + ((getCreateTime() == null) ? 0 : getCreateTime().hashCode());
-        result = prime * result + ((getUpdateTime() == null) ? 0 : getUpdateTime().hashCode());
-        result = prime * result + ((getRemark() == null) ? 0 : getRemark().hashCode());
-        return result;
+      final int prime = 31;
+      int result = 1;
+      result = prime * result + ((getUid() == null) ? 0 : getUid().hashCode());
+      result = prime * result + ((getAccountType() == null) ? 0 : getAccountType().hashCode());
+      result = prime * result + ((getBalance() == null) ? 0 : getBalance().hashCode());
+      result = prime * result + ((getCreator() == null) ? 0 : getCreator().hashCode());
+      result = prime * result + ((getUpdater() == null) ? 0 : getUpdater().hashCode());
+      result = prime * result + ((getCreateTime() == null) ? 0 : getCreateTime().hashCode());
+      result = prime * result + ((getUpdateTime() == null) ? 0 : getUpdateTime().hashCode());
+      result = prime * result + ((getRemark() == null) ? 0 : getRemark().hashCode());
+      return result;
     }
 }

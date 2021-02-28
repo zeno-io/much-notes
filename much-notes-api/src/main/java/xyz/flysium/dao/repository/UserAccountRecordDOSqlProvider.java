@@ -20,10 +20,6 @@ public class UserAccountRecordDOSqlProvider {
         SQL sql = new SQL();
         sql.INSERT_INTO("user_account_record");
 
-        if (record.getUid() != null) {
-            sql.VALUES("uid", "#{uid,jdbcType=BIGINT}");
-        }
-
         if (record.getMoney() != null) {
             sql.VALUES("money", "#{money,jdbcType=BIGINT}");
         }
@@ -32,23 +28,27 @@ public class UserAccountRecordDOSqlProvider {
             sql.VALUES("type", "#{type,jdbcType=TINYINT}");
         }
 
-        if (record.getAccountType() != null) {
-            sql.VALUES("account_type", "#{accountType,jdbcType=INTEGER}");
-        }
+      if (record.getAccountType() != null) {
+        sql.VALUES("account_type", "#{accountType,jdbcType=INTEGER}");
+      }
 
-        if (record.getAccountBookId() != null) {
-            sql.VALUES("account_book_id", "#{accountBookId,jdbcType=BIGINT}");
-        }
+      if (record.getAccountBookId() != null) {
+        sql.VALUES("account_book_id", "#{accountBookId,jdbcType=BIGINT}");
+      }
 
-        if (record.getTime() != null) {
-            sql.VALUES("time", "#{time,jdbcType=DATE}");
-        }
+      if (record.getUid() != null) {
+        sql.VALUES("uid", "#{uid,jdbcType=BIGINT}");
+      }
 
-        if (record.getTimeYear() != null) {
-            sql.VALUES("time_year", "#{timeYear,jdbcType=INTEGER}");
-        }
+      if (record.getTime() != null) {
+        sql.VALUES("time", "#{time,jdbcType=DATE}");
+      }
 
-        if (record.getTimeMonth() != null) {
+      if (record.getTimeYear() != null) {
+        sql.VALUES("time_year", "#{timeYear,jdbcType=INTEGER}");
+      }
+
+      if (record.getTimeMonth() != null) {
             sql.VALUES("time_month", "#{timeMonth,jdbcType=INTEGER}");
         }
 
@@ -56,23 +56,31 @@ public class UserAccountRecordDOSqlProvider {
             sql.VALUES("time_day", "#{timeDay,jdbcType=INTEGER}");
         }
 
-        if (record.getCategoryName() != null) {
-            sql.VALUES("category_name", "#{categoryName,jdbcType=VARCHAR}");
-        }
+      if (record.getCategoryName() != null) {
+        sql.VALUES("category_name", "#{categoryName,jdbcType=VARCHAR}");
+      }
 
-        if (record.getCategoryId() != null) {
-            sql.VALUES("category_id", "#{categoryId,jdbcType=BIGINT}");
-        }
+      if (record.getCategoryId() != null) {
+        sql.VALUES("category_id", "#{categoryId,jdbcType=BIGINT}");
+      }
 
-        if (record.getCreateTime() != null) {
-            sql.VALUES("create_time", "#{createTime,jdbcType=TIMESTAMP}");
-        }
+      if (record.getCreator() != null) {
+        sql.VALUES("creator", "#{creator,jdbcType=BIGINT}");
+      }
 
-        if (record.getUpdateTime() != null) {
-            sql.VALUES("update_time", "#{updateTime,jdbcType=TIMESTAMP}");
-        }
+      if (record.getUpdater() != null) {
+        sql.VALUES("updater", "#{updater,jdbcType=BIGINT}");
+      }
 
-        if (record.getRemark() != null) {
+      if (record.getCreateTime() != null) {
+        sql.VALUES("create_time", "#{createTime,jdbcType=TIMESTAMP}");
+      }
+
+      if (record.getUpdateTime() != null) {
+        sql.VALUES("update_time", "#{updateTime,jdbcType=TIMESTAMP}");
+      }
+
+      if (record.getRemark() != null) {
             sql.VALUES("remark", "#{remark,jdbcType=VARCHAR}");
         }
 
@@ -90,27 +98,29 @@ public class UserAccountRecordDOSqlProvider {
         } else {
             sql.SELECT("id");
         }
-        sql.SELECT("uid");
         sql.SELECT("money");
-        sql.SELECT("type");
-        sql.SELECT("account_type");
-        sql.SELECT("account_book_id");
-        sql.SELECT("time");
-        sql.SELECT("time_year");
-        sql.SELECT("time_month");
-        sql.SELECT("time_day");
-        sql.SELECT("category_name");
-        sql.SELECT("category_id");
-        sql.SELECT("create_time");
-        sql.SELECT("update_time");
-        sql.SELECT("remark");
-        sql.SELECT("is_deleted");
-        sql.FROM("user_account_record");
-        applyWhere(sql, example, false);
+      sql.SELECT("type");
+      sql.SELECT("account_type");
+      sql.SELECT("account_book_id");
+      sql.SELECT("uid");
+      sql.SELECT("time");
+      sql.SELECT("time_year");
+      sql.SELECT("time_month");
+      sql.SELECT("time_day");
+      sql.SELECT("category_name");
+      sql.SELECT("category_id");
+      sql.SELECT("creator");
+      sql.SELECT("updater");
+      sql.SELECT("create_time");
+      sql.SELECT("update_time");
+      sql.SELECT("remark");
+      sql.SELECT("is_deleted");
+      sql.FROM("user_account_record");
+      applyWhere(sql, example, false);
 
-        if (example != null && example.getOrderByClause() != null) {
-            sql.ORDER_BY(example.getOrderByClause());
-        }
+      if (example != null && example.getOrderByClause() != null) {
+        sql.ORDER_BY(example.getOrderByClause());
+      }
 
         return sql.toString();
     }
@@ -126,10 +136,6 @@ public class UserAccountRecordDOSqlProvider {
             sql.SET("id = #{record.id,jdbcType=BIGINT}");
         }
 
-        if (record.getUid() != null) {
-            sql.SET("uid = #{record.uid,jdbcType=BIGINT}");
-        }
-
         if (record.getMoney() != null) {
             sql.SET("money = #{record.money,jdbcType=BIGINT}");
         }
@@ -138,23 +144,27 @@ public class UserAccountRecordDOSqlProvider {
             sql.SET("type = #{record.type,jdbcType=TINYINT}");
         }
 
-        if (record.getAccountType() != null) {
-            sql.SET("account_type = #{record.accountType,jdbcType=INTEGER}");
-        }
+      if (record.getAccountType() != null) {
+        sql.SET("account_type = #{record.accountType,jdbcType=INTEGER}");
+      }
 
-        if (record.getAccountBookId() != null) {
-            sql.SET("account_book_id = #{record.accountBookId,jdbcType=BIGINT}");
-        }
+      if (record.getAccountBookId() != null) {
+        sql.SET("account_book_id = #{record.accountBookId,jdbcType=BIGINT}");
+      }
 
-        if (record.getTime() != null) {
-            sql.SET("time = #{record.time,jdbcType=DATE}");
-        }
+      if (record.getUid() != null) {
+        sql.SET("uid = #{record.uid,jdbcType=BIGINT}");
+      }
 
-        if (record.getTimeYear() != null) {
-            sql.SET("time_year = #{record.timeYear,jdbcType=INTEGER}");
-        }
+      if (record.getTime() != null) {
+        sql.SET("time = #{record.time,jdbcType=DATE}");
+      }
 
-        if (record.getTimeMonth() != null) {
+      if (record.getTimeYear() != null) {
+        sql.SET("time_year = #{record.timeYear,jdbcType=INTEGER}");
+      }
+
+      if (record.getTimeMonth() != null) {
             sql.SET("time_month = #{record.timeMonth,jdbcType=INTEGER}");
         }
 
@@ -162,23 +172,31 @@ public class UserAccountRecordDOSqlProvider {
             sql.SET("time_day = #{record.timeDay,jdbcType=INTEGER}");
         }
 
-        if (record.getCategoryName() != null) {
-            sql.SET("category_name = #{record.categoryName,jdbcType=VARCHAR}");
-        }
+      if (record.getCategoryName() != null) {
+        sql.SET("category_name = #{record.categoryName,jdbcType=VARCHAR}");
+      }
 
-        if (record.getCategoryId() != null) {
-            sql.SET("category_id = #{record.categoryId,jdbcType=BIGINT}");
-        }
+      if (record.getCategoryId() != null) {
+        sql.SET("category_id = #{record.categoryId,jdbcType=BIGINT}");
+      }
 
-        if (record.getCreateTime() != null) {
-            sql.SET("create_time = #{record.createTime,jdbcType=TIMESTAMP}");
-        }
+      if (record.getCreator() != null) {
+        sql.SET("creator = #{record.creator,jdbcType=BIGINT}");
+      }
 
-        if (record.getUpdateTime() != null) {
-            sql.SET("update_time = #{record.updateTime,jdbcType=TIMESTAMP}");
-        }
+      if (record.getUpdater() != null) {
+        sql.SET("updater = #{record.updater,jdbcType=BIGINT}");
+      }
 
-        if (record.getRemark() != null) {
+      if (record.getCreateTime() != null) {
+        sql.SET("create_time = #{record.createTime,jdbcType=TIMESTAMP}");
+      }
+
+      if (record.getUpdateTime() != null) {
+        sql.SET("update_time = #{record.updateTime,jdbcType=TIMESTAMP}");
+      }
+
+      if (record.getRemark() != null) {
             sql.SET("remark = #{record.remark,jdbcType=VARCHAR}");
         }
 
@@ -195,34 +213,32 @@ public class UserAccountRecordDOSqlProvider {
         sql.UPDATE("user_account_record");
 
         sql.SET("id = #{record.id,jdbcType=BIGINT}");
-        sql.SET("uid = #{record.uid,jdbcType=BIGINT}");
         sql.SET("money = #{record.money,jdbcType=BIGINT}");
-        sql.SET("type = #{record.type,jdbcType=TINYINT}");
-        sql.SET("account_type = #{record.accountType,jdbcType=INTEGER}");
-        sql.SET("account_book_id = #{record.accountBookId,jdbcType=BIGINT}");
-        sql.SET("time = #{record.time,jdbcType=DATE}");
-        sql.SET("time_year = #{record.timeYear,jdbcType=INTEGER}");
-        sql.SET("time_month = #{record.timeMonth,jdbcType=INTEGER}");
-        sql.SET("time_day = #{record.timeDay,jdbcType=INTEGER}");
-        sql.SET("category_name = #{record.categoryName,jdbcType=VARCHAR}");
-        sql.SET("category_id = #{record.categoryId,jdbcType=BIGINT}");
-        sql.SET("create_time = #{record.createTime,jdbcType=TIMESTAMP}");
-        sql.SET("update_time = #{record.updateTime,jdbcType=TIMESTAMP}");
-        sql.SET("remark = #{record.remark,jdbcType=VARCHAR}");
-        sql.SET("is_deleted = #{record.isDeleted,jdbcType=TINYINT}");
+      sql.SET("type = #{record.type,jdbcType=TINYINT}");
+      sql.SET("account_type = #{record.accountType,jdbcType=INTEGER}");
+      sql.SET("account_book_id = #{record.accountBookId,jdbcType=BIGINT}");
+      sql.SET("uid = #{record.uid,jdbcType=BIGINT}");
+      sql.SET("time = #{record.time,jdbcType=DATE}");
+      sql.SET("time_year = #{record.timeYear,jdbcType=INTEGER}");
+      sql.SET("time_month = #{record.timeMonth,jdbcType=INTEGER}");
+      sql.SET("time_day = #{record.timeDay,jdbcType=INTEGER}");
+      sql.SET("category_name = #{record.categoryName,jdbcType=VARCHAR}");
+      sql.SET("category_id = #{record.categoryId,jdbcType=BIGINT}");
+      sql.SET("creator = #{record.creator,jdbcType=BIGINT}");
+      sql.SET("updater = #{record.updater,jdbcType=BIGINT}");
+      sql.SET("create_time = #{record.createTime,jdbcType=TIMESTAMP}");
+      sql.SET("update_time = #{record.updateTime,jdbcType=TIMESTAMP}");
+      sql.SET("remark = #{record.remark,jdbcType=VARCHAR}");
+      sql.SET("is_deleted = #{record.isDeleted,jdbcType=TINYINT}");
 
-        UserAccountRecordDOExample example = (UserAccountRecordDOExample) parameter.get("example");
-        applyWhere(sql, example, true);
-        return sql.toString();
+      UserAccountRecordDOExample example = (UserAccountRecordDOExample) parameter.get("example");
+      applyWhere(sql, example, true);
+      return sql.toString();
     }
 
     public String updateByPrimaryKeySelective(UserAccountRecordDO record) {
         SQL sql = new SQL();
         sql.UPDATE("user_account_record");
-
-        if (record.getUid() != null) {
-            sql.SET("uid = #{uid,jdbcType=BIGINT}");
-        }
 
         if (record.getMoney() != null) {
             sql.SET("money = #{money,jdbcType=BIGINT}");
@@ -232,23 +248,27 @@ public class UserAccountRecordDOSqlProvider {
             sql.SET("type = #{type,jdbcType=TINYINT}");
         }
 
-        if (record.getAccountType() != null) {
-            sql.SET("account_type = #{accountType,jdbcType=INTEGER}");
-        }
+      if (record.getAccountType() != null) {
+        sql.SET("account_type = #{accountType,jdbcType=INTEGER}");
+      }
 
-        if (record.getAccountBookId() != null) {
-            sql.SET("account_book_id = #{accountBookId,jdbcType=BIGINT}");
-        }
+      if (record.getAccountBookId() != null) {
+        sql.SET("account_book_id = #{accountBookId,jdbcType=BIGINT}");
+      }
 
-        if (record.getTime() != null) {
-            sql.SET("time = #{time,jdbcType=DATE}");
-        }
+      if (record.getUid() != null) {
+        sql.SET("uid = #{uid,jdbcType=BIGINT}");
+      }
 
-        if (record.getTimeYear() != null) {
-            sql.SET("time_year = #{timeYear,jdbcType=INTEGER}");
-        }
+      if (record.getTime() != null) {
+        sql.SET("time = #{time,jdbcType=DATE}");
+      }
 
-        if (record.getTimeMonth() != null) {
+      if (record.getTimeYear() != null) {
+        sql.SET("time_year = #{timeYear,jdbcType=INTEGER}");
+      }
+
+      if (record.getTimeMonth() != null) {
             sql.SET("time_month = #{timeMonth,jdbcType=INTEGER}");
         }
 
@@ -256,23 +276,31 @@ public class UserAccountRecordDOSqlProvider {
             sql.SET("time_day = #{timeDay,jdbcType=INTEGER}");
         }
 
-        if (record.getCategoryName() != null) {
-            sql.SET("category_name = #{categoryName,jdbcType=VARCHAR}");
-        }
+      if (record.getCategoryName() != null) {
+        sql.SET("category_name = #{categoryName,jdbcType=VARCHAR}");
+      }
 
-        if (record.getCategoryId() != null) {
-            sql.SET("category_id = #{categoryId,jdbcType=BIGINT}");
-        }
+      if (record.getCategoryId() != null) {
+        sql.SET("category_id = #{categoryId,jdbcType=BIGINT}");
+      }
 
-        if (record.getCreateTime() != null) {
-            sql.SET("create_time = #{createTime,jdbcType=TIMESTAMP}");
-        }
+      if (record.getCreator() != null) {
+        sql.SET("creator = #{creator,jdbcType=BIGINT}");
+      }
 
-        if (record.getUpdateTime() != null) {
-            sql.SET("update_time = #{updateTime,jdbcType=TIMESTAMP}");
-        }
+      if (record.getUpdater() != null) {
+        sql.SET("updater = #{updater,jdbcType=BIGINT}");
+      }
 
-        if (record.getRemark() != null) {
+      if (record.getCreateTime() != null) {
+        sql.SET("create_time = #{createTime,jdbcType=TIMESTAMP}");
+      }
+
+      if (record.getUpdateTime() != null) {
+        sql.SET("update_time = #{updateTime,jdbcType=TIMESTAMP}");
+      }
+
+      if (record.getRemark() != null) {
             sql.SET("remark = #{remark,jdbcType=VARCHAR}");
         }
 

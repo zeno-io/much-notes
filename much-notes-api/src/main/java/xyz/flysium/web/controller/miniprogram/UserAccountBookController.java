@@ -106,7 +106,7 @@ public class UserAccountBookController {
       return ResultResponse.fail("您已经加入此账本了");
     }
     try {
-      userAccountBookService.addUserToAccountBook(accountBookId, uid);
+      userAccountBookService.addUserToAccountBook(accountBookId, uid, uid);
     } catch (Exception e) {
       LOGGER.error(e.getMessage(), e);
       return ResultResponse.fail("操作失败");
@@ -132,7 +132,7 @@ public class UserAccountBookController {
       return ResultResponse.fail("您没有管理员权限");
     }
     try {
-      boolean b = userAccountBookService.removeUserFromAccountBook(accountBookId, thatUid);
+      boolean b = userAccountBookService.removeUserFromAccountBook(accountBookId, thatUid, uid);
       if (!b) {
         return ResultResponse.fail("操作失败");
       }
@@ -159,7 +159,7 @@ public class UserAccountBookController {
       return ResultResponse.fail("管理员不可退出");
     }
     try {
-      boolean b = userAccountBookService.removeUserFromAccountBook(accountBookId, uid);
+      boolean b = userAccountBookService.removeUserFromAccountBook(accountBookId, uid, uid);
       if (!b) {
         return ResultResponse.fail("操作失败");
       }

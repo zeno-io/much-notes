@@ -17,34 +17,42 @@ public class UserAccountBookAuthDOSqlProvider {
     }
 
     public String insertSelective(UserAccountBookAuthDO record) {
-        SQL sql = new SQL();
-        sql.INSERT_INTO("user_account_book_auth");
+      SQL sql = new SQL();
+      sql.INSERT_INTO("user_account_book_auth");
 
-        if (record.getUid() != null) {
-            sql.VALUES("uid", "#{uid,jdbcType=BIGINT}");
-        }
+      if (record.getAccountBookId() != null) {
+        sql.VALUES("account_book_id", "#{accountBookId,jdbcType=BIGINT}");
+      }
 
-        if (record.getAccountBookId() != null) {
-            sql.VALUES("account_book_id", "#{accountBookId,jdbcType=BIGINT}");
-        }
+      if (record.getUid() != null) {
+        sql.VALUES("uid", "#{uid,jdbcType=BIGINT}");
+      }
 
-        if (record.getIsAdmin() != null) {
-            sql.VALUES("is_admin", "#{isAdmin,jdbcType=TINYINT}");
-        }
+      if (record.getIsAdmin() != null) {
+        sql.VALUES("is_admin", "#{isAdmin,jdbcType=TINYINT}");
+      }
 
-        if (record.getBlock() != null) {
-            sql.VALUES("block", "#{block,jdbcType=TINYINT}");
-        }
+      if (record.getBlock() != null) {
+        sql.VALUES("block", "#{block,jdbcType=TINYINT}");
+      }
 
-        if (record.getCreateTime() != null) {
-            sql.VALUES("create_time", "#{createTime,jdbcType=TIMESTAMP}");
-        }
+      if (record.getCreator() != null) {
+        sql.VALUES("creator", "#{creator,jdbcType=BIGINT}");
+      }
 
-        if (record.getUpdateTime() != null) {
-            sql.VALUES("update_time", "#{updateTime,jdbcType=TIMESTAMP}");
-        }
+      if (record.getUpdater() != null) {
+        sql.VALUES("updater", "#{updater,jdbcType=BIGINT}");
+      }
 
-        if (record.getRemark() != null) {
+      if (record.getCreateTime() != null) {
+        sql.VALUES("create_time", "#{createTime,jdbcType=TIMESTAMP}");
+      }
+
+      if (record.getUpdateTime() != null) {
+        sql.VALUES("update_time", "#{updateTime,jdbcType=TIMESTAMP}");
+      }
+
+      if (record.getRemark() != null) {
             sql.VALUES("remark", "#{remark,jdbcType=VARCHAR}");
         }
 
@@ -56,26 +64,28 @@ public class UserAccountBookAuthDOSqlProvider {
     }
 
     public String selectByExample(UserAccountBookAuthDOExample example) {
-        SQL sql = new SQL();
-        if (example != null && example.isDistinct()) {
-            sql.SELECT_DISTINCT("id");
-        } else {
-            sql.SELECT("id");
-        }
-        sql.SELECT("uid");
-        sql.SELECT("account_book_id");
-        sql.SELECT("is_admin");
-        sql.SELECT("block");
-        sql.SELECT("create_time");
-        sql.SELECT("update_time");
-        sql.SELECT("remark");
-        sql.SELECT("is_deleted");
-        sql.FROM("user_account_book_auth");
-        applyWhere(sql, example, false);
+      SQL sql = new SQL();
+      if (example != null && example.isDistinct()) {
+        sql.SELECT_DISTINCT("id");
+      } else {
+        sql.SELECT("id");
+      }
+      sql.SELECT("account_book_id");
+      sql.SELECT("uid");
+      sql.SELECT("is_admin");
+      sql.SELECT("block");
+      sql.SELECT("creator");
+      sql.SELECT("updater");
+      sql.SELECT("create_time");
+      sql.SELECT("update_time");
+      sql.SELECT("remark");
+      sql.SELECT("is_deleted");
+      sql.FROM("user_account_book_auth");
+      applyWhere(sql, example, false);
 
-        if (example != null && example.getOrderByClause() != null) {
-            sql.ORDER_BY(example.getOrderByClause());
-        }
+      if (example != null && example.getOrderByClause() != null) {
+        sql.ORDER_BY(example.getOrderByClause());
+      }
 
         return sql.toString();
     }
@@ -85,37 +95,45 @@ public class UserAccountBookAuthDOSqlProvider {
         UserAccountBookAuthDOExample example = (UserAccountBookAuthDOExample) parameter.get("example");
 
         SQL sql = new SQL();
-        sql.UPDATE("user_account_book_auth");
+      sql.UPDATE("user_account_book_auth");
 
-        if (record.getId() != null) {
-            sql.SET("id = #{record.id,jdbcType=BIGINT}");
-        }
+      if (record.getId() != null) {
+        sql.SET("id = #{record.id,jdbcType=BIGINT}");
+      }
 
-        if (record.getUid() != null) {
-            sql.SET("uid = #{record.uid,jdbcType=BIGINT}");
-        }
+      if (record.getAccountBookId() != null) {
+        sql.SET("account_book_id = #{record.accountBookId,jdbcType=BIGINT}");
+      }
 
-        if (record.getAccountBookId() != null) {
-            sql.SET("account_book_id = #{record.accountBookId,jdbcType=BIGINT}");
-        }
+      if (record.getUid() != null) {
+        sql.SET("uid = #{record.uid,jdbcType=BIGINT}");
+      }
 
-        if (record.getIsAdmin() != null) {
-            sql.SET("is_admin = #{record.isAdmin,jdbcType=TINYINT}");
-        }
+      if (record.getIsAdmin() != null) {
+        sql.SET("is_admin = #{record.isAdmin,jdbcType=TINYINT}");
+      }
 
-        if (record.getBlock() != null) {
-            sql.SET("block = #{record.block,jdbcType=TINYINT}");
-        }
+      if (record.getBlock() != null) {
+        sql.SET("block = #{record.block,jdbcType=TINYINT}");
+      }
 
-        if (record.getCreateTime() != null) {
-            sql.SET("create_time = #{record.createTime,jdbcType=TIMESTAMP}");
-        }
+      if (record.getCreator() != null) {
+        sql.SET("creator = #{record.creator,jdbcType=BIGINT}");
+      }
 
-        if (record.getUpdateTime() != null) {
-            sql.SET("update_time = #{record.updateTime,jdbcType=TIMESTAMP}");
-        }
+      if (record.getUpdater() != null) {
+        sql.SET("updater = #{record.updater,jdbcType=BIGINT}");
+      }
 
-        if (record.getRemark() != null) {
+      if (record.getCreateTime() != null) {
+        sql.SET("create_time = #{record.createTime,jdbcType=TIMESTAMP}");
+      }
+
+      if (record.getUpdateTime() != null) {
+        sql.SET("update_time = #{record.updateTime,jdbcType=TIMESTAMP}");
+      }
+
+      if (record.getRemark() != null) {
             sql.SET("remark = #{record.remark,jdbcType=VARCHAR}");
         }
 
@@ -128,53 +146,64 @@ public class UserAccountBookAuthDOSqlProvider {
     }
 
     public String updateByExample(Map<String, Object> parameter) {
-        SQL sql = new SQL();
-        sql.UPDATE("user_account_book_auth");
+      SQL sql = new SQL();
+      sql.UPDATE("user_account_book_auth");
 
-        sql.SET("id = #{record.id,jdbcType=BIGINT}");
-        sql.SET("uid = #{record.uid,jdbcType=BIGINT}");
-        sql.SET("account_book_id = #{record.accountBookId,jdbcType=BIGINT}");
-        sql.SET("is_admin = #{record.isAdmin,jdbcType=TINYINT}");
-        sql.SET("block = #{record.block,jdbcType=TINYINT}");
-        sql.SET("create_time = #{record.createTime,jdbcType=TIMESTAMP}");
-        sql.SET("update_time = #{record.updateTime,jdbcType=TIMESTAMP}");
-        sql.SET("remark = #{record.remark,jdbcType=VARCHAR}");
-        sql.SET("is_deleted = #{record.isDeleted,jdbcType=TINYINT}");
+      sql.SET("id = #{record.id,jdbcType=BIGINT}");
+      sql.SET("account_book_id = #{record.accountBookId,jdbcType=BIGINT}");
+      sql.SET("uid = #{record.uid,jdbcType=BIGINT}");
+      sql.SET("is_admin = #{record.isAdmin,jdbcType=TINYINT}");
+      sql.SET("block = #{record.block,jdbcType=TINYINT}");
+      sql.SET("creator = #{record.creator,jdbcType=BIGINT}");
+      sql.SET("updater = #{record.updater,jdbcType=BIGINT}");
+      sql.SET("create_time = #{record.createTime,jdbcType=TIMESTAMP}");
+      sql.SET("update_time = #{record.updateTime,jdbcType=TIMESTAMP}");
+      sql.SET("remark = #{record.remark,jdbcType=VARCHAR}");
+      sql.SET("is_deleted = #{record.isDeleted,jdbcType=TINYINT}");
 
-        UserAccountBookAuthDOExample example = (UserAccountBookAuthDOExample) parameter.get("example");
-        applyWhere(sql, example, true);
-        return sql.toString();
+      UserAccountBookAuthDOExample example = (UserAccountBookAuthDOExample) parameter
+        .get("example");
+      applyWhere(sql, example, true);
+      return sql.toString();
     }
 
     public String updateByPrimaryKeySelective(UserAccountBookAuthDO record) {
-        SQL sql = new SQL();
-        sql.UPDATE("user_account_book_auth");
+      SQL sql = new SQL();
+      sql.UPDATE("user_account_book_auth");
 
-        if (record.getUid() != null) {
-            sql.SET("uid = #{uid,jdbcType=BIGINT}");
-        }
+      if (record.getAccountBookId() != null) {
+        sql.SET("account_book_id = #{accountBookId,jdbcType=BIGINT}");
+      }
 
-        if (record.getAccountBookId() != null) {
-            sql.SET("account_book_id = #{accountBookId,jdbcType=BIGINT}");
-        }
+      if (record.getUid() != null) {
+        sql.SET("uid = #{uid,jdbcType=BIGINT}");
+      }
 
-        if (record.getIsAdmin() != null) {
-            sql.SET("is_admin = #{isAdmin,jdbcType=TINYINT}");
-        }
+      if (record.getIsAdmin() != null) {
+        sql.SET("is_admin = #{isAdmin,jdbcType=TINYINT}");
+      }
 
-        if (record.getBlock() != null) {
-            sql.SET("block = #{block,jdbcType=TINYINT}");
-        }
+      if (record.getBlock() != null) {
+        sql.SET("block = #{block,jdbcType=TINYINT}");
+      }
 
-        if (record.getCreateTime() != null) {
-            sql.SET("create_time = #{createTime,jdbcType=TIMESTAMP}");
-        }
+      if (record.getCreator() != null) {
+        sql.SET("creator = #{creator,jdbcType=BIGINT}");
+      }
 
-        if (record.getUpdateTime() != null) {
-            sql.SET("update_time = #{updateTime,jdbcType=TIMESTAMP}");
-        }
+      if (record.getUpdater() != null) {
+        sql.SET("updater = #{updater,jdbcType=BIGINT}");
+      }
 
-        if (record.getRemark() != null) {
+      if (record.getCreateTime() != null) {
+        sql.SET("create_time = #{createTime,jdbcType=TIMESTAMP}");
+      }
+
+      if (record.getUpdateTime() != null) {
+        sql.SET("update_time = #{updateTime,jdbcType=TIMESTAMP}");
+      }
+
+      if (record.getRemark() != null) {
             sql.SET("remark = #{remark,jdbcType=VARCHAR}");
         }
 

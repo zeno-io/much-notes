@@ -24,23 +24,31 @@ public class UserAccountBookDOSqlProvider {
             sql.VALUES("uid", "#{uid,jdbcType=BIGINT}");
         }
 
-        if (record.getName() != null) {
-            sql.VALUES("name", "#{name,jdbcType=VARCHAR}");
-        }
+      if (record.getName() != null) {
+        sql.VALUES("name", "#{name,jdbcType=VARCHAR}");
+      }
 
-        if (record.getType() != null) {
-            sql.VALUES("type", "#{type,jdbcType=TINYINT}");
-        }
+      if (record.getType() != null) {
+        sql.VALUES("type", "#{type,jdbcType=TINYINT}");
+      }
 
-        if (record.getCreateTime() != null) {
-            sql.VALUES("create_time", "#{createTime,jdbcType=TIMESTAMP}");
-        }
+      if (record.getCreator() != null) {
+        sql.VALUES("creator", "#{creator,jdbcType=BIGINT}");
+      }
 
-        if (record.getUpdateTime() != null) {
-            sql.VALUES("update_time", "#{updateTime,jdbcType=TIMESTAMP}");
-        }
+      if (record.getUpdater() != null) {
+        sql.VALUES("updater", "#{updater,jdbcType=BIGINT}");
+      }
 
-        if (record.getRemark() != null) {
+      if (record.getCreateTime() != null) {
+        sql.VALUES("create_time", "#{createTime,jdbcType=TIMESTAMP}");
+      }
+
+      if (record.getUpdateTime() != null) {
+        sql.VALUES("update_time", "#{updateTime,jdbcType=TIMESTAMP}");
+      }
+
+      if (record.getRemark() != null) {
             sql.VALUES("remark", "#{remark,jdbcType=VARCHAR}");
         }
 
@@ -48,24 +56,26 @@ public class UserAccountBookDOSqlProvider {
     }
 
     public String selectByExample(UserAccountBookDOExample example) {
-        SQL sql = new SQL();
-        if (example != null && example.isDistinct()) {
-            sql.SELECT_DISTINCT("id");
-        } else {
-            sql.SELECT("id");
-        }
-        sql.SELECT("uid");
-        sql.SELECT("name");
-        sql.SELECT("type");
-        sql.SELECT("create_time");
-        sql.SELECT("update_time");
-        sql.SELECT("remark");
-        sql.FROM("user_account_book");
-        applyWhere(sql, example, false);
+      SQL sql = new SQL();
+      if (example != null && example.isDistinct()) {
+        sql.SELECT_DISTINCT("id");
+      } else {
+        sql.SELECT("id");
+      }
+      sql.SELECT("uid");
+      sql.SELECT("name");
+      sql.SELECT("type");
+      sql.SELECT("creator");
+      sql.SELECT("updater");
+      sql.SELECT("create_time");
+      sql.SELECT("update_time");
+      sql.SELECT("remark");
+      sql.FROM("user_account_book");
+      applyWhere(sql, example, false);
 
-        if (example != null && example.getOrderByClause() != null) {
-            sql.ORDER_BY(example.getOrderByClause());
-        }
+      if (example != null && example.getOrderByClause() != null) {
+        sql.ORDER_BY(example.getOrderByClause());
+      }
 
         return sql.toString();
     }
@@ -85,23 +95,31 @@ public class UserAccountBookDOSqlProvider {
             sql.SET("uid = #{record.uid,jdbcType=BIGINT}");
         }
 
-        if (record.getName() != null) {
-            sql.SET("name = #{record.name,jdbcType=VARCHAR}");
-        }
+      if (record.getName() != null) {
+        sql.SET("name = #{record.name,jdbcType=VARCHAR}");
+      }
 
-        if (record.getType() != null) {
-            sql.SET("type = #{record.type,jdbcType=TINYINT}");
-        }
+      if (record.getType() != null) {
+        sql.SET("type = #{record.type,jdbcType=TINYINT}");
+      }
 
-        if (record.getCreateTime() != null) {
-            sql.SET("create_time = #{record.createTime,jdbcType=TIMESTAMP}");
-        }
+      if (record.getCreator() != null) {
+        sql.SET("creator = #{record.creator,jdbcType=BIGINT}");
+      }
 
-        if (record.getUpdateTime() != null) {
-            sql.SET("update_time = #{record.updateTime,jdbcType=TIMESTAMP}");
-        }
+      if (record.getUpdater() != null) {
+        sql.SET("updater = #{record.updater,jdbcType=BIGINT}");
+      }
 
-        if (record.getRemark() != null) {
+      if (record.getCreateTime() != null) {
+        sql.SET("create_time = #{record.createTime,jdbcType=TIMESTAMP}");
+      }
+
+      if (record.getUpdateTime() != null) {
+        sql.SET("update_time = #{record.updateTime,jdbcType=TIMESTAMP}");
+      }
+
+      if (record.getRemark() != null) {
             sql.SET("remark = #{record.remark,jdbcType=VARCHAR}");
         }
 
@@ -110,20 +128,22 @@ public class UserAccountBookDOSqlProvider {
     }
 
     public String updateByExample(Map<String, Object> parameter) {
-        SQL sql = new SQL();
-        sql.UPDATE("user_account_book");
+      SQL sql = new SQL();
+      sql.UPDATE("user_account_book");
 
-        sql.SET("id = #{record.id,jdbcType=BIGINT}");
-        sql.SET("uid = #{record.uid,jdbcType=BIGINT}");
-        sql.SET("name = #{record.name,jdbcType=VARCHAR}");
-        sql.SET("type = #{record.type,jdbcType=TINYINT}");
-        sql.SET("create_time = #{record.createTime,jdbcType=TIMESTAMP}");
-        sql.SET("update_time = #{record.updateTime,jdbcType=TIMESTAMP}");
-        sql.SET("remark = #{record.remark,jdbcType=VARCHAR}");
+      sql.SET("id = #{record.id,jdbcType=BIGINT}");
+      sql.SET("uid = #{record.uid,jdbcType=BIGINT}");
+      sql.SET("name = #{record.name,jdbcType=VARCHAR}");
+      sql.SET("type = #{record.type,jdbcType=TINYINT}");
+      sql.SET("creator = #{record.creator,jdbcType=BIGINT}");
+      sql.SET("updater = #{record.updater,jdbcType=BIGINT}");
+      sql.SET("create_time = #{record.createTime,jdbcType=TIMESTAMP}");
+      sql.SET("update_time = #{record.updateTime,jdbcType=TIMESTAMP}");
+      sql.SET("remark = #{record.remark,jdbcType=VARCHAR}");
 
-        UserAccountBookDOExample example = (UserAccountBookDOExample) parameter.get("example");
-        applyWhere(sql, example, true);
-        return sql.toString();
+      UserAccountBookDOExample example = (UserAccountBookDOExample) parameter.get("example");
+      applyWhere(sql, example, true);
+      return sql.toString();
     }
 
     public String updateByPrimaryKeySelective(UserAccountBookDO record) {
@@ -134,23 +154,31 @@ public class UserAccountBookDOSqlProvider {
             sql.SET("uid = #{uid,jdbcType=BIGINT}");
         }
 
-        if (record.getName() != null) {
-            sql.SET("name = #{name,jdbcType=VARCHAR}");
-        }
+      if (record.getName() != null) {
+        sql.SET("name = #{name,jdbcType=VARCHAR}");
+      }
 
-        if (record.getType() != null) {
-            sql.SET("type = #{type,jdbcType=TINYINT}");
-        }
+      if (record.getType() != null) {
+        sql.SET("type = #{type,jdbcType=TINYINT}");
+      }
 
-        if (record.getCreateTime() != null) {
-            sql.SET("create_time = #{createTime,jdbcType=TIMESTAMP}");
-        }
+      if (record.getCreator() != null) {
+        sql.SET("creator = #{creator,jdbcType=BIGINT}");
+      }
 
-        if (record.getUpdateTime() != null) {
-            sql.SET("update_time = #{updateTime,jdbcType=TIMESTAMP}");
-        }
+      if (record.getUpdater() != null) {
+        sql.SET("updater = #{updater,jdbcType=BIGINT}");
+      }
 
-        if (record.getRemark() != null) {
+      if (record.getCreateTime() != null) {
+        sql.SET("create_time = #{createTime,jdbcType=TIMESTAMP}");
+      }
+
+      if (record.getUpdateTime() != null) {
+        sql.SET("update_time = #{updateTime,jdbcType=TIMESTAMP}");
+      }
+
+      if (record.getRemark() != null) {
             sql.SET("remark = #{remark,jdbcType=VARCHAR}");
         }
 

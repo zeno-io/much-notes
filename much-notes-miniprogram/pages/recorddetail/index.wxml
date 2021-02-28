@@ -5,7 +5,7 @@
       <view class='img-category-wrap'>
         <image class='img-category' src='{{icon}}'></image>
         <view class='category-type-wrap'>
-          <view class='category-name'>{{categoryNmae}}</view>
+          <view class='category-name'>{{categoryName}}</view>
           <view class='type'>{{type}}</view>
         </view>
       </view>
@@ -13,24 +13,27 @@
     </view>
     <view class='info-info-wrap'>
       <view class='info-title'>账本</view>
-      <view class='info-value'>{{account_book_name}}</view>
+      <view class='info-value'>{{accountBookName}}</view>
     </view>
     <view class='info-info-wrap'>
       <view class='info-title'>账户</view>
-      <view class='info-value'>{{account_type_name}}</view>
+      <view class='info-value'>{{accountTypeName}}</view>
     </view>
     <view class='info-info-wrap'>
       <view class='info-title'>记录人</view>
-      <view class='info-value'>{{nickname}}</view>
+      <view class='info-value'>{{creatorName}}</view>
     </view>
     <view class='info-info-wrap'>
       <view class='info-title'>发生时间</view>
       <view class='info-value'>{{time}}</view>
     </view>
-
     <view class='info-info-wrap'>
       <view class='info-title'>修改时间</view>
-      <view class='info-value'>{{date}}</view>
+      <view class='info-value'>{{updateTime==null?"":updateTime}}</view>
+    </view>
+    <view class='info-info-wrap'>
+      <view class='info-title'>修改人</view>
+      <view class='info-value'>{{updaterName==null?"":updaterName}}</view>
     </view>
     <view class='info-info-wrap'>
       <view class='info-title'>备注</view>

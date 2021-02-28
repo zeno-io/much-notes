@@ -55,7 +55,10 @@ public class UserAccountRecordDTO implements Serializable {
   private CategoryDTO category;
 
   @ApiModelProperty
-  private String nickName;
+  private String creatorName;
+
+  @ApiModelProperty
+  private String updaterName;
 
   public Long getId() {
     return id;
@@ -161,11 +164,19 @@ public class UserAccountRecordDTO implements Serializable {
     this.uid = uid;
   }
 
-  public String getNickName() {
-    return nickName;
+  public String getCreatorName() {
+    return creatorName;
   }
 
-  public void setNickName(String nickName) {
-    this.nickName = nickName;
+  public void setCreatorName(String creatorName) {
+    this.creatorName = creatorName;
+  }
+
+  public String getUpdaterName() {
+    return updaterName;
+  }
+
+  public void setUpdaterName(String updaterName) {
+    this.updaterName = updaterName;
   }
 }

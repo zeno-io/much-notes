@@ -58,12 +58,15 @@ public class UserAccountInfoService {
    * 编辑资产信息
    */
   @Transactional(rollbackFor = Exception.class)
-  public boolean directUpdateBalanceByUid(Long uid, Integer accountType, Long balance) {
+  public boolean directUpdateBalanceByUid(Long uid, Long updater, Integer accountType,
+    Long balance) {
     Objects.requireNonNull(uid);
+    Objects.requireNonNull(updater);
     Objects.requireNonNull(accountType);
     Objects.requireNonNull(balance);
 
     UserAccountInfoDO record = new UserAccountInfoDO();
+    record.setUpdater(updater);
     record.setBalance(balance);
 
     UserAccountInfoDOExample example = new UserAccountInfoDOExample();

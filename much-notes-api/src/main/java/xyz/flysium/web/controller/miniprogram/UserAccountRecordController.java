@@ -70,6 +70,17 @@ public class UserAccountRecordController {
 
   private final Mapper dozerBeanMapper = DozerBeanMapperBuilder.buildDefault();
 
+  @PostMapping("/checkRecordAuth")
+  @ApiOperation("检查账本操作权限")
+  public ResultResponse<String> checkRecordAuth(
+    @Validated @NotNull @RequestParam(name = "id") Long accountBookId) {
+    UserInfo userInfo = UserInfoHolder.getUserInfo();
+    if (!userInfo.checkRecordAuth(accountBookId)) {
+      return ResultResponse.fail("无账本操作权限");
+    }
+    return ResultResponse.success();
+  }
+
   @PostMapping("/addRecord")
   @ApiOperation("新增记账")
   public ResultResponse<Long> addRecord(
@@ -83,6 +94,7 @@ public class UserAccountRecordController {
 
     UserAccountRecordDO accountRecord = dozerBeanMapper.map(record, UserAccountRecordDO.class);
     accountRecord.setUid(uid);
+    accountRecord.setCreator(uid);
     accountRecord.setIsDeleted(IsOrNot.False.getKeyByte());
     Long recordId = userAccountRecordService.addRecord(accountRecord);
     return ResultResponse.success(recordId);
@@ -101,10 +113,9 @@ public class UserAccountRecordController {
 
     Long recordId = record.getRecordId();
     UserAccountRecordDO accountRecord = dozerBeanMapper.map(record, UserAccountRecordDO.class);
-    accountRecord.setUid(uid);
     accountRecord.setIsDeleted(IsOrNot.False.getKeyByte());
 
-    boolean b = userAccountRecordService.editRecord(recordId, accountRecord);
+    boolean b = userAccountRecordService.editRecord(recordId, accountRecord, uid);
     if (!b) {
       return ResultResponse.fail("修改失败");
     }
@@ -127,7 +138,7 @@ public class UserAccountRecordController {
     if (!userInfo.checkRecordAuth(record.getAccountBookId())) {
       return ResultResponse.fail("无账本操作权限");
     }
-    boolean b = userAccountRecordService.deleteRecord(recordId);
+    boolean b = userAccountRecordService.deleteRecord(recordId, uid);
     if (!b) {
       return ResultResponse.fail("修改失败");
     }
@@ -149,14 +160,21 @@ public class UserAccountRecordController {
     UserAccountBookDO book = userAccountBookService
       .getAccountBookById(record.getAccountBookId());
     CategoryDO category = categoryService.getCategoryById(record.getCategoryId());
-    NoteUserDO user = userService.getUnFilterUserById(record.getUid());
 
     UserAccountRecordDTO dto = dozerBeanMapper.map(record, UserAccountRecordDTO.class);
     dto.setAccountBookName(book.getName());
     dto.setCategory(dozerBeanMapper.map(category, CategoryDTO.class));
-    dto.setNickName(user.getNickname());
-    if (dto.getUpdateTime() == null) {
-      dto.setUpdateTime(record.getCreateTime());
+    if (record.getCreator() != null) {
+      NoteUserDO user = userService.getUnFilterUserById(record.getCreator());
+      if (user != null) {
+        dto.setCreatorName(user.getNickname());
+      }
+    }
+    if (record.getUpdater() != null) {
+      NoteUserDO user = userService.getUnFilterUserById(record.getUpdater());
+      if (user != null) {
+        dto.setUpdaterName(user.getNickname());
+      }
     }
 
     return ResultResponse.success(dto);

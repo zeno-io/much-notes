@@ -18,40 +18,60 @@ public class AccountTypeDOSqlProvider {
 
     public String insertSelective(AccountTypeDO record) {
         SQL sql = new SQL();
-        sql.INSERT_INTO("account_type");
+      sql.INSERT_INTO("account_type");
 
-        if (record.getType() != null) {
-            sql.VALUES("type", "#{type,jdbcType=INTEGER}");
-        }
+      if (record.getType() != null) {
+        sql.VALUES("type", "#{type,jdbcType=INTEGER}");
+      }
 
-        if (record.getName() != null) {
-            sql.VALUES("name", "#{name,jdbcType=VARCHAR}");
-        }
+      if (record.getName() != null) {
+        sql.VALUES("name", "#{name,jdbcType=VARCHAR}");
+      }
 
-        if (record.getRemark() != null) {
-            sql.VALUES("remark", "#{remark,jdbcType=VARCHAR}");
-        }
+      if (record.getCreator() != null) {
+        sql.VALUES("creator", "#{creator,jdbcType=BIGINT}");
+      }
 
-        return sql.toString();
+      if (record.getUpdater() != null) {
+        sql.VALUES("updater", "#{updater,jdbcType=BIGINT}");
+      }
+
+      if (record.getCreateTime() != null) {
+        sql.VALUES("create_time", "#{createTime,jdbcType=TIMESTAMP}");
+      }
+
+      if (record.getUpdateTime() != null) {
+        sql.VALUES("update_time", "#{updateTime,jdbcType=TIMESTAMP}");
+      }
+
+      if (record.getRemark() != null) {
+        sql.VALUES("remark", "#{remark,jdbcType=VARCHAR}");
+      }
+
+      return sql.toString();
     }
 
     public String selectByExample(AccountTypeDOExample example) {
-        SQL sql = new SQL();
-        if (example != null && example.isDistinct()) {
-            sql.SELECT_DISTINCT("type");
-        } else {
-            sql.SELECT("type");
-        }
-        sql.SELECT("name");
-        sql.SELECT("remark");
-        sql.FROM("account_type");
-        applyWhere(sql, example, false);
+      SQL sql = new SQL();
+      if (example != null && example.isDistinct()) {
+        sql.SELECT_DISTINCT("type");
+      } else {
+        sql.SELECT("type");
+      }
+      sql.SELECT("name");
+      sql.SELECT("creator");
+      sql.SELECT("updater");
+      sql.SELECT("create_time");
+      sql.SELECT("update_time");
+      sql.SELECT("remark");
+      sql.FROM("account_type");
+      applyWhere(sql, example, false);
 
-        if (example != null && example.getOrderByClause() != null) {
-            sql.ORDER_BY(example.getOrderByClause());
-        }
+      if (example != null && example.getOrderByClause() != null) {
+        sql.ORDER_BY(example.getOrderByClause());
+      }
 
-        return sql.toString();
+      return sql.toString();
     }
 
     public String updateByExampleSelective(Map<String, Object> parameter) {
@@ -59,52 +79,88 @@ public class AccountTypeDOSqlProvider {
         AccountTypeDOExample example = (AccountTypeDOExample) parameter.get("example");
 
         SQL sql = new SQL();
-        sql.UPDATE("account_type");
+      sql.UPDATE("account_type");
 
-        if (record.getType() != null) {
-            sql.SET("type = #{record.type,jdbcType=INTEGER}");
-        }
+      if (record.getType() != null) {
+        sql.SET("type = #{record.type,jdbcType=INTEGER}");
+      }
 
-        if (record.getName() != null) {
-            sql.SET("name = #{record.name,jdbcType=VARCHAR}");
-        }
+      if (record.getName() != null) {
+        sql.SET("name = #{record.name,jdbcType=VARCHAR}");
+      }
 
-        if (record.getRemark() != null) {
-            sql.SET("remark = #{record.remark,jdbcType=VARCHAR}");
-        }
+      if (record.getCreator() != null) {
+        sql.SET("creator = #{record.creator,jdbcType=BIGINT}");
+      }
 
-        applyWhere(sql, example, true);
-        return sql.toString();
+      if (record.getUpdater() != null) {
+        sql.SET("updater = #{record.updater,jdbcType=BIGINT}");
+      }
+
+      if (record.getCreateTime() != null) {
+        sql.SET("create_time = #{record.createTime,jdbcType=TIMESTAMP}");
+      }
+
+      if (record.getUpdateTime() != null) {
+        sql.SET("update_time = #{record.updateTime,jdbcType=TIMESTAMP}");
+      }
+
+      if (record.getRemark() != null) {
+        sql.SET("remark = #{record.remark,jdbcType=VARCHAR}");
+      }
+
+      applyWhere(sql, example, true);
+      return sql.toString();
     }
 
     public String updateByExample(Map<String, Object> parameter) {
-        SQL sql = new SQL();
-        sql.UPDATE("account_type");
+      SQL sql = new SQL();
+      sql.UPDATE("account_type");
 
-        sql.SET("type = #{record.type,jdbcType=INTEGER}");
-        sql.SET("name = #{record.name,jdbcType=VARCHAR}");
-        sql.SET("remark = #{record.remark,jdbcType=VARCHAR}");
+      sql.SET("type = #{record.type,jdbcType=INTEGER}");
+      sql.SET("name = #{record.name,jdbcType=VARCHAR}");
+      sql.SET("creator = #{record.creator,jdbcType=BIGINT}");
+      sql.SET("updater = #{record.updater,jdbcType=BIGINT}");
+      sql.SET("create_time = #{record.createTime,jdbcType=TIMESTAMP}");
+      sql.SET("update_time = #{record.updateTime,jdbcType=TIMESTAMP}");
+      sql.SET("remark = #{record.remark,jdbcType=VARCHAR}");
 
-        AccountTypeDOExample example = (AccountTypeDOExample) parameter.get("example");
-        applyWhere(sql, example, true);
-        return sql.toString();
+      AccountTypeDOExample example = (AccountTypeDOExample) parameter.get("example");
+      applyWhere(sql, example, true);
+      return sql.toString();
     }
 
     public String updateByPrimaryKeySelective(AccountTypeDO record) {
-        SQL sql = new SQL();
-        sql.UPDATE("account_type");
+      SQL sql = new SQL();
+      sql.UPDATE("account_type");
 
-        if (record.getName() != null) {
-            sql.SET("name = #{name,jdbcType=VARCHAR}");
-        }
+      if (record.getName() != null) {
+        sql.SET("name = #{name,jdbcType=VARCHAR}");
+      }
 
-        if (record.getRemark() != null) {
-            sql.SET("remark = #{remark,jdbcType=VARCHAR}");
-        }
+      if (record.getCreator() != null) {
+        sql.SET("creator = #{creator,jdbcType=BIGINT}");
+      }
 
-        sql.WHERE("type = #{type,jdbcType=INTEGER}");
+      if (record.getUpdater() != null) {
+        sql.SET("updater = #{updater,jdbcType=BIGINT}");
+      }
 
-        return sql.toString();
+      if (record.getCreateTime() != null) {
+        sql.SET("create_time = #{createTime,jdbcType=TIMESTAMP}");
+      }
+
+      if (record.getUpdateTime() != null) {
+        sql.SET("update_time = #{updateTime,jdbcType=TIMESTAMP}");
+      }
+
+      if (record.getRemark() != null) {
+        sql.SET("remark = #{remark,jdbcType=VARCHAR}");
+      }
+
+      sql.WHERE("type = #{type,jdbcType=INTEGER}");
+
+      return sql.toString();
     }
 
     protected void applyWhere(SQL sql, AccountTypeDOExample example, boolean includeExamplePhrase) {

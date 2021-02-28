@@ -23,14 +23,16 @@ public interface CategoryDOMapper {
     long countByExample(CategoryDOExample example);
 
     @Insert({
-        "insert into category (name, icon, ",
-        "is_custom, type, ",
-        "create_time, update_time, ",
-        "remark)",
-        "values (#{name,jdbcType=VARCHAR}, #{icon,jdbcType=VARCHAR}, ",
-        "#{isCustom,jdbcType=TINYINT}, #{type,jdbcType=TINYINT}, ",
-        "#{createTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP}, ",
-        "#{remark,jdbcType=VARCHAR})"
+      "insert into category (name, icon, ",
+      "is_custom, type, ",
+      "creator, updater, ",
+      "create_time, update_time, ",
+      "remark)",
+      "values (#{name,jdbcType=VARCHAR}, #{icon,jdbcType=VARCHAR}, ",
+      "#{isCustom,jdbcType=TINYINT}, #{type,jdbcType=TINYINT}, ",
+      "#{creator,jdbcType=BIGINT}, #{updater,jdbcType=BIGINT}, ",
+      "#{createTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP}, ",
+      "#{remark,jdbcType=VARCHAR})"
     })
     @SelectKey(statement="SELECT LAST_INSERT_ID()", keyProperty="id", before=false, resultType=Long.class)
     int insert(CategoryDO record);
@@ -41,45 +43,52 @@ public interface CategoryDOMapper {
 
     @SelectProvider(type=CategoryDOSqlProvider.class, method="selectByExample")
     @Results({
-        @Result(column="id", property="id", jdbcType=JdbcType.BIGINT, id=true),
-        @Result(column="name", property="name", jdbcType=JdbcType.VARCHAR),
-        @Result(column="icon", property="icon", jdbcType=JdbcType.VARCHAR),
-        @Result(column="is_custom", property="isCustom", jdbcType=JdbcType.TINYINT),
-        @Result(column="type", property="type", jdbcType=JdbcType.TINYINT),
-        @Result(column="create_time", property="createTime", jdbcType=JdbcType.TIMESTAMP),
-        @Result(column="update_time", property="updateTime", jdbcType=JdbcType.TIMESTAMP),
-        @Result(column="remark", property="remark", jdbcType=JdbcType.VARCHAR)
+      @Result(column = "id", property = "id", jdbcType = JdbcType.BIGINT, id = true),
+      @Result(column = "name", property = "name", jdbcType = JdbcType.VARCHAR),
+      @Result(column = "icon", property = "icon", jdbcType = JdbcType.VARCHAR),
+      @Result(column = "is_custom", property = "isCustom", jdbcType = JdbcType.TINYINT),
+      @Result(column = "type", property = "type", jdbcType = JdbcType.TINYINT),
+      @Result(column = "creator", property = "creator", jdbcType = JdbcType.BIGINT),
+      @Result(column = "updater", property = "updater", jdbcType = JdbcType.BIGINT),
+      @Result(column = "create_time", property = "createTime", jdbcType = JdbcType.TIMESTAMP),
+      @Result(column = "update_time", property = "updateTime", jdbcType = JdbcType.TIMESTAMP),
+      @Result(column = "remark", property = "remark", jdbcType = JdbcType.VARCHAR)
     })
     List<CategoryDO> selectByExampleWithRowbounds(CategoryDOExample example, RowBounds rowBounds);
 
     @SelectProvider(type=CategoryDOSqlProvider.class, method="selectByExample")
     @Results({
-        @Result(column="id", property="id", jdbcType=JdbcType.BIGINT, id=true),
-        @Result(column="name", property="name", jdbcType=JdbcType.VARCHAR),
-        @Result(column="icon", property="icon", jdbcType=JdbcType.VARCHAR),
-        @Result(column="is_custom", property="isCustom", jdbcType=JdbcType.TINYINT),
-        @Result(column="type", property="type", jdbcType=JdbcType.TINYINT),
-        @Result(column="create_time", property="createTime", jdbcType=JdbcType.TIMESTAMP),
-        @Result(column="update_time", property="updateTime", jdbcType=JdbcType.TIMESTAMP),
-        @Result(column="remark", property="remark", jdbcType=JdbcType.VARCHAR)
+      @Result(column = "id", property = "id", jdbcType = JdbcType.BIGINT, id = true),
+      @Result(column = "name", property = "name", jdbcType = JdbcType.VARCHAR),
+      @Result(column = "icon", property = "icon", jdbcType = JdbcType.VARCHAR),
+      @Result(column = "is_custom", property = "isCustom", jdbcType = JdbcType.TINYINT),
+      @Result(column = "type", property = "type", jdbcType = JdbcType.TINYINT),
+      @Result(column = "creator", property = "creator", jdbcType = JdbcType.BIGINT),
+      @Result(column = "updater", property = "updater", jdbcType = JdbcType.BIGINT),
+      @Result(column = "create_time", property = "createTime", jdbcType = JdbcType.TIMESTAMP),
+      @Result(column = "update_time", property = "updateTime", jdbcType = JdbcType.TIMESTAMP),
+      @Result(column = "remark", property = "remark", jdbcType = JdbcType.VARCHAR)
     })
     List<CategoryDO> selectByExample(CategoryDOExample example);
 
     @Select({
-        "select",
-        "id, name, icon, is_custom, type, create_time, update_time, remark",
-        "from category",
-        "where id = #{id,jdbcType=BIGINT}"
+      "select",
+      "id, name, icon, is_custom, type, creator, updater, create_time, update_time, ",
+      "remark",
+      "from category",
+      "where id = #{id,jdbcType=BIGINT}"
     })
     @Results({
-        @Result(column="id", property="id", jdbcType=JdbcType.BIGINT, id=true),
-        @Result(column="name", property="name", jdbcType=JdbcType.VARCHAR),
-        @Result(column="icon", property="icon", jdbcType=JdbcType.VARCHAR),
-        @Result(column="is_custom", property="isCustom", jdbcType=JdbcType.TINYINT),
-        @Result(column="type", property="type", jdbcType=JdbcType.TINYINT),
-        @Result(column="create_time", property="createTime", jdbcType=JdbcType.TIMESTAMP),
-        @Result(column="update_time", property="updateTime", jdbcType=JdbcType.TIMESTAMP),
-        @Result(column="remark", property="remark", jdbcType=JdbcType.VARCHAR)
+      @Result(column = "id", property = "id", jdbcType = JdbcType.BIGINT, id = true),
+      @Result(column = "name", property = "name", jdbcType = JdbcType.VARCHAR),
+      @Result(column = "icon", property = "icon", jdbcType = JdbcType.VARCHAR),
+      @Result(column = "is_custom", property = "isCustom", jdbcType = JdbcType.TINYINT),
+      @Result(column = "type", property = "type", jdbcType = JdbcType.TINYINT),
+      @Result(column = "creator", property = "creator", jdbcType = JdbcType.BIGINT),
+      @Result(column = "updater", property = "updater", jdbcType = JdbcType.BIGINT),
+      @Result(column = "create_time", property = "createTime", jdbcType = JdbcType.TIMESTAMP),
+      @Result(column = "update_time", property = "updateTime", jdbcType = JdbcType.TIMESTAMP),
+      @Result(column = "remark", property = "remark", jdbcType = JdbcType.VARCHAR)
     })
     CategoryDO selectByPrimaryKey(Long id);
 
@@ -93,15 +102,17 @@ public interface CategoryDOMapper {
     int updateByPrimaryKeySelective(CategoryDO record);
 
     @Update({
-        "update category",
-        "set name = #{name,jdbcType=VARCHAR},",
-          "icon = #{icon,jdbcType=VARCHAR},",
-          "is_custom = #{isCustom,jdbcType=TINYINT},",
-          "type = #{type,jdbcType=TINYINT},",
-          "create_time = #{createTime,jdbcType=TIMESTAMP},",
-          "update_time = #{updateTime,jdbcType=TIMESTAMP},",
-          "remark = #{remark,jdbcType=VARCHAR}",
-        "where id = #{id,jdbcType=BIGINT}"
+      "update category",
+      "set name = #{name,jdbcType=VARCHAR},",
+      "icon = #{icon,jdbcType=VARCHAR},",
+      "is_custom = #{isCustom,jdbcType=TINYINT},",
+      "type = #{type,jdbcType=TINYINT},",
+      "creator = #{creator,jdbcType=BIGINT},",
+      "updater = #{updater,jdbcType=BIGINT},",
+      "create_time = #{createTime,jdbcType=TIMESTAMP},",
+      "update_time = #{updateTime,jdbcType=TIMESTAMP},",
+      "remark = #{remark,jdbcType=VARCHAR}",
+      "where id = #{id,jdbcType=BIGINT}"
     })
     int updateByPrimaryKey(CategoryDO record);
 }

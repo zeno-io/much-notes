@@ -24,23 +24,31 @@ public class UserAccountInfoDOSqlProvider {
             sql.VALUES("uid", "#{uid,jdbcType=BIGINT}");
         }
 
-        if (record.getAccountType() != null) {
-            sql.VALUES("account_type", "#{accountType,jdbcType=INTEGER}");
-        }
+      if (record.getAccountType() != null) {
+        sql.VALUES("account_type", "#{accountType,jdbcType=INTEGER}");
+      }
 
-        if (record.getBalance() != null) {
-            sql.VALUES("balance", "#{balance,jdbcType=BIGINT}");
-        }
+      if (record.getBalance() != null) {
+        sql.VALUES("balance", "#{balance,jdbcType=BIGINT}");
+      }
 
-        if (record.getCreateTime() != null) {
-            sql.VALUES("create_time", "#{createTime,jdbcType=TIMESTAMP}");
-        }
+      if (record.getCreator() != null) {
+        sql.VALUES("creator", "#{creator,jdbcType=BIGINT}");
+      }
 
-        if (record.getUpdateTime() != null) {
-            sql.VALUES("update_time", "#{updateTime,jdbcType=TIMESTAMP}");
-        }
+      if (record.getUpdater() != null) {
+        sql.VALUES("updater", "#{updater,jdbcType=BIGINT}");
+      }
 
-        if (record.getRemark() != null) {
+      if (record.getCreateTime() != null) {
+        sql.VALUES("create_time", "#{createTime,jdbcType=TIMESTAMP}");
+      }
+
+      if (record.getUpdateTime() != null) {
+        sql.VALUES("update_time", "#{updateTime,jdbcType=TIMESTAMP}");
+      }
+
+      if (record.getRemark() != null) {
             sql.VALUES("remark", "#{remark,jdbcType=VARCHAR}");
         }
 
@@ -48,23 +56,25 @@ public class UserAccountInfoDOSqlProvider {
     }
 
     public String selectByExample(UserAccountInfoDOExample example) {
-        SQL sql = new SQL();
-        if (example != null && example.isDistinct()) {
-            sql.SELECT_DISTINCT("uid");
-        } else {
-            sql.SELECT("uid");
-        }
-        sql.SELECT("account_type");
-        sql.SELECT("balance");
-        sql.SELECT("create_time");
-        sql.SELECT("update_time");
-        sql.SELECT("remark");
-        sql.FROM("user_account_info");
-        applyWhere(sql, example, false);
+      SQL sql = new SQL();
+      if (example != null && example.isDistinct()) {
+        sql.SELECT_DISTINCT("uid");
+      } else {
+        sql.SELECT("uid");
+      }
+      sql.SELECT("account_type");
+      sql.SELECT("balance");
+      sql.SELECT("creator");
+      sql.SELECT("updater");
+      sql.SELECT("create_time");
+      sql.SELECT("update_time");
+      sql.SELECT("remark");
+      sql.FROM("user_account_info");
+      applyWhere(sql, example, false);
 
-        if (example != null && example.getOrderByClause() != null) {
-            sql.ORDER_BY(example.getOrderByClause());
-        }
+      if (example != null && example.getOrderByClause() != null) {
+        sql.ORDER_BY(example.getOrderByClause());
+      }
 
         return sql.toString();
     }
@@ -80,23 +90,31 @@ public class UserAccountInfoDOSqlProvider {
             sql.SET("uid = #{record.uid,jdbcType=BIGINT}");
         }
 
-        if (record.getAccountType() != null) {
-            sql.SET("account_type = #{record.accountType,jdbcType=INTEGER}");
-        }
+      if (record.getAccountType() != null) {
+        sql.SET("account_type = #{record.accountType,jdbcType=INTEGER}");
+      }
 
-        if (record.getBalance() != null) {
-            sql.SET("balance = #{record.balance,jdbcType=BIGINT}");
-        }
+      if (record.getBalance() != null) {
+        sql.SET("balance = #{record.balance,jdbcType=BIGINT}");
+      }
 
-        if (record.getCreateTime() != null) {
-            sql.SET("create_time = #{record.createTime,jdbcType=TIMESTAMP}");
-        }
+      if (record.getCreator() != null) {
+        sql.SET("creator = #{record.creator,jdbcType=BIGINT}");
+      }
 
-        if (record.getUpdateTime() != null) {
-            sql.SET("update_time = #{record.updateTime,jdbcType=TIMESTAMP}");
-        }
+      if (record.getUpdater() != null) {
+        sql.SET("updater = #{record.updater,jdbcType=BIGINT}");
+      }
 
-        if (record.getRemark() != null) {
+      if (record.getCreateTime() != null) {
+        sql.SET("create_time = #{record.createTime,jdbcType=TIMESTAMP}");
+      }
+
+      if (record.getUpdateTime() != null) {
+        sql.SET("update_time = #{record.updateTime,jdbcType=TIMESTAMP}");
+      }
+
+      if (record.getRemark() != null) {
             sql.SET("remark = #{record.remark,jdbcType=VARCHAR}");
         }
 
@@ -105,19 +123,21 @@ public class UserAccountInfoDOSqlProvider {
     }
 
     public String updateByExample(Map<String, Object> parameter) {
-        SQL sql = new SQL();
-        sql.UPDATE("user_account_info");
+      SQL sql = new SQL();
+      sql.UPDATE("user_account_info");
 
-        sql.SET("uid = #{record.uid,jdbcType=BIGINT}");
-        sql.SET("account_type = #{record.accountType,jdbcType=INTEGER}");
-        sql.SET("balance = #{record.balance,jdbcType=BIGINT}");
-        sql.SET("create_time = #{record.createTime,jdbcType=TIMESTAMP}");
-        sql.SET("update_time = #{record.updateTime,jdbcType=TIMESTAMP}");
-        sql.SET("remark = #{record.remark,jdbcType=VARCHAR}");
+      sql.SET("uid = #{record.uid,jdbcType=BIGINT}");
+      sql.SET("account_type = #{record.accountType,jdbcType=INTEGER}");
+      sql.SET("balance = #{record.balance,jdbcType=BIGINT}");
+      sql.SET("creator = #{record.creator,jdbcType=BIGINT}");
+      sql.SET("updater = #{record.updater,jdbcType=BIGINT}");
+      sql.SET("create_time = #{record.createTime,jdbcType=TIMESTAMP}");
+      sql.SET("update_time = #{record.updateTime,jdbcType=TIMESTAMP}");
+      sql.SET("remark = #{record.remark,jdbcType=VARCHAR}");
 
-        UserAccountInfoDOExample example = (UserAccountInfoDOExample) parameter.get("example");
-        applyWhere(sql, example, true);
-        return sql.toString();
+      UserAccountInfoDOExample example = (UserAccountInfoDOExample) parameter.get("example");
+      applyWhere(sql, example, true);
+      return sql.toString();
     }
 
     protected void applyWhere(SQL sql, UserAccountInfoDOExample example, boolean includeExamplePhrase) {

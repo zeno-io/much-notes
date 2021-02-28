@@ -68,13 +68,13 @@ function requestCommon(url, params, callBack,method = 'POST') {
         return;
       }
       if (res.data.code !== constants.SUCCESS) {
-        showToast(checkStrNotNull(res.data.message) ? res.data.message:"访问失败", WARNING);
+        showToast(checkStrNotNull(res.data.message) ? res.data.message : "访问失败",
+          WARNING);
         console.log(res);
-        //TODO 具体哪些错误这里可以统一处理
+        // TODO 具体哪些错误这里可以统一处理
       } else {
         callBack(true, res.data);
       }
-
     },
     fail: function () {
       wx.hideLoading();

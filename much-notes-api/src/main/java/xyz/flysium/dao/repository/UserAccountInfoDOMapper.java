@@ -20,12 +20,14 @@ public interface UserAccountInfoDOMapper {
     long countByExample(UserAccountInfoDOExample example);
 
     @Insert({
-        "insert into user_account_info (uid, account_type, ",
-        "balance, create_time, ",
-        "update_time, remark)",
-        "values (#{uid,jdbcType=BIGINT}, #{accountType,jdbcType=INTEGER}, ",
-        "#{balance,jdbcType=BIGINT}, #{createTime,jdbcType=TIMESTAMP}, ",
-        "#{updateTime,jdbcType=TIMESTAMP}, #{remark,jdbcType=VARCHAR})"
+      "insert into user_account_info (uid, account_type, ",
+      "balance, creator, ",
+      "updater, create_time, ",
+      "update_time, remark)",
+      "values (#{uid,jdbcType=BIGINT}, #{accountType,jdbcType=INTEGER}, ",
+      "#{balance,jdbcType=BIGINT}, #{creator,jdbcType=BIGINT}, ",
+      "#{updater,jdbcType=BIGINT}, #{createTime,jdbcType=TIMESTAMP}, ",
+      "#{updateTime,jdbcType=TIMESTAMP}, #{remark,jdbcType=VARCHAR})"
     })
     int insert(UserAccountInfoDO record);
 
@@ -34,23 +36,27 @@ public interface UserAccountInfoDOMapper {
 
     @SelectProvider(type=UserAccountInfoDOSqlProvider.class, method="selectByExample")
     @Results({
-        @Result(column="uid", property="uid", jdbcType=JdbcType.BIGINT),
-        @Result(column="account_type", property="accountType", jdbcType=JdbcType.INTEGER),
-        @Result(column="balance", property="balance", jdbcType=JdbcType.BIGINT),
-        @Result(column="create_time", property="createTime", jdbcType=JdbcType.TIMESTAMP),
-        @Result(column="update_time", property="updateTime", jdbcType=JdbcType.TIMESTAMP),
-        @Result(column="remark", property="remark", jdbcType=JdbcType.VARCHAR)
+      @Result(column = "uid", property = "uid", jdbcType = JdbcType.BIGINT),
+      @Result(column = "account_type", property = "accountType", jdbcType = JdbcType.INTEGER),
+      @Result(column = "balance", property = "balance", jdbcType = JdbcType.BIGINT),
+      @Result(column = "creator", property = "creator", jdbcType = JdbcType.BIGINT),
+      @Result(column = "updater", property = "updater", jdbcType = JdbcType.BIGINT),
+      @Result(column = "create_time", property = "createTime", jdbcType = JdbcType.TIMESTAMP),
+      @Result(column = "update_time", property = "updateTime", jdbcType = JdbcType.TIMESTAMP),
+      @Result(column = "remark", property = "remark", jdbcType = JdbcType.VARCHAR)
     })
     List<UserAccountInfoDO> selectByExampleWithRowbounds(UserAccountInfoDOExample example, RowBounds rowBounds);
 
     @SelectProvider(type=UserAccountInfoDOSqlProvider.class, method="selectByExample")
     @Results({
-        @Result(column="uid", property="uid", jdbcType=JdbcType.BIGINT),
-        @Result(column="account_type", property="accountType", jdbcType=JdbcType.INTEGER),
-        @Result(column="balance", property="balance", jdbcType=JdbcType.BIGINT),
-        @Result(column="create_time", property="createTime", jdbcType=JdbcType.TIMESTAMP),
-        @Result(column="update_time", property="updateTime", jdbcType=JdbcType.TIMESTAMP),
-        @Result(column="remark", property="remark", jdbcType=JdbcType.VARCHAR)
+      @Result(column = "uid", property = "uid", jdbcType = JdbcType.BIGINT),
+      @Result(column = "account_type", property = "accountType", jdbcType = JdbcType.INTEGER),
+      @Result(column = "balance", property = "balance", jdbcType = JdbcType.BIGINT),
+      @Result(column = "creator", property = "creator", jdbcType = JdbcType.BIGINT),
+      @Result(column = "updater", property = "updater", jdbcType = JdbcType.BIGINT),
+      @Result(column = "create_time", property = "createTime", jdbcType = JdbcType.TIMESTAMP),
+      @Result(column = "update_time", property = "updateTime", jdbcType = JdbcType.TIMESTAMP),
+      @Result(column = "remark", property = "remark", jdbcType = JdbcType.VARCHAR)
     })
     List<UserAccountInfoDO> selectByExample(UserAccountInfoDOExample example);
 

@@ -23,12 +23,14 @@ public interface UserAccountBookDOMapper {
     long countByExample(UserAccountBookDOExample example);
 
     @Insert({
-        "insert into user_account_book (uid, name, ",
-        "type, create_time, ",
-        "update_time, remark)",
-        "values (#{uid,jdbcType=BIGINT}, #{name,jdbcType=VARCHAR}, ",
-        "#{type,jdbcType=TINYINT}, #{createTime,jdbcType=TIMESTAMP}, ",
-        "#{updateTime,jdbcType=TIMESTAMP}, #{remark,jdbcType=VARCHAR})"
+      "insert into user_account_book (uid, name, ",
+      "type, creator, updater, ",
+      "create_time, update_time, ",
+      "remark)",
+      "values (#{uid,jdbcType=BIGINT}, #{name,jdbcType=VARCHAR}, ",
+      "#{type,jdbcType=TINYINT}, #{creator,jdbcType=BIGINT}, #{updater,jdbcType=BIGINT}, ",
+      "#{createTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP}, ",
+      "#{remark,jdbcType=VARCHAR})"
     })
     @SelectKey(statement="SELECT LAST_INSERT_ID()", keyProperty="id", before=false, resultType=Long.class)
     int insert(UserAccountBookDO record);
@@ -39,42 +41,48 @@ public interface UserAccountBookDOMapper {
 
     @SelectProvider(type=UserAccountBookDOSqlProvider.class, method="selectByExample")
     @Results({
-        @Result(column="id", property="id", jdbcType=JdbcType.BIGINT, id=true),
-        @Result(column="uid", property="uid", jdbcType=JdbcType.BIGINT),
-        @Result(column="name", property="name", jdbcType=JdbcType.VARCHAR),
-        @Result(column="type", property="type", jdbcType=JdbcType.TINYINT),
-        @Result(column="create_time", property="createTime", jdbcType=JdbcType.TIMESTAMP),
-        @Result(column="update_time", property="updateTime", jdbcType=JdbcType.TIMESTAMP),
-        @Result(column="remark", property="remark", jdbcType=JdbcType.VARCHAR)
+      @Result(column = "id", property = "id", jdbcType = JdbcType.BIGINT, id = true),
+      @Result(column = "uid", property = "uid", jdbcType = JdbcType.BIGINT),
+      @Result(column = "name", property = "name", jdbcType = JdbcType.VARCHAR),
+      @Result(column = "type", property = "type", jdbcType = JdbcType.TINYINT),
+      @Result(column = "creator", property = "creator", jdbcType = JdbcType.BIGINT),
+      @Result(column = "updater", property = "updater", jdbcType = JdbcType.BIGINT),
+      @Result(column = "create_time", property = "createTime", jdbcType = JdbcType.TIMESTAMP),
+      @Result(column = "update_time", property = "updateTime", jdbcType = JdbcType.TIMESTAMP),
+      @Result(column = "remark", property = "remark", jdbcType = JdbcType.VARCHAR)
     })
     List<UserAccountBookDO> selectByExampleWithRowbounds(UserAccountBookDOExample example, RowBounds rowBounds);
 
     @SelectProvider(type=UserAccountBookDOSqlProvider.class, method="selectByExample")
     @Results({
-        @Result(column="id", property="id", jdbcType=JdbcType.BIGINT, id=true),
-        @Result(column="uid", property="uid", jdbcType=JdbcType.BIGINT),
-        @Result(column="name", property="name", jdbcType=JdbcType.VARCHAR),
-        @Result(column="type", property="type", jdbcType=JdbcType.TINYINT),
-        @Result(column="create_time", property="createTime", jdbcType=JdbcType.TIMESTAMP),
-        @Result(column="update_time", property="updateTime", jdbcType=JdbcType.TIMESTAMP),
-        @Result(column="remark", property="remark", jdbcType=JdbcType.VARCHAR)
+      @Result(column = "id", property = "id", jdbcType = JdbcType.BIGINT, id = true),
+      @Result(column = "uid", property = "uid", jdbcType = JdbcType.BIGINT),
+      @Result(column = "name", property = "name", jdbcType = JdbcType.VARCHAR),
+      @Result(column = "type", property = "type", jdbcType = JdbcType.TINYINT),
+      @Result(column = "creator", property = "creator", jdbcType = JdbcType.BIGINT),
+      @Result(column = "updater", property = "updater", jdbcType = JdbcType.BIGINT),
+      @Result(column = "create_time", property = "createTime", jdbcType = JdbcType.TIMESTAMP),
+      @Result(column = "update_time", property = "updateTime", jdbcType = JdbcType.TIMESTAMP),
+      @Result(column = "remark", property = "remark", jdbcType = JdbcType.VARCHAR)
     })
     List<UserAccountBookDO> selectByExample(UserAccountBookDOExample example);
 
     @Select({
-        "select",
-        "id, uid, name, type, create_time, update_time, remark",
-        "from user_account_book",
-        "where id = #{id,jdbcType=BIGINT}"
+      "select",
+      "id, uid, name, type, creator, updater, create_time, update_time, remark",
+      "from user_account_book",
+      "where id = #{id,jdbcType=BIGINT}"
     })
     @Results({
-        @Result(column="id", property="id", jdbcType=JdbcType.BIGINT, id=true),
-        @Result(column="uid", property="uid", jdbcType=JdbcType.BIGINT),
-        @Result(column="name", property="name", jdbcType=JdbcType.VARCHAR),
-        @Result(column="type", property="type", jdbcType=JdbcType.TINYINT),
-        @Result(column="create_time", property="createTime", jdbcType=JdbcType.TIMESTAMP),
-        @Result(column="update_time", property="updateTime", jdbcType=JdbcType.TIMESTAMP),
-        @Result(column="remark", property="remark", jdbcType=JdbcType.VARCHAR)
+      @Result(column = "id", property = "id", jdbcType = JdbcType.BIGINT, id = true),
+      @Result(column = "uid", property = "uid", jdbcType = JdbcType.BIGINT),
+      @Result(column = "name", property = "name", jdbcType = JdbcType.VARCHAR),
+      @Result(column = "type", property = "type", jdbcType = JdbcType.TINYINT),
+      @Result(column = "creator", property = "creator", jdbcType = JdbcType.BIGINT),
+      @Result(column = "updater", property = "updater", jdbcType = JdbcType.BIGINT),
+      @Result(column = "create_time", property = "createTime", jdbcType = JdbcType.TIMESTAMP),
+      @Result(column = "update_time", property = "updateTime", jdbcType = JdbcType.TIMESTAMP),
+      @Result(column = "remark", property = "remark", jdbcType = JdbcType.VARCHAR)
     })
     UserAccountBookDO selectByPrimaryKey(Long id);
 
@@ -88,14 +96,16 @@ public interface UserAccountBookDOMapper {
     int updateByPrimaryKeySelective(UserAccountBookDO record);
 
     @Update({
-        "update user_account_book",
-        "set uid = #{uid,jdbcType=BIGINT},",
-          "name = #{name,jdbcType=VARCHAR},",
-          "type = #{type,jdbcType=TINYINT},",
-          "create_time = #{createTime,jdbcType=TIMESTAMP},",
-          "update_time = #{updateTime,jdbcType=TIMESTAMP},",
-          "remark = #{remark,jdbcType=VARCHAR}",
-        "where id = #{id,jdbcType=BIGINT}"
+      "update user_account_book",
+      "set uid = #{uid,jdbcType=BIGINT},",
+      "name = #{name,jdbcType=VARCHAR},",
+      "type = #{type,jdbcType=TINYINT},",
+      "creator = #{creator,jdbcType=BIGINT},",
+      "updater = #{updater,jdbcType=BIGINT},",
+      "create_time = #{createTime,jdbcType=TIMESTAMP},",
+      "update_time = #{updateTime,jdbcType=TIMESTAMP},",
+      "remark = #{remark,jdbcType=VARCHAR}",
+      "where id = #{id,jdbcType=BIGINT}"
     })
     int updateByPrimaryKey(UserAccountBookDO record);
 }

@@ -23,12 +23,14 @@ public interface UserAccountBookCategoryDOMapper {
     long countByExample(UserAccountBookCategoryDOExample example);
 
     @Insert({
-        "insert into user_account_book_category (uid, gid, ",
-        "cid, create_time, ",
-        "update_time, remark)",
-        "values (#{uid,jdbcType=BIGINT}, #{gid,jdbcType=BIGINT}, ",
-        "#{cid,jdbcType=BIGINT}, #{createTime,jdbcType=TIMESTAMP}, ",
-        "#{updateTime,jdbcType=TIMESTAMP}, #{remark,jdbcType=VARCHAR})"
+      "insert into user_account_book_category (uid, gid, ",
+      "cid, creator, updater, ",
+      "create_time, update_time, ",
+      "remark)",
+      "values (#{uid,jdbcType=BIGINT}, #{gid,jdbcType=BIGINT}, ",
+      "#{cid,jdbcType=BIGINT}, #{creator,jdbcType=BIGINT}, #{updater,jdbcType=BIGINT}, ",
+      "#{createTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP}, ",
+      "#{remark,jdbcType=VARCHAR})"
     })
     @SelectKey(statement="SELECT LAST_INSERT_ID()", keyProperty="id", before=false, resultType=Long.class)
     int insert(UserAccountBookCategoryDO record);
@@ -39,42 +41,48 @@ public interface UserAccountBookCategoryDOMapper {
 
     @SelectProvider(type=UserAccountBookCategoryDOSqlProvider.class, method="selectByExample")
     @Results({
-        @Result(column="id", property="id", jdbcType=JdbcType.BIGINT, id=true),
-        @Result(column="uid", property="uid", jdbcType=JdbcType.BIGINT),
-        @Result(column="gid", property="gid", jdbcType=JdbcType.BIGINT),
-        @Result(column="cid", property="cid", jdbcType=JdbcType.BIGINT),
-        @Result(column="create_time", property="createTime", jdbcType=JdbcType.TIMESTAMP),
-        @Result(column="update_time", property="updateTime", jdbcType=JdbcType.TIMESTAMP),
-        @Result(column="remark", property="remark", jdbcType=JdbcType.VARCHAR)
+      @Result(column = "id", property = "id", jdbcType = JdbcType.BIGINT, id = true),
+      @Result(column = "uid", property = "uid", jdbcType = JdbcType.BIGINT),
+      @Result(column = "gid", property = "gid", jdbcType = JdbcType.BIGINT),
+      @Result(column = "cid", property = "cid", jdbcType = JdbcType.BIGINT),
+      @Result(column = "creator", property = "creator", jdbcType = JdbcType.BIGINT),
+      @Result(column = "updater", property = "updater", jdbcType = JdbcType.BIGINT),
+      @Result(column = "create_time", property = "createTime", jdbcType = JdbcType.TIMESTAMP),
+      @Result(column = "update_time", property = "updateTime", jdbcType = JdbcType.TIMESTAMP),
+      @Result(column = "remark", property = "remark", jdbcType = JdbcType.VARCHAR)
     })
     List<UserAccountBookCategoryDO> selectByExampleWithRowbounds(UserAccountBookCategoryDOExample example, RowBounds rowBounds);
 
     @SelectProvider(type=UserAccountBookCategoryDOSqlProvider.class, method="selectByExample")
     @Results({
-        @Result(column="id", property="id", jdbcType=JdbcType.BIGINT, id=true),
-        @Result(column="uid", property="uid", jdbcType=JdbcType.BIGINT),
-        @Result(column="gid", property="gid", jdbcType=JdbcType.BIGINT),
-        @Result(column="cid", property="cid", jdbcType=JdbcType.BIGINT),
-        @Result(column="create_time", property="createTime", jdbcType=JdbcType.TIMESTAMP),
-        @Result(column="update_time", property="updateTime", jdbcType=JdbcType.TIMESTAMP),
-        @Result(column="remark", property="remark", jdbcType=JdbcType.VARCHAR)
+      @Result(column = "id", property = "id", jdbcType = JdbcType.BIGINT, id = true),
+      @Result(column = "uid", property = "uid", jdbcType = JdbcType.BIGINT),
+      @Result(column = "gid", property = "gid", jdbcType = JdbcType.BIGINT),
+      @Result(column = "cid", property = "cid", jdbcType = JdbcType.BIGINT),
+      @Result(column = "creator", property = "creator", jdbcType = JdbcType.BIGINT),
+      @Result(column = "updater", property = "updater", jdbcType = JdbcType.BIGINT),
+      @Result(column = "create_time", property = "createTime", jdbcType = JdbcType.TIMESTAMP),
+      @Result(column = "update_time", property = "updateTime", jdbcType = JdbcType.TIMESTAMP),
+      @Result(column = "remark", property = "remark", jdbcType = JdbcType.VARCHAR)
     })
     List<UserAccountBookCategoryDO> selectByExample(UserAccountBookCategoryDOExample example);
 
     @Select({
-        "select",
-        "id, uid, gid, cid, create_time, update_time, remark",
-        "from user_account_book_category",
-        "where id = #{id,jdbcType=BIGINT}"
+      "select",
+      "id, uid, gid, cid, creator, updater, create_time, update_time, remark",
+      "from user_account_book_category",
+      "where id = #{id,jdbcType=BIGINT}"
     })
     @Results({
-        @Result(column="id", property="id", jdbcType=JdbcType.BIGINT, id=true),
-        @Result(column="uid", property="uid", jdbcType=JdbcType.BIGINT),
-        @Result(column="gid", property="gid", jdbcType=JdbcType.BIGINT),
-        @Result(column="cid", property="cid", jdbcType=JdbcType.BIGINT),
-        @Result(column="create_time", property="createTime", jdbcType=JdbcType.TIMESTAMP),
-        @Result(column="update_time", property="updateTime", jdbcType=JdbcType.TIMESTAMP),
-        @Result(column="remark", property="remark", jdbcType=JdbcType.VARCHAR)
+      @Result(column = "id", property = "id", jdbcType = JdbcType.BIGINT, id = true),
+      @Result(column = "uid", property = "uid", jdbcType = JdbcType.BIGINT),
+      @Result(column = "gid", property = "gid", jdbcType = JdbcType.BIGINT),
+      @Result(column = "cid", property = "cid", jdbcType = JdbcType.BIGINT),
+      @Result(column = "creator", property = "creator", jdbcType = JdbcType.BIGINT),
+      @Result(column = "updater", property = "updater", jdbcType = JdbcType.BIGINT),
+      @Result(column = "create_time", property = "createTime", jdbcType = JdbcType.TIMESTAMP),
+      @Result(column = "update_time", property = "updateTime", jdbcType = JdbcType.TIMESTAMP),
+      @Result(column = "remark", property = "remark", jdbcType = JdbcType.VARCHAR)
     })
     UserAccountBookCategoryDO selectByPrimaryKey(Long id);
 
@@ -88,14 +96,16 @@ public interface UserAccountBookCategoryDOMapper {
     int updateByPrimaryKeySelective(UserAccountBookCategoryDO record);
 
     @Update({
-        "update user_account_book_category",
-        "set uid = #{uid,jdbcType=BIGINT},",
-          "gid = #{gid,jdbcType=BIGINT},",
-          "cid = #{cid,jdbcType=BIGINT},",
-          "create_time = #{createTime,jdbcType=TIMESTAMP},",
-          "update_time = #{updateTime,jdbcType=TIMESTAMP},",
-          "remark = #{remark,jdbcType=VARCHAR}",
-        "where id = #{id,jdbcType=BIGINT}"
+      "update user_account_book_category",
+      "set uid = #{uid,jdbcType=BIGINT},",
+      "gid = #{gid,jdbcType=BIGINT},",
+      "cid = #{cid,jdbcType=BIGINT},",
+      "creator = #{creator,jdbcType=BIGINT},",
+      "updater = #{updater,jdbcType=BIGINT},",
+      "create_time = #{createTime,jdbcType=TIMESTAMP},",
+      "update_time = #{updateTime,jdbcType=TIMESTAMP},",
+      "remark = #{remark,jdbcType=VARCHAR}",
+      "where id = #{id,jdbcType=BIGINT}"
     })
     int updateByPrimaryKey(UserAccountBookCategoryDO record);
 }

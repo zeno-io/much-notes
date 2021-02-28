@@ -97,6 +97,7 @@ public class UserService {
       userAccountInfo.setAccountType(accountType.getType());
       userAccountInfo.setBalance(0L);
       userAccountInfo.setUid(user.getId());
+      userAccountInfo.setCreator(user.getId());
       userAccountInfoMapper.insertSelective(userAccountInfo);
     }
 

@@ -22,10 +22,14 @@ public interface AccountTypeDOMapper {
     long countByExample(AccountTypeDOExample example);
 
     @Insert({
-        "insert into account_type (type, name, ",
-        "remark)",
-        "values (#{type,jdbcType=INTEGER}, #{name,jdbcType=VARCHAR}, ",
-        "#{remark,jdbcType=VARCHAR})"
+      "insert into account_type (type, name, ",
+      "creator, updater, ",
+      "create_time, update_time, ",
+      "remark)",
+      "values (#{type,jdbcType=INTEGER}, #{name,jdbcType=VARCHAR}, ",
+      "#{creator,jdbcType=BIGINT}, #{updater,jdbcType=BIGINT}, ",
+      "#{createTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP}, ",
+      "#{remark,jdbcType=VARCHAR})"
     })
     int insert(AccountTypeDO record);
 
@@ -34,30 +38,42 @@ public interface AccountTypeDOMapper {
 
     @SelectProvider(type=AccountTypeDOSqlProvider.class, method="selectByExample")
     @Results({
-        @Result(column="type", property="type", jdbcType=JdbcType.INTEGER, id=true),
-        @Result(column="name", property="name", jdbcType=JdbcType.VARCHAR),
-        @Result(column="remark", property="remark", jdbcType=JdbcType.VARCHAR)
+      @Result(column = "type", property = "type", jdbcType = JdbcType.INTEGER, id = true),
+      @Result(column = "name", property = "name", jdbcType = JdbcType.VARCHAR),
+      @Result(column = "creator", property = "creator", jdbcType = JdbcType.BIGINT),
+      @Result(column = "updater", property = "updater", jdbcType = JdbcType.BIGINT),
+      @Result(column = "create_time", property = "createTime", jdbcType = JdbcType.TIMESTAMP),
+      @Result(column = "update_time", property = "updateTime", jdbcType = JdbcType.TIMESTAMP),
+      @Result(column = "remark", property = "remark", jdbcType = JdbcType.VARCHAR)
     })
     List<AccountTypeDO> selectByExampleWithRowbounds(AccountTypeDOExample example, RowBounds rowBounds);
 
     @SelectProvider(type=AccountTypeDOSqlProvider.class, method="selectByExample")
     @Results({
-        @Result(column="type", property="type", jdbcType=JdbcType.INTEGER, id=true),
-        @Result(column="name", property="name", jdbcType=JdbcType.VARCHAR),
-        @Result(column="remark", property="remark", jdbcType=JdbcType.VARCHAR)
+      @Result(column = "type", property = "type", jdbcType = JdbcType.INTEGER, id = true),
+      @Result(column = "name", property = "name", jdbcType = JdbcType.VARCHAR),
+      @Result(column = "creator", property = "creator", jdbcType = JdbcType.BIGINT),
+      @Result(column = "updater", property = "updater", jdbcType = JdbcType.BIGINT),
+      @Result(column = "create_time", property = "createTime", jdbcType = JdbcType.TIMESTAMP),
+      @Result(column = "update_time", property = "updateTime", jdbcType = JdbcType.TIMESTAMP),
+      @Result(column = "remark", property = "remark", jdbcType = JdbcType.VARCHAR)
     })
     List<AccountTypeDO> selectByExample(AccountTypeDOExample example);
 
     @Select({
-        "select",
-        "type, name, remark",
-        "from account_type",
-        "where type = #{type,jdbcType=INTEGER}"
+      "select",
+      "type, name, creator, updater, create_time, update_time, remark",
+      "from account_type",
+      "where type = #{type,jdbcType=INTEGER}"
     })
     @Results({
-        @Result(column="type", property="type", jdbcType=JdbcType.INTEGER, id=true),
-        @Result(column="name", property="name", jdbcType=JdbcType.VARCHAR),
-        @Result(column="remark", property="remark", jdbcType=JdbcType.VARCHAR)
+      @Result(column = "type", property = "type", jdbcType = JdbcType.INTEGER, id = true),
+      @Result(column = "name", property = "name", jdbcType = JdbcType.VARCHAR),
+      @Result(column = "creator", property = "creator", jdbcType = JdbcType.BIGINT),
+      @Result(column = "updater", property = "updater", jdbcType = JdbcType.BIGINT),
+      @Result(column = "create_time", property = "createTime", jdbcType = JdbcType.TIMESTAMP),
+      @Result(column = "update_time", property = "updateTime", jdbcType = JdbcType.TIMESTAMP),
+      @Result(column = "remark", property = "remark", jdbcType = JdbcType.VARCHAR)
     })
     AccountTypeDO selectByPrimaryKey(Integer type);
 
@@ -71,10 +87,14 @@ public interface AccountTypeDOMapper {
     int updateByPrimaryKeySelective(AccountTypeDO record);
 
     @Update({
-        "update account_type",
-        "set name = #{name,jdbcType=VARCHAR},",
-          "remark = #{remark,jdbcType=VARCHAR}",
-        "where type = #{type,jdbcType=INTEGER}"
+      "update account_type",
+      "set name = #{name,jdbcType=VARCHAR},",
+      "creator = #{creator,jdbcType=BIGINT},",
+      "updater = #{updater,jdbcType=BIGINT},",
+      "create_time = #{createTime,jdbcType=TIMESTAMP},",
+      "update_time = #{updateTime,jdbcType=TIMESTAMP},",
+      "remark = #{remark,jdbcType=VARCHAR}",
+      "where type = #{type,jdbcType=INTEGER}"
     })
     int updateByPrimaryKey(AccountTypeDO record);
 }

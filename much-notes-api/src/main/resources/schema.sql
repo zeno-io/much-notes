@@ -29,6 +29,8 @@ CREATE TABLE `category`
     `icon`        varchar(512)              DEFAULT NULL,
     `is_custom`   tinyint          NOT NULL DEFAULT '0' COMMENT '是否为用户自定义分类：0-否； 1-是；',
     `type`        tinyint unsigned NOT NULL DEFAULT '0' COMMENT '分类：0-支出； 1-收入；',
+    `creator`     bigint COMMENT '创建人员用户 ID',
+    `updater`     bigint COMMENT '更新人员用户 ID',
     `create_time` datetime         NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
     `update_time` datetime                  DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP COMMENT '更新时间',
     `remark`      varchar(512)              DEFAULT NULL COMMENT '备注',
@@ -38,9 +40,13 @@ CREATE TABLE `category`
 
 CREATE TABLE `account_type`
 (
-    `type`   int         NOT NULL COMMENT '账户分类：3-不选帐户； 2-微信； 1-支付宝； 0-现金；',
-    `name`   varchar(56) NOT NULL,
-    `remark` varchar(512) DEFAULT NULL COMMENT '备注',
+    `type`        int         NOT NULL COMMENT '账户分类：3-不选帐户； 2-微信； 1-支付宝； 0-现金；',
+    `name`        varchar(56) NOT NULL,
+    `creator`     bigint COMMENT '创建人员用户 ID',
+    `updater`     bigint COMMENT '更新人员用户 ID',
+    `create_time` datetime    NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
+    `update_time` datetime             DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP COMMENT '更新时间',
+    `remark`      varchar(512)         DEFAULT NULL COMMENT '备注',
     PRIMARY KEY (`type`)
 ) ENGINE = InnoDB
   DEFAULT CHARSET = utf8mb4 COMMENT ='账户类型表';
@@ -50,6 +56,8 @@ CREATE TABLE `user_account_info`
     `uid`          bigint   NOT NULL,
     `account_type` int      NOT NULL COMMENT '账户类型，关联表 account_type',
     `balance`      bigint            DEFAULT NULL COMMENT '账户余额',
+    `creator`      bigint COMMENT '创建人员用户 ID',
+    `updater`      bigint COMMENT '更新人员用户 ID',
     `create_time`  datetime NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
     `update_time`  datetime          DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP COMMENT '更新时间',
     `remark`       varchar(512)      DEFAULT NULL COMMENT '备注',
@@ -64,6 +72,8 @@ CREATE TABLE `user_account_book`
     `uid`         bigint            DEFAULT NULL COMMENT '用户 ID',
     `name`        varchar(255)      DEFAULT NULL COMMENT '名称',
     `type`        tinyint  NOT NULL DEFAULT '0' COMMENT '账单的用户类型：0-流水账单； 5-AA账单；',
+    `creator`     bigint COMMENT '创建人员用户 ID',
+    `updater`     bigint COMMENT '更新人员用户 ID',
     `create_time` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
     `update_time` datetime          DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP COMMENT '更新时间',
     `remark`      varchar(512)      DEFAULT NULL COMMENT '备注',
@@ -75,10 +85,12 @@ CREATE TABLE `user_account_book`
 CREATE TABLE `user_account_book_auth`
 (
     `id`              bigint           NOT NULL AUTO_INCREMENT,
-    `uid`             bigint           NOT NULL,
     `account_book_id` bigint           NOT NULL,
+    `uid`             bigint           NOT NULL,
     `is_admin`        tinyint unsigned NOT NULL DEFAULT '0' COMMENT '是否是管理者：0-否； 1-是；',
     `block`           tinyint          NOT NULL DEFAULT '0' COMMENT '是否被阻止进入此账单：0-否； 1-是；',
+    `creator`         bigint COMMENT '创建人员用户 ID',
+    `updater`         bigint COMMENT '更新人员用户 ID',
     `create_time`     datetime         NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
     `update_time`     datetime                  DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP COMMENT '更新时间',
     `remark`          varchar(512)              DEFAULT NULL COMMENT '备注',
@@ -91,17 +103,19 @@ CREATE TABLE `user_account_book_auth`
 CREATE TABLE `user_account_record`
 (
     `id`              bigint           NOT NULL AUTO_INCREMENT,
-    `uid`             bigint           NOT NULL COMMENT '添加的人员用户 ID',
     `money`           bigint                    DEFAULT NULL COMMENT '金额，分为单位，实际金额要 x100',
     `type`            tinyint unsigned          DEFAULT '0' COMMENT '分类：0-支出； 1-收入；',
     `account_type`    int                       DEFAULT '3' COMMENT '账户分类：3-不选帐户； 2-微信； 1-支付宝； 0-现金；',
     `account_book_id` bigint           NOT NULL COMMENT '账本 ID',
+    `uid`             bigint           NOT NULL COMMENT '添加的用户 ID',
     `time`            date                      DEFAULT NULL COMMENT '支出或收入时间',
     `time_year`       int                       DEFAULT NULL COMMENT '支出或收入时间-年',
     `time_month`      int                       DEFAULT NULL COMMENT '支出或收入时间-月',
     `time_day`        int                       DEFAULT NULL COMMENT '支出或收入时间-日',
     `category_name`   varchar(255)              DEFAULT NULL COMMENT '支出或者收入事项名',
     `category_id`     bigint                    DEFAULT NULL COMMENT '支出或收入事项 ID',
+    `creator`         bigint COMMENT '创建人员用户 ID',
+    `updater`         bigint COMMENT '更新人员用户 ID',
     `create_time`     datetime         NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
     `update_time`     datetime                  DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP COMMENT '更新时间',
     `remark`          varchar(512)              DEFAULT NULL COMMENT '备注',
@@ -117,6 +131,8 @@ CREATE TABLE `user_account_book_category`
     `uid`         bigint   NOT NULL,
     `gid`         bigint   NOT NULL,
     `cid`         bigint   NOT NULL COMMENT '分类 ID',
+    `creator`     bigint COMMENT '创建人员用户 ID',
+    `updater`     bigint COMMENT '更新人员用户 ID',
     `create_time` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
     `update_time` datetime          DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP COMMENT '更新时间',
     `remark`      varchar(512)      DEFAULT NULL COMMENT '备注',

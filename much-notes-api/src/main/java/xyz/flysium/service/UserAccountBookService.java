@@ -44,12 +44,14 @@ public class UserAccountBookService {
     userAccountBook.setName(name);
     userAccountBook.setType(AccountBookType.NORMAL.getKeyByte());
     userAccountBook.setUid(uid);
+    userAccountBook.setCreator(uid);
     userAccountBookMapper.insertSelective(userAccountBook);
 
     UserAccountBookAuthDO userAccountBookAuth = new UserAccountBookAuthDO();
     userAccountBookAuth.setUid(uid);
     userAccountBookAuth.setAccountBookId(userAccountBook.getId());
     userAccountBookAuth.setIsAdmin(IsOrNot.True.getKeyByte());
+    userAccountBookAuth.setCreator(uid);
     userAccountBookAuth.setIsDeleted(IsOrNot.False.getKeyByte());
     userAccountBookAuthMapper.insertSelective(userAccountBookAuth);
 
@@ -60,14 +62,16 @@ public class UserAccountBookService {
    * 将用户添加到账本
    */
   @Transactional(rollbackFor = Exception.class)
-  public void addUserToAccountBook(Long accountBookId, Long uid) {
+  public void addUserToAccountBook(Long accountBookId, Long uid, Long creator) {
     Objects.requireNonNull(accountBookId);
     Objects.requireNonNull(uid);
+    Objects.requireNonNull(creator);
 
     UserAccountBookAuthDO userAccountBookAuth = new UserAccountBookAuthDO();
     userAccountBookAuth.setUid(uid);
     userAccountBookAuth.setAccountBookId(accountBookId);
     userAccountBookAuth.setIsAdmin(IsOrNot.False.getKeyByte());
+    userAccountBookAuth.setCreator(creator);
     userAccountBookAuth.setIsDeleted(IsOrNot.False.getKeyByte());
     userAccountBookAuthMapper.insertSelective(userAccountBookAuth);
   }
@@ -76,11 +80,13 @@ public class UserAccountBookService {
    * 将用户从账本移除
    */
   @Transactional(rollbackFor = Exception.class)
-  public boolean removeUserFromAccountBook(Long accountBookId, Long uid) {
+  public boolean removeUserFromAccountBook(Long accountBookId, Long uid, Long updater) {
     Objects.requireNonNull(accountBookId);
     Objects.requireNonNull(uid);
+    Objects.requireNonNull(updater);
 
     UserAccountBookAuthDO record = new UserAccountBookAuthDO();
+    record.setUpdater(updater);
     record.setIsDeleted(IsOrNot.True.getKeyByte());
 
     UserAccountBookAuthDOExample example = new UserAccountBookAuthDOExample();
@@ -101,6 +107,7 @@ public class UserAccountBookService {
     Objects.requireNonNull(thatUid);
 
     UserAccountBookAuthDO record = new UserAccountBookAuthDO();
+    record.setUpdater(uid);
     record.setIsAdmin(IsOrNot.False.getKeyByte());
 
     UserAccountBookAuthDOExample example = new UserAccountBookAuthDOExample();
@@ -114,6 +121,7 @@ public class UserAccountBookService {
       return false;
     }
     record = new UserAccountBookAuthDO();
+    record.setUpdater(uid);
     record.setIsAdmin(IsOrNot.True.getKeyByte());
 
     example = new UserAccountBookAuthDOExample();

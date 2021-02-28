@@ -58,9 +58,10 @@ public class UserAccountRecordService {
    * 编辑记账
    */
   @Transactional(rollbackFor = Exception.class)
-  public boolean editRecord(Long recordId, UserAccountRecordDO record) {
+  public boolean editRecord(Long recordId, UserAccountRecordDO record, Long updater) {
     Objects.requireNonNull(recordId);
     Objects.requireNonNull(record);
+    Objects.requireNonNull(updater);
     Objects.requireNonNull(record.getUid());
     Objects.requireNonNull(record.getAccountType());
     Objects.requireNonNull(record.getType());
@@ -72,6 +73,9 @@ public class UserAccountRecordService {
     }
     if (record.getTime() == null) {
       record.setTime(new Date());
+    }
+    if (record.getUpdater() == null) {
+      record.setUpdater(updater);
     }
     record.setId(recordId);
     updateTime(record);
@@ -94,14 +98,16 @@ public class UserAccountRecordService {
    * 删除记账
    */
   @Transactional(rollbackFor = Exception.class)
-  public boolean deleteRecord(Long recordId) {
+  public boolean deleteRecord(Long recordId, Long updater) {
     Objects.requireNonNull(recordId);
+    Objects.requireNonNull(updater);
     UserAccountRecordDO origin = getRecordById(recordId);
     if (origin == null || IsOrNot.True.getKeyByte() == origin.getIsDeleted()) {
       return true;
     }
     UserAccountRecordDO record = new UserAccountRecordDO();
     record.setId(recordId);
+    record.setUpdater(updater);
     record.setIsDeleted(IsOrNot.True.getKeyByte());
 
     int i = userAccountRecordMapper.updateByPrimaryKeySelective(record);
