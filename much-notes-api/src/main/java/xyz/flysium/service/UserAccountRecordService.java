@@ -62,7 +62,6 @@ public class UserAccountRecordService {
     Objects.requireNonNull(recordId);
     Objects.requireNonNull(record);
     Objects.requireNonNull(updater);
-    Objects.requireNonNull(record.getUid());
     Objects.requireNonNull(record.getAccountType());
     Objects.requireNonNull(record.getType());
     Objects.requireNonNull(record.getMoney());
