@@ -76,6 +76,7 @@ public class UserAccountRecordService {
     if (record.getUpdater() == null) {
       record.setUpdater(updater);
     }
+    record.setUid(origin.getUid());
     record.setId(recordId);
     updateTime(record);
     int i = userAccountRecordMapper.updateByPrimaryKeySelective(record);
