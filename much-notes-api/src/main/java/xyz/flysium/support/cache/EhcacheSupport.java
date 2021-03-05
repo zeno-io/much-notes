@@ -3,6 +3,7 @@ package xyz.flysium.support.cache;
 import java.io.File;
 import org.ehcache.CacheManager;
 import org.ehcache.config.builders.CacheManagerBuilder;
+import xyz.flysium.constant.MuchNotesConstants;
 
 /**
  * Support for {@link CacheManager}
@@ -14,7 +15,7 @@ public final class EhcacheSupport {
   private EhcacheSupport() {
   }
 
-  private static final File DIRECTORY = new File("/var/cache/much_notes");
+  private static final File DIRECTORY = new File(MuchNotesConstants.DIRECTORY_VAR_CACHE);
 
   static {
     if (!DIRECTORY.exists()) {

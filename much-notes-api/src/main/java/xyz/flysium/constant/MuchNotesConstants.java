@@ -12,6 +12,8 @@ public final class MuchNotesConstants {
 
   /* HTTP Header */
   public static final String HTTP_HEADER_TOKEN = "token";
+  /* Cache */
+  public static final String DIRECTORY_VAR_CACHE = "/var/cache/much_notes";
 
   /* 小程序Token失效时间，单位秒 */
   public static final long WX_TOKEN_TIME_OUT = 7 * 24 * 60 * 60;

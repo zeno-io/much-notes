@@ -88,5 +88,4 @@ public class UserAccountInfoService {
       accountInfoMapper.selectByExampleWithRowbounds(example, rowBounds)
     ));
   }
-
 }

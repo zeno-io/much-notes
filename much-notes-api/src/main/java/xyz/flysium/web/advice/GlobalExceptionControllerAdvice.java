@@ -21,9 +21,9 @@ import xyz.flysium.exception.ApiException;
  * @author zeno
  */
 @ControllerAdvice
-public class MuchNotesControllerAdvice {
+public class GlobalExceptionControllerAdvice {
 
-  protected static final Logger LOGGER = LoggerFactory.getLogger(MuchNotesControllerAdvice.class);
+  protected static final Logger LOGGER = LoggerFactory.getLogger(GlobalExceptionControllerAdvice.class);
 
   @ResponseStatus(HttpStatus.BAD_REQUEST)
   @ExceptionHandler({IllegalArgumentException.class, IllegalStateException.class})
