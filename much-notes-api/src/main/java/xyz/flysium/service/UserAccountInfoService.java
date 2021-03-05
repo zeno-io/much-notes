@@ -80,10 +80,10 @@ public class UserAccountInfoService {
   /**
    * 获取资产信息
    */
-  public List<UserAccountInfoDO> queryBalancesByUid(Long uid) {
+  public List<UserAccountInfoDO> queryBalancesByUidList(List<Long> uidList) {
     UserAccountInfoDOExample example = new UserAccountInfoDOExample();
     example.createCriteria()
-      .andUidEqualTo(uid);
+      .andUidIn(uidList);
     return QuerySupport.queryAll((rowBounds ->
       accountInfoMapper.selectByExampleWithRowbounds(example, rowBounds)
     ));

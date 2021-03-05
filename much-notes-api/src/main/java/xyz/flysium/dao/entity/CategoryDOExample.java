@@ -415,145 +415,145 @@ public class CategoryDOExample {
             return (Criteria) this;
         }
 
-      public Criteria andTypeBetween(Byte value1, Byte value2) {
-        addCriterion("type between", value1, value2, "type");
-        return (Criteria) this;
-      }
+        public Criteria andTypeBetween(Byte value1, Byte value2) {
+            addCriterion("type between", value1, value2, "type");
+            return (Criteria) this;
+        }
 
-      public Criteria andTypeNotBetween(Byte value1, Byte value2) {
-        addCriterion("type not between", value1, value2, "type");
-        return (Criteria) this;
-      }
+        public Criteria andTypeNotBetween(Byte value1, Byte value2) {
+            addCriterion("type not between", value1, value2, "type");
+            return (Criteria) this;
+        }
 
-      public Criteria andCreatorIsNull() {
-        addCriterion("creator is null");
-        return (Criteria) this;
-      }
+        public Criteria andCreatorIsNull() {
+            addCriterion("creator is null");
+            return (Criteria) this;
+        }
 
-      public Criteria andCreatorIsNotNull() {
-        addCriterion("creator is not null");
-        return (Criteria) this;
-      }
+        public Criteria andCreatorIsNotNull() {
+            addCriterion("creator is not null");
+            return (Criteria) this;
+        }
 
-      public Criteria andCreatorEqualTo(Long value) {
-        addCriterion("creator =", value, "creator");
-        return (Criteria) this;
-      }
+        public Criteria andCreatorEqualTo(Long value) {
+            addCriterion("creator =", value, "creator");
+            return (Criteria) this;
+        }
 
-      public Criteria andCreatorNotEqualTo(Long value) {
-        addCriterion("creator <>", value, "creator");
-        return (Criteria) this;
-      }
+        public Criteria andCreatorNotEqualTo(Long value) {
+            addCriterion("creator <>", value, "creator");
+            return (Criteria) this;
+        }
 
-      public Criteria andCreatorGreaterThan(Long value) {
-        addCriterion("creator >", value, "creator");
-        return (Criteria) this;
-      }
+        public Criteria andCreatorGreaterThan(Long value) {
+            addCriterion("creator >", value, "creator");
+            return (Criteria) this;
+        }
 
-      public Criteria andCreatorGreaterThanOrEqualTo(Long value) {
-        addCriterion("creator >=", value, "creator");
-        return (Criteria) this;
-      }
+        public Criteria andCreatorGreaterThanOrEqualTo(Long value) {
+            addCriterion("creator >=", value, "creator");
+            return (Criteria) this;
+        }
 
-      public Criteria andCreatorLessThan(Long value) {
-        addCriterion("creator <", value, "creator");
-        return (Criteria) this;
-      }
+        public Criteria andCreatorLessThan(Long value) {
+            addCriterion("creator <", value, "creator");
+            return (Criteria) this;
+        }
 
-      public Criteria andCreatorLessThanOrEqualTo(Long value) {
-        addCriterion("creator <=", value, "creator");
-        return (Criteria) this;
-      }
+        public Criteria andCreatorLessThanOrEqualTo(Long value) {
+            addCriterion("creator <=", value, "creator");
+            return (Criteria) this;
+        }
 
-      public Criteria andCreatorIn(List<Long> values) {
-        addCriterion("creator in", values, "creator");
-        return (Criteria) this;
-      }
+        public Criteria andCreatorIn(List<Long> values) {
+            addCriterion("creator in", values, "creator");
+            return (Criteria) this;
+        }
 
-      public Criteria andCreatorNotIn(List<Long> values) {
-        addCriterion("creator not in", values, "creator");
-        return (Criteria) this;
-      }
+        public Criteria andCreatorNotIn(List<Long> values) {
+            addCriterion("creator not in", values, "creator");
+            return (Criteria) this;
+        }
 
-      public Criteria andCreatorBetween(Long value1, Long value2) {
-        addCriterion("creator between", value1, value2, "creator");
-        return (Criteria) this;
-      }
+        public Criteria andCreatorBetween(Long value1, Long value2) {
+            addCriterion("creator between", value1, value2, "creator");
+            return (Criteria) this;
+        }
 
-      public Criteria andCreatorNotBetween(Long value1, Long value2) {
-        addCriterion("creator not between", value1, value2, "creator");
-        return (Criteria) this;
-      }
+        public Criteria andCreatorNotBetween(Long value1, Long value2) {
+            addCriterion("creator not between", value1, value2, "creator");
+            return (Criteria) this;
+        }
 
-      public Criteria andUpdaterIsNull() {
-        addCriterion("updater is null");
-        return (Criteria) this;
-      }
+        public Criteria andUpdaterIsNull() {
+            addCriterion("updater is null");
+            return (Criteria) this;
+        }
 
-      public Criteria andUpdaterIsNotNull() {
-        addCriterion("updater is not null");
-        return (Criteria) this;
-      }
+        public Criteria andUpdaterIsNotNull() {
+            addCriterion("updater is not null");
+            return (Criteria) this;
+        }
 
-      public Criteria andUpdaterEqualTo(Long value) {
-        addCriterion("updater =", value, "updater");
-        return (Criteria) this;
-      }
+        public Criteria andUpdaterEqualTo(Long value) {
+            addCriterion("updater =", value, "updater");
+            return (Criteria) this;
+        }
 
-      public Criteria andUpdaterNotEqualTo(Long value) {
-        addCriterion("updater <>", value, "updater");
-        return (Criteria) this;
-      }
+        public Criteria andUpdaterNotEqualTo(Long value) {
+            addCriterion("updater <>", value, "updater");
+            return (Criteria) this;
+        }
 
-      public Criteria andUpdaterGreaterThan(Long value) {
-        addCriterion("updater >", value, "updater");
-        return (Criteria) this;
-      }
+        public Criteria andUpdaterGreaterThan(Long value) {
+            addCriterion("updater >", value, "updater");
+            return (Criteria) this;
+        }
 
-      public Criteria andUpdaterGreaterThanOrEqualTo(Long value) {
-        addCriterion("updater >=", value, "updater");
-        return (Criteria) this;
-      }
+        public Criteria andUpdaterGreaterThanOrEqualTo(Long value) {
+            addCriterion("updater >=", value, "updater");
+            return (Criteria) this;
+        }
 
-      public Criteria andUpdaterLessThan(Long value) {
-        addCriterion("updater <", value, "updater");
-        return (Criteria) this;
-      }
+        public Criteria andUpdaterLessThan(Long value) {
+            addCriterion("updater <", value, "updater");
+            return (Criteria) this;
+        }
 
-      public Criteria andUpdaterLessThanOrEqualTo(Long value) {
-        addCriterion("updater <=", value, "updater");
-        return (Criteria) this;
-      }
+        public Criteria andUpdaterLessThanOrEqualTo(Long value) {
+            addCriterion("updater <=", value, "updater");
+            return (Criteria) this;
+        }
 
-      public Criteria andUpdaterIn(List<Long> values) {
-        addCriterion("updater in", values, "updater");
-        return (Criteria) this;
-      }
+        public Criteria andUpdaterIn(List<Long> values) {
+            addCriterion("updater in", values, "updater");
+            return (Criteria) this;
+        }
 
-      public Criteria andUpdaterNotIn(List<Long> values) {
-        addCriterion("updater not in", values, "updater");
-        return (Criteria) this;
-      }
+        public Criteria andUpdaterNotIn(List<Long> values) {
+            addCriterion("updater not in", values, "updater");
+            return (Criteria) this;
+        }
 
-      public Criteria andUpdaterBetween(Long value1, Long value2) {
-        addCriterion("updater between", value1, value2, "updater");
-        return (Criteria) this;
-      }
+        public Criteria andUpdaterBetween(Long value1, Long value2) {
+            addCriterion("updater between", value1, value2, "updater");
+            return (Criteria) this;
+        }
 
-      public Criteria andUpdaterNotBetween(Long value1, Long value2) {
-        addCriterion("updater not between", value1, value2, "updater");
-        return (Criteria) this;
-      }
+        public Criteria andUpdaterNotBetween(Long value1, Long value2) {
+            addCriterion("updater not between", value1, value2, "updater");
+            return (Criteria) this;
+        }
 
-      public Criteria andCreateTimeIsNull() {
-        addCriterion("create_time is null");
-        return (Criteria) this;
-      }
+        public Criteria andCreateTimeIsNull() {
+            addCriterion("create_time is null");
+            return (Criteria) this;
+        }
 
-      public Criteria andCreateTimeIsNotNull() {
-        addCriterion("create_time is not null");
-        return (Criteria) this;
-      }
+        public Criteria andCreateTimeIsNotNull() {
+            addCriterion("create_time is not null");
+            return (Criteria) this;
+        }
 
         public Criteria andCreateTimeEqualTo(Date value) {
             addCriterion("create_time =", value, "createTime");
@@ -732,6 +732,66 @@ public class CategoryDOExample {
 
         public Criteria andRemarkNotBetween(String value1, String value2) {
             addCriterion("remark not between", value1, value2, "remark");
+            return (Criteria) this;
+        }
+
+        public Criteria andIsDeletedIsNull() {
+            addCriterion("is_deleted is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andIsDeletedIsNotNull() {
+            addCriterion("is_deleted is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andIsDeletedEqualTo(Byte value) {
+            addCriterion("is_deleted =", value, "isDeleted");
+            return (Criteria) this;
+        }
+
+        public Criteria andIsDeletedNotEqualTo(Byte value) {
+            addCriterion("is_deleted <>", value, "isDeleted");
+            return (Criteria) this;
+        }
+
+        public Criteria andIsDeletedGreaterThan(Byte value) {
+            addCriterion("is_deleted >", value, "isDeleted");
+            return (Criteria) this;
+        }
+
+        public Criteria andIsDeletedGreaterThanOrEqualTo(Byte value) {
+            addCriterion("is_deleted >=", value, "isDeleted");
+            return (Criteria) this;
+        }
+
+        public Criteria andIsDeletedLessThan(Byte value) {
+            addCriterion("is_deleted <", value, "isDeleted");
+            return (Criteria) this;
+        }
+
+        public Criteria andIsDeletedLessThanOrEqualTo(Byte value) {
+            addCriterion("is_deleted <=", value, "isDeleted");
+            return (Criteria) this;
+        }
+
+        public Criteria andIsDeletedIn(List<Byte> values) {
+            addCriterion("is_deleted in", values, "isDeleted");
+            return (Criteria) this;
+        }
+
+        public Criteria andIsDeletedNotIn(List<Byte> values) {
+            addCriterion("is_deleted not in", values, "isDeleted");
+            return (Criteria) this;
+        }
+
+        public Criteria andIsDeletedBetween(Byte value1, Byte value2) {
+            addCriterion("is_deleted between", value1, value2, "isDeleted");
+            return (Criteria) this;
+        }
+
+        public Criteria andIsDeletedNotBetween(Byte value1, Byte value2) {
+            addCriterion("is_deleted not between", value1, value2, "isDeleted");
             return (Criteria) this;
         }
 

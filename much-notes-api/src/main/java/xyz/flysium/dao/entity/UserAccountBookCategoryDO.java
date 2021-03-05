@@ -4,28 +4,29 @@ import java.io.Serializable;
 import java.util.Date;
 
 public class UserAccountBookCategoryDO implements Serializable {
+    private Long id;
 
-  private Long id;
+    private Long uid;
 
-  private Long uid;
+    private Long gid;
 
-  private Long gid;
+    private Long cid;
 
-  private Long cid;
+    private Long creator;
 
-  private Long creator;
+    private Long updater;
 
-  private Long updater;
+    private Date createTime;
 
-  private Date createTime;
+    private Date updateTime;
 
-  private Date updateTime;
+    private String remark;
 
-  private String remark;
+    private Byte isDeleted;
 
-  private static final long serialVersionUID = 1L;
+    private static final long serialVersionUID = 1L;
 
-  public Long getId() {
+    public Long getId() {
         return id;
     }
 
@@ -49,39 +50,39 @@ public class UserAccountBookCategoryDO implements Serializable {
         this.gid = gid;
     }
 
-  public Long getCid() {
-    return cid;
-  }
+    public Long getCid() {
+        return cid;
+    }
 
-  public void setCid(Long cid) {
-    this.cid = cid;
-  }
+    public void setCid(Long cid) {
+        this.cid = cid;
+    }
 
-  public Long getCreator() {
-    return creator;
-  }
+    public Long getCreator() {
+        return creator;
+    }
 
-  public void setCreator(Long creator) {
-    this.creator = creator;
-  }
+    public void setCreator(Long creator) {
+        this.creator = creator;
+    }
 
-  public Long getUpdater() {
-    return updater;
-  }
+    public Long getUpdater() {
+        return updater;
+    }
 
-  public void setUpdater(Long updater) {
-    this.updater = updater;
-  }
+    public void setUpdater(Long updater) {
+        this.updater = updater;
+    }
 
-  public Date getCreateTime() {
-    return createTime;
-  }
+    public Date getCreateTime() {
+        return createTime;
+    }
 
-  public void setCreateTime(Date createTime) {
-    this.createTime = createTime;
-  }
+    public void setCreateTime(Date createTime) {
+        this.createTime = createTime;
+    }
 
-  public Date getUpdateTime() {
+    public Date getUpdateTime() {
         return updateTime;
     }
 
@@ -97,24 +98,33 @@ public class UserAccountBookCategoryDO implements Serializable {
         this.remark = remark;
     }
 
+    public Byte getIsDeleted() {
+        return isDeleted;
+    }
+
+    public void setIsDeleted(Byte isDeleted) {
+        this.isDeleted = isDeleted;
+    }
+
     @Override
     public String toString() {
-      StringBuilder sb = new StringBuilder();
-      sb.append(getClass().getSimpleName());
-      sb.append(" [");
-      sb.append("Hash = ").append(hashCode());
-      sb.append(", id=").append(id);
-      sb.append(", uid=").append(uid);
-      sb.append(", gid=").append(gid);
-      sb.append(", cid=").append(cid);
-      sb.append(", creator=").append(creator);
-      sb.append(", updater=").append(updater);
-      sb.append(", createTime=").append(createTime);
-      sb.append(", updateTime=").append(updateTime);
-      sb.append(", remark=").append(remark);
-      sb.append(", serialVersionUID=").append(serialVersionUID);
-      sb.append("]");
-      return sb.toString();
+        StringBuilder sb = new StringBuilder();
+        sb.append(getClass().getSimpleName());
+        sb.append(" [");
+        sb.append("Hash = ").append(hashCode());
+        sb.append(", id=").append(id);
+        sb.append(", uid=").append(uid);
+        sb.append(", gid=").append(gid);
+        sb.append(", cid=").append(cid);
+        sb.append(", creator=").append(creator);
+        sb.append(", updater=").append(updater);
+        sb.append(", createTime=").append(createTime);
+        sb.append(", updateTime=").append(updateTime);
+        sb.append(", remark=").append(remark);
+        sb.append(", isDeleted=").append(isDeleted);
+        sb.append(", serialVersionUID=").append(serialVersionUID);
+        sb.append("]");
+        return sb.toString();
     }
 
     @Override
@@ -130,34 +140,31 @@ public class UserAccountBookCategoryDO implements Serializable {
         }
         UserAccountBookCategoryDO other = (UserAccountBookCategoryDO) that;
         return (this.getId() == null ? other.getId() == null : this.getId().equals(other.getId()))
-          && (this.getUid() == null ? other.getUid() == null : this.getUid().equals(other.getUid()))
-          && (this.getGid() == null ? other.getGid() == null : this.getGid().equals(other.getGid()))
-          && (this.getCid() == null ? other.getCid() == null : this.getCid().equals(other.getCid()))
-          && (this.getCreator() == null ? other.getCreator() == null
-          : this.getCreator().equals(other.getCreator()))
-          && (this.getUpdater() == null ? other.getUpdater() == null
-          : this.getUpdater().equals(other.getUpdater()))
-          && (this.getCreateTime() == null ? other.getCreateTime() == null
-          : this.getCreateTime().equals(other.getCreateTime()))
-          && (this.getUpdateTime() == null ? other.getUpdateTime() == null
-          : this.getUpdateTime().equals(other.getUpdateTime()))
-          && (this.getRemark() == null ? other.getRemark() == null
-          : this.getRemark().equals(other.getRemark()));
+            && (this.getUid() == null ? other.getUid() == null : this.getUid().equals(other.getUid()))
+            && (this.getGid() == null ? other.getGid() == null : this.getGid().equals(other.getGid()))
+            && (this.getCid() == null ? other.getCid() == null : this.getCid().equals(other.getCid()))
+            && (this.getCreator() == null ? other.getCreator() == null : this.getCreator().equals(other.getCreator()))
+            && (this.getUpdater() == null ? other.getUpdater() == null : this.getUpdater().equals(other.getUpdater()))
+            && (this.getCreateTime() == null ? other.getCreateTime() == null : this.getCreateTime().equals(other.getCreateTime()))
+            && (this.getUpdateTime() == null ? other.getUpdateTime() == null : this.getUpdateTime().equals(other.getUpdateTime()))
+            && (this.getRemark() == null ? other.getRemark() == null : this.getRemark().equals(other.getRemark()))
+            && (this.getIsDeleted() == null ? other.getIsDeleted() == null : this.getIsDeleted().equals(other.getIsDeleted()));
     }
 
     @Override
     public int hashCode() {
-      final int prime = 31;
-      int result = 1;
-      result = prime * result + ((getId() == null) ? 0 : getId().hashCode());
-      result = prime * result + ((getUid() == null) ? 0 : getUid().hashCode());
-      result = prime * result + ((getGid() == null) ? 0 : getGid().hashCode());
-      result = prime * result + ((getCid() == null) ? 0 : getCid().hashCode());
-      result = prime * result + ((getCreator() == null) ? 0 : getCreator().hashCode());
-      result = prime * result + ((getUpdater() == null) ? 0 : getUpdater().hashCode());
-      result = prime * result + ((getCreateTime() == null) ? 0 : getCreateTime().hashCode());
-      result = prime * result + ((getUpdateTime() == null) ? 0 : getUpdateTime().hashCode());
-      result = prime * result + ((getRemark() == null) ? 0 : getRemark().hashCode());
-      return result;
+        final int prime = 31;
+        int result = 1;
+        result = prime * result + ((getId() == null) ? 0 : getId().hashCode());
+        result = prime * result + ((getUid() == null) ? 0 : getUid().hashCode());
+        result = prime * result + ((getGid() == null) ? 0 : getGid().hashCode());
+        result = prime * result + ((getCid() == null) ? 0 : getCid().hashCode());
+        result = prime * result + ((getCreator() == null) ? 0 : getCreator().hashCode());
+        result = prime * result + ((getUpdater() == null) ? 0 : getUpdater().hashCode());
+        result = prime * result + ((getCreateTime() == null) ? 0 : getCreateTime().hashCode());
+        result = prime * result + ((getUpdateTime() == null) ? 0 : getUpdateTime().hashCode());
+        result = prime * result + ((getRemark() == null) ? 0 : getRemark().hashCode());
+        result = prime * result + ((getIsDeleted() == null) ? 0 : getIsDeleted().hashCode());
+        return result;
     }
 }

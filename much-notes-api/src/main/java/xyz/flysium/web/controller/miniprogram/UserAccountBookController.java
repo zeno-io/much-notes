@@ -216,6 +216,10 @@ public class UserAccountBookController {
       book = userAccountBookService.getAccountBookById(accountBookId);
       count = userAccountBookService.countAccountBookById(accountBookId);
     }
+    if (book == null) {
+      return ResultResponse.fail("账本不存在或已被删除");
+    }
+
     UserAccountBookWithCountDTO accountBookDTO = dozerBeanMapper
       .map(book, UserAccountBookWithCountDTO.class);
     accountBookDTO.setCount(count);

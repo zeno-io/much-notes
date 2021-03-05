@@ -3,14 +3,14 @@ package xyz.flysium.dao.entity;
 import java.io.Serializable;
 import java.util.Date;
 
-public class UserAccountBookDO implements Serializable {
+public class NoteUserRelationshipDO implements Serializable {
     private Long id;
 
     private Long uid;
 
-    private String name;
+    private Long thatUid;
 
-    private Byte type;
+    private Byte relType;
 
     private Long creator;
 
@@ -42,20 +42,20 @@ public class UserAccountBookDO implements Serializable {
         this.uid = uid;
     }
 
-    public String getName() {
-        return name;
+    public Long getThatUid() {
+        return thatUid;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setThatUid(Long thatUid) {
+        this.thatUid = thatUid;
     }
 
-    public Byte getType() {
-        return type;
+    public Byte getRelType() {
+        return relType;
     }
 
-    public void setType(Byte type) {
-        this.type = type;
+    public void setRelType(Byte relType) {
+        this.relType = relType;
     }
 
     public Long getCreator() {
@@ -114,8 +114,8 @@ public class UserAccountBookDO implements Serializable {
         sb.append("Hash = ").append(hashCode());
         sb.append(", id=").append(id);
         sb.append(", uid=").append(uid);
-        sb.append(", name=").append(name);
-        sb.append(", type=").append(type);
+        sb.append(", thatUid=").append(thatUid);
+        sb.append(", relType=").append(relType);
         sb.append(", creator=").append(creator);
         sb.append(", updater=").append(updater);
         sb.append(", createTime=").append(createTime);
@@ -138,11 +138,11 @@ public class UserAccountBookDO implements Serializable {
         if (getClass() != that.getClass()) {
             return false;
         }
-        UserAccountBookDO other = (UserAccountBookDO) that;
+        NoteUserRelationshipDO other = (NoteUserRelationshipDO) that;
         return (this.getId() == null ? other.getId() == null : this.getId().equals(other.getId()))
             && (this.getUid() == null ? other.getUid() == null : this.getUid().equals(other.getUid()))
-            && (this.getName() == null ? other.getName() == null : this.getName().equals(other.getName()))
-            && (this.getType() == null ? other.getType() == null : this.getType().equals(other.getType()))
+            && (this.getThatUid() == null ? other.getThatUid() == null : this.getThatUid().equals(other.getThatUid()))
+            && (this.getRelType() == null ? other.getRelType() == null : this.getRelType().equals(other.getRelType()))
             && (this.getCreator() == null ? other.getCreator() == null : this.getCreator().equals(other.getCreator()))
             && (this.getUpdater() == null ? other.getUpdater() == null : this.getUpdater().equals(other.getUpdater()))
             && (this.getCreateTime() == null ? other.getCreateTime() == null : this.getCreateTime().equals(other.getCreateTime()))
@@ -157,8 +157,8 @@ public class UserAccountBookDO implements Serializable {
         int result = 1;
         result = prime * result + ((getId() == null) ? 0 : getId().hashCode());
         result = prime * result + ((getUid() == null) ? 0 : getUid().hashCode());
-        result = prime * result + ((getName() == null) ? 0 : getName().hashCode());
-        result = prime * result + ((getType() == null) ? 0 : getType().hashCode());
+        result = prime * result + ((getThatUid() == null) ? 0 : getThatUid().hashCode());
+        result = prime * result + ((getRelType() == null) ? 0 : getRelType().hashCode());
         result = prime * result + ((getCreator() == null) ? 0 : getCreator().hashCode());
         result = prime * result + ((getUpdater() == null) ? 0 : getUpdater().hashCode());
         result = prime * result + ((getCreateTime() == null) ? 0 : getCreateTime().hashCode());

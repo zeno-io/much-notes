@@ -4,14 +4,14 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-public class UserAccountBookCategoryDOExample {
+public class NoteUserRelationshipDOExample {
     protected String orderByClause;
 
     protected boolean distinct;
 
     protected List<Criteria> oredCriteria;
 
-    public UserAccountBookCategoryDOExample() {
+    public NoteUserRelationshipDOExample() {
         oredCriteria = new ArrayList<>();
     }
 
@@ -225,123 +225,123 @@ public class UserAccountBookCategoryDOExample {
             return (Criteria) this;
         }
 
-        public Criteria andGidIsNull() {
-            addCriterion("gid is null");
+        public Criteria andThatUidIsNull() {
+            addCriterion("that_uid is null");
             return (Criteria) this;
         }
 
-        public Criteria andGidIsNotNull() {
-            addCriterion("gid is not null");
+        public Criteria andThatUidIsNotNull() {
+            addCriterion("that_uid is not null");
             return (Criteria) this;
         }
 
-        public Criteria andGidEqualTo(Long value) {
-            addCriterion("gid =", value, "gid");
+        public Criteria andThatUidEqualTo(Long value) {
+            addCriterion("that_uid =", value, "thatUid");
             return (Criteria) this;
         }
 
-        public Criteria andGidNotEqualTo(Long value) {
-            addCriterion("gid <>", value, "gid");
+        public Criteria andThatUidNotEqualTo(Long value) {
+            addCriterion("that_uid <>", value, "thatUid");
             return (Criteria) this;
         }
 
-        public Criteria andGidGreaterThan(Long value) {
-            addCriterion("gid >", value, "gid");
+        public Criteria andThatUidGreaterThan(Long value) {
+            addCriterion("that_uid >", value, "thatUid");
             return (Criteria) this;
         }
 
-        public Criteria andGidGreaterThanOrEqualTo(Long value) {
-            addCriterion("gid >=", value, "gid");
+        public Criteria andThatUidGreaterThanOrEqualTo(Long value) {
+            addCriterion("that_uid >=", value, "thatUid");
             return (Criteria) this;
         }
 
-        public Criteria andGidLessThan(Long value) {
-            addCriterion("gid <", value, "gid");
+        public Criteria andThatUidLessThan(Long value) {
+            addCriterion("that_uid <", value, "thatUid");
             return (Criteria) this;
         }
 
-        public Criteria andGidLessThanOrEqualTo(Long value) {
-            addCriterion("gid <=", value, "gid");
+        public Criteria andThatUidLessThanOrEqualTo(Long value) {
+            addCriterion("that_uid <=", value, "thatUid");
             return (Criteria) this;
         }
 
-        public Criteria andGidIn(List<Long> values) {
-            addCriterion("gid in", values, "gid");
+        public Criteria andThatUidIn(List<Long> values) {
+            addCriterion("that_uid in", values, "thatUid");
             return (Criteria) this;
         }
 
-        public Criteria andGidNotIn(List<Long> values) {
-            addCriterion("gid not in", values, "gid");
+        public Criteria andThatUidNotIn(List<Long> values) {
+            addCriterion("that_uid not in", values, "thatUid");
             return (Criteria) this;
         }
 
-        public Criteria andGidBetween(Long value1, Long value2) {
-            addCriterion("gid between", value1, value2, "gid");
+        public Criteria andThatUidBetween(Long value1, Long value2) {
+            addCriterion("that_uid between", value1, value2, "thatUid");
             return (Criteria) this;
         }
 
-        public Criteria andGidNotBetween(Long value1, Long value2) {
-            addCriterion("gid not between", value1, value2, "gid");
+        public Criteria andThatUidNotBetween(Long value1, Long value2) {
+            addCriterion("that_uid not between", value1, value2, "thatUid");
             return (Criteria) this;
         }
 
-        public Criteria andCidIsNull() {
-            addCriterion("cid is null");
+        public Criteria andRelTypeIsNull() {
+            addCriterion("rel_type is null");
             return (Criteria) this;
         }
 
-        public Criteria andCidIsNotNull() {
-            addCriterion("cid is not null");
+        public Criteria andRelTypeIsNotNull() {
+            addCriterion("rel_type is not null");
             return (Criteria) this;
         }
 
-        public Criteria andCidEqualTo(Long value) {
-            addCriterion("cid =", value, "cid");
+        public Criteria andRelTypeEqualTo(Byte value) {
+            addCriterion("rel_type =", value, "relType");
             return (Criteria) this;
         }
 
-        public Criteria andCidNotEqualTo(Long value) {
-            addCriterion("cid <>", value, "cid");
+        public Criteria andRelTypeNotEqualTo(Byte value) {
+            addCriterion("rel_type <>", value, "relType");
             return (Criteria) this;
         }
 
-        public Criteria andCidGreaterThan(Long value) {
-            addCriterion("cid >", value, "cid");
+        public Criteria andRelTypeGreaterThan(Byte value) {
+            addCriterion("rel_type >", value, "relType");
             return (Criteria) this;
         }
 
-        public Criteria andCidGreaterThanOrEqualTo(Long value) {
-            addCriterion("cid >=", value, "cid");
+        public Criteria andRelTypeGreaterThanOrEqualTo(Byte value) {
+            addCriterion("rel_type >=", value, "relType");
             return (Criteria) this;
         }
 
-        public Criteria andCidLessThan(Long value) {
-            addCriterion("cid <", value, "cid");
+        public Criteria andRelTypeLessThan(Byte value) {
+            addCriterion("rel_type <", value, "relType");
             return (Criteria) this;
         }
 
-        public Criteria andCidLessThanOrEqualTo(Long value) {
-            addCriterion("cid <=", value, "cid");
+        public Criteria andRelTypeLessThanOrEqualTo(Byte value) {
+            addCriterion("rel_type <=", value, "relType");
             return (Criteria) this;
         }
 
-        public Criteria andCidIn(List<Long> values) {
-            addCriterion("cid in", values, "cid");
+        public Criteria andRelTypeIn(List<Byte> values) {
+            addCriterion("rel_type in", values, "relType");
             return (Criteria) this;
         }
 
-        public Criteria andCidNotIn(List<Long> values) {
-            addCriterion("cid not in", values, "cid");
+        public Criteria andRelTypeNotIn(List<Byte> values) {
+            addCriterion("rel_type not in", values, "relType");
             return (Criteria) this;
         }
 
-        public Criteria andCidBetween(Long value1, Long value2) {
-            addCriterion("cid between", value1, value2, "cid");
+        public Criteria andRelTypeBetween(Byte value1, Byte value2) {
+            addCriterion("rel_type between", value1, value2, "relType");
             return (Criteria) this;
         }
 
-        public Criteria andCidNotBetween(Long value1, Long value2) {
-            addCriterion("cid not between", value1, value2, "cid");
+        public Criteria andRelTypeNotBetween(Byte value1, Byte value2) {
+            addCriterion("rel_type not between", value1, value2, "relType");
             return (Criteria) this;
         }
 

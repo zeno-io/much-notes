@@ -28,7 +28,8 @@ public class CategoryService {
     CategoryDOExample example = new CategoryDOExample();
     example.createCriteria()
       .andIdEqualTo(categoryId)
-      .andIsCustomEqualTo(IsOrNot.False.getKeyByte());
+      .andIsCustomEqualTo(IsOrNot.False.getKeyByte())
+      .andIsDeletedEqualTo(IsOrNot.False.getKeyByte());
     List<CategoryDO> list = categoryMapper.selectByExample(example);
     if (CollectionUtils.isEmpty(list)) {
       return null;
@@ -39,7 +40,8 @@ public class CategoryService {
   public List<CategoryDO> getCategoryList() {
     CategoryDOExample example = new CategoryDOExample();
     example.createCriteria()
-      .andIsCustomEqualTo(IsOrNot.False.getKeyByte());
+      .andIsCustomEqualTo(IsOrNot.False.getKeyByte())
+      .andIsDeletedEqualTo(IsOrNot.False.getKeyByte());
     return QuerySupport.queryAll((rowBounds -> {
       return categoryMapper.selectByExampleWithRowbounds(example, rowBounds);
     }));

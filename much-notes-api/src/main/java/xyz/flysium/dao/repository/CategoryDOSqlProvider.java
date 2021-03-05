@@ -28,59 +28,64 @@ public class CategoryDOSqlProvider {
             sql.VALUES("icon", "#{icon,jdbcType=VARCHAR}");
         }
 
-      if (record.getIsCustom() != null) {
-        sql.VALUES("is_custom", "#{isCustom,jdbcType=TINYINT}");
-      }
+        if (record.getIsCustom() != null) {
+            sql.VALUES("is_custom", "#{isCustom,jdbcType=TINYINT}");
+        }
 
-      if (record.getType() != null) {
-        sql.VALUES("type", "#{type,jdbcType=TINYINT}");
-      }
+        if (record.getType() != null) {
+            sql.VALUES("type", "#{type,jdbcType=TINYINT}");
+        }
 
-      if (record.getCreator() != null) {
-        sql.VALUES("creator", "#{creator,jdbcType=BIGINT}");
-      }
+        if (record.getCreator() != null) {
+            sql.VALUES("creator", "#{creator,jdbcType=BIGINT}");
+        }
 
-      if (record.getUpdater() != null) {
-        sql.VALUES("updater", "#{updater,jdbcType=BIGINT}");
-      }
+        if (record.getUpdater() != null) {
+            sql.VALUES("updater", "#{updater,jdbcType=BIGINT}");
+        }
 
-      if (record.getCreateTime() != null) {
-        sql.VALUES("create_time", "#{createTime,jdbcType=TIMESTAMP}");
-      }
+        if (record.getCreateTime() != null) {
+            sql.VALUES("create_time", "#{createTime,jdbcType=TIMESTAMP}");
+        }
 
-      if (record.getUpdateTime() != null) {
-        sql.VALUES("update_time", "#{updateTime,jdbcType=TIMESTAMP}");
-      }
+        if (record.getUpdateTime() != null) {
+            sql.VALUES("update_time", "#{updateTime,jdbcType=TIMESTAMP}");
+        }
 
-      if (record.getRemark() != null) {
+        if (record.getRemark() != null) {
             sql.VALUES("remark", "#{remark,jdbcType=VARCHAR}");
+        }
+
+        if (record.getIsDeleted() != null) {
+            sql.VALUES("is_deleted", "#{isDeleted,jdbcType=TINYINT}");
         }
 
         return sql.toString();
     }
 
     public String selectByExample(CategoryDOExample example) {
-      SQL sql = new SQL();
-      if (example != null && example.isDistinct()) {
-        sql.SELECT_DISTINCT("id");
-      } else {
-        sql.SELECT("id");
-      }
-      sql.SELECT("name");
-      sql.SELECT("icon");
-      sql.SELECT("is_custom");
-      sql.SELECT("type");
-      sql.SELECT("creator");
-      sql.SELECT("updater");
-      sql.SELECT("create_time");
-      sql.SELECT("update_time");
-      sql.SELECT("remark");
-      sql.FROM("category");
-      applyWhere(sql, example, false);
+        SQL sql = new SQL();
+        if (example != null && example.isDistinct()) {
+            sql.SELECT_DISTINCT("id");
+        } else {
+            sql.SELECT("id");
+        }
+        sql.SELECT("name");
+        sql.SELECT("icon");
+        sql.SELECT("is_custom");
+        sql.SELECT("type");
+        sql.SELECT("creator");
+        sql.SELECT("updater");
+        sql.SELECT("create_time");
+        sql.SELECT("update_time");
+        sql.SELECT("remark");
+        sql.SELECT("is_deleted");
+        sql.FROM("category");
+        applyWhere(sql, example, false);
 
-      if (example != null && example.getOrderByClause() != null) {
-        sql.ORDER_BY(example.getOrderByClause());
-      }
+        if (example != null && example.getOrderByClause() != null) {
+            sql.ORDER_BY(example.getOrderByClause());
+        }
 
         return sql.toString();
     }
@@ -104,32 +109,36 @@ public class CategoryDOSqlProvider {
             sql.SET("icon = #{record.icon,jdbcType=VARCHAR}");
         }
 
-      if (record.getIsCustom() != null) {
-        sql.SET("is_custom = #{record.isCustom,jdbcType=TINYINT}");
-      }
+        if (record.getIsCustom() != null) {
+            sql.SET("is_custom = #{record.isCustom,jdbcType=TINYINT}");
+        }
 
-      if (record.getType() != null) {
-        sql.SET("type = #{record.type,jdbcType=TINYINT}");
-      }
+        if (record.getType() != null) {
+            sql.SET("type = #{record.type,jdbcType=TINYINT}");
+        }
 
-      if (record.getCreator() != null) {
-        sql.SET("creator = #{record.creator,jdbcType=BIGINT}");
-      }
+        if (record.getCreator() != null) {
+            sql.SET("creator = #{record.creator,jdbcType=BIGINT}");
+        }
 
-      if (record.getUpdater() != null) {
-        sql.SET("updater = #{record.updater,jdbcType=BIGINT}");
-      }
+        if (record.getUpdater() != null) {
+            sql.SET("updater = #{record.updater,jdbcType=BIGINT}");
+        }
 
-      if (record.getCreateTime() != null) {
-        sql.SET("create_time = #{record.createTime,jdbcType=TIMESTAMP}");
-      }
+        if (record.getCreateTime() != null) {
+            sql.SET("create_time = #{record.createTime,jdbcType=TIMESTAMP}");
+        }
 
-      if (record.getUpdateTime() != null) {
-        sql.SET("update_time = #{record.updateTime,jdbcType=TIMESTAMP}");
-      }
+        if (record.getUpdateTime() != null) {
+            sql.SET("update_time = #{record.updateTime,jdbcType=TIMESTAMP}");
+        }
 
-      if (record.getRemark() != null) {
+        if (record.getRemark() != null) {
             sql.SET("remark = #{record.remark,jdbcType=VARCHAR}");
+        }
+
+        if (record.getIsDeleted() != null) {
+            sql.SET("is_deleted = #{record.isDeleted,jdbcType=TINYINT}");
         }
 
         applyWhere(sql, example, true);
@@ -137,23 +146,24 @@ public class CategoryDOSqlProvider {
     }
 
     public String updateByExample(Map<String, Object> parameter) {
-      SQL sql = new SQL();
-      sql.UPDATE("category");
+        SQL sql = new SQL();
+        sql.UPDATE("category");
 
-      sql.SET("id = #{record.id,jdbcType=BIGINT}");
-      sql.SET("name = #{record.name,jdbcType=VARCHAR}");
-      sql.SET("icon = #{record.icon,jdbcType=VARCHAR}");
-      sql.SET("is_custom = #{record.isCustom,jdbcType=TINYINT}");
-      sql.SET("type = #{record.type,jdbcType=TINYINT}");
-      sql.SET("creator = #{record.creator,jdbcType=BIGINT}");
-      sql.SET("updater = #{record.updater,jdbcType=BIGINT}");
-      sql.SET("create_time = #{record.createTime,jdbcType=TIMESTAMP}");
-      sql.SET("update_time = #{record.updateTime,jdbcType=TIMESTAMP}");
-      sql.SET("remark = #{record.remark,jdbcType=VARCHAR}");
+        sql.SET("id = #{record.id,jdbcType=BIGINT}");
+        sql.SET("name = #{record.name,jdbcType=VARCHAR}");
+        sql.SET("icon = #{record.icon,jdbcType=VARCHAR}");
+        sql.SET("is_custom = #{record.isCustom,jdbcType=TINYINT}");
+        sql.SET("type = #{record.type,jdbcType=TINYINT}");
+        sql.SET("creator = #{record.creator,jdbcType=BIGINT}");
+        sql.SET("updater = #{record.updater,jdbcType=BIGINT}");
+        sql.SET("create_time = #{record.createTime,jdbcType=TIMESTAMP}");
+        sql.SET("update_time = #{record.updateTime,jdbcType=TIMESTAMP}");
+        sql.SET("remark = #{record.remark,jdbcType=VARCHAR}");
+        sql.SET("is_deleted = #{record.isDeleted,jdbcType=TINYINT}");
 
-      CategoryDOExample example = (CategoryDOExample) parameter.get("example");
-      applyWhere(sql, example, true);
-      return sql.toString();
+        CategoryDOExample example = (CategoryDOExample) parameter.get("example");
+        applyWhere(sql, example, true);
+        return sql.toString();
     }
 
     public String updateByPrimaryKeySelective(CategoryDO record) {
@@ -168,32 +178,36 @@ public class CategoryDOSqlProvider {
             sql.SET("icon = #{icon,jdbcType=VARCHAR}");
         }
 
-      if (record.getIsCustom() != null) {
-        sql.SET("is_custom = #{isCustom,jdbcType=TINYINT}");
-      }
+        if (record.getIsCustom() != null) {
+            sql.SET("is_custom = #{isCustom,jdbcType=TINYINT}");
+        }
 
-      if (record.getType() != null) {
-        sql.SET("type = #{type,jdbcType=TINYINT}");
-      }
+        if (record.getType() != null) {
+            sql.SET("type = #{type,jdbcType=TINYINT}");
+        }
 
-      if (record.getCreator() != null) {
-        sql.SET("creator = #{creator,jdbcType=BIGINT}");
-      }
+        if (record.getCreator() != null) {
+            sql.SET("creator = #{creator,jdbcType=BIGINT}");
+        }
 
-      if (record.getUpdater() != null) {
-        sql.SET("updater = #{updater,jdbcType=BIGINT}");
-      }
+        if (record.getUpdater() != null) {
+            sql.SET("updater = #{updater,jdbcType=BIGINT}");
+        }
 
-      if (record.getCreateTime() != null) {
-        sql.SET("create_time = #{createTime,jdbcType=TIMESTAMP}");
-      }
+        if (record.getCreateTime() != null) {
+            sql.SET("create_time = #{createTime,jdbcType=TIMESTAMP}");
+        }
 
-      if (record.getUpdateTime() != null) {
-        sql.SET("update_time = #{updateTime,jdbcType=TIMESTAMP}");
-      }
+        if (record.getUpdateTime() != null) {
+            sql.SET("update_time = #{updateTime,jdbcType=TIMESTAMP}");
+        }
 
-      if (record.getRemark() != null) {
+        if (record.getRemark() != null) {
             sql.SET("remark = #{remark,jdbcType=VARCHAR}");
+        }
+
+        if (record.getIsDeleted() != null) {
+            sql.SET("is_deleted = #{isDeleted,jdbcType=TINYINT}");
         }
 
         sql.WHERE("id = #{id,jdbcType=BIGINT}");

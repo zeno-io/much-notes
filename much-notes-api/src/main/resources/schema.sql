@@ -22,6 +22,23 @@ CREATE TABLE `note_user`
 ) ENGINE = InnoDB
   DEFAULT CHARSET = utf8mb4 COMMENT ='管理员认证信息';
 
+CREATE TABLE `note_user_rel`
+(
+    `id`          bigint           NOT NULL AUTO_INCREMENT,
+    `uid`         bigint                    DEFAULT NULL COMMENT '用户 ID',
+    `that_uid`    bigint                    DEFAULT NULL COMMENT '关联用户 ID',
+    `rel_type`    tinyint unsigned NOT NULL DEFAULT '0' COMMENT '关系类型：0-家庭； ',
+    `creator`     bigint COMMENT '创建人员用户 ID',
+    `updater`     bigint COMMENT '更新人员用户 ID',
+    `create_time` datetime         NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
+    `update_time` datetime                  DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP COMMENT '更新时间',
+    `remark`      varchar(512)              DEFAULT NULL COMMENT '备注',
+    `is_deleted`  tinyint unsigned NOT NULL DEFAULT '0' COMMENT '是否删除：0-否； 1-是；',
+    PRIMARY KEY (`id`),
+    KEY `union_id` (`uid`)
+) ENGINE = InnoDB
+  DEFAULT CHARSET = utf8mb4 COMMENT ='用户关系';
+
 CREATE TABLE `category`
 (
     `id`          bigint           NOT NULL AUTO_INCREMENT,
@@ -34,6 +51,7 @@ CREATE TABLE `category`
     `create_time` datetime         NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
     `update_time` datetime                  DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP COMMENT '更新时间',
     `remark`      varchar(512)              DEFAULT NULL COMMENT '备注',
+    `is_deleted`  tinyint unsigned NOT NULL DEFAULT '0' COMMENT '是否删除：0-否； 1-是；',
     PRIMARY KEY (`id`)
 ) ENGINE = InnoDB
   DEFAULT CHARSET = utf8mb4;
@@ -68,15 +86,16 @@ CREATE TABLE `user_account_info`
 
 CREATE TABLE `user_account_book`
 (
-    `id`          bigint   NOT NULL AUTO_INCREMENT,
-    `uid`         bigint            DEFAULT NULL COMMENT '用户 ID',
-    `name`        varchar(255)      DEFAULT NULL COMMENT '名称',
-    `type`        tinyint  NOT NULL DEFAULT '0' COMMENT '账单的用户类型：0-流水账单； 5-AA账单；',
+    `id`          bigint           NOT NULL AUTO_INCREMENT,
+    `uid`         bigint                    DEFAULT NULL COMMENT '用户 ID',
+    `name`        varchar(255)              DEFAULT NULL COMMENT '名称',
+    `type`        tinyint          NOT NULL DEFAULT '0' COMMENT '账单的用户类型：0-流水账单； 5-AA账单；',
     `creator`     bigint COMMENT '创建人员用户 ID',
     `updater`     bigint COMMENT '更新人员用户 ID',
-    `create_time` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
-    `update_time` datetime          DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP COMMENT '更新时间',
-    `remark`      varchar(512)      DEFAULT NULL COMMENT '备注',
+    `create_time` datetime         NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
+    `update_time` datetime                  DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP COMMENT '更新时间',
+    `remark`      varchar(512)              DEFAULT NULL COMMENT '备注',
+    `is_deleted`  tinyint unsigned NOT NULL DEFAULT '0' COMMENT '是否删除：0-否； 1-是；',
     PRIMARY KEY (`id`),
     KEY `uid` (`uid`)
 ) ENGINE = InnoDB
@@ -127,15 +146,36 @@ CREATE TABLE `user_account_record`
 
 CREATE TABLE `user_account_book_category`
 (
-    `id`          bigint   NOT NULL AUTO_INCREMENT,
-    `uid`         bigint   NOT NULL,
-    `gid`         bigint   NOT NULL,
-    `cid`         bigint   NOT NULL COMMENT '分类 ID',
+    `id`          bigint           NOT NULL AUTO_INCREMENT,
+    `uid`         bigint           NOT NULL,
+    `gid`         bigint           NOT NULL,
+    `cid`         bigint           NOT NULL COMMENT '分类 ID',
     `creator`     bigint COMMENT '创建人员用户 ID',
     `updater`     bigint COMMENT '更新人员用户 ID',
-    `create_time` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
-    `update_time` datetime          DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP COMMENT '更新时间',
-    `remark`      varchar(512)      DEFAULT NULL COMMENT '备注',
+    `create_time` datetime         NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
+    `update_time` datetime                  DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP COMMENT '更新时间',
+    `remark`      varchar(512)              DEFAULT NULL COMMENT '备注',
+    `is_deleted`  tinyint unsigned NOT NULL DEFAULT '0' COMMENT '是否删除：0-否； 1-是；',
     PRIMARY KEY (`id`)
 ) ENGINE = InnoDB
   DEFAULT CHARSET = utf8mb4 COMMENT ='这个表是用户ID、账单ID、分类ID的关联表，用来处理不同用户对于不同账单的建立不同分类的需求';
+
+# CREATE TABLE `note_user_rel`
+# (
+#     `id`          bigint           NOT NULL AUTO_INCREMENT,
+#     `uid`         bigint                    DEFAULT NULL COMMENT '用户 ID',
+#     `that_uid`    bigint                    DEFAULT NULL COMMENT '关联用户 ID',
+#     `rel_type`    tinyint unsigned NOT NULL DEFAULT '0' COMMENT '关系类型：0-家庭； ',
+#     `creator`     bigint COMMENT '创建人员用户 ID',
+#     `updater`     bigint COMMENT '更新人员用户 ID',
+#     `create_time` datetime         NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
+#     `update_time` datetime                  DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP COMMENT '更新时间',
+#     `remark`      varchar(512)              DEFAULT NULL COMMENT '备注',
+#     `is_deleted`  tinyint unsigned NOT NULL DEFAULT '0' COMMENT '是否删除：0-否； 1-是；',
+#     PRIMARY KEY (`id`),
+#     KEY `union_id` (`uid`)
+# ) ENGINE = InnoDB
+#   DEFAULT CHARSET = utf8mb4 COMMENT ='用户关系';
+# alter table `category` add column     `is_deleted`      tinyint unsigned NOT NULL DEFAULT '0' COMMENT '是否删除：0-否； 1-是；';
+# alter table `user_account_book` add column     `is_deleted`      tinyint unsigned NOT NULL DEFAULT '0' COMMENT '是否删除：0-否； 1-是；';
+# alter table `user_account_book_category` add column     `is_deleted`      tinyint unsigned NOT NULL DEFAULT '0' COMMENT '是否删除：0-否； 1-是；';

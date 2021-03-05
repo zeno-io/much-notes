@@ -47,10 +47,10 @@
 
     <!--数据库链接地址账号密码-->
     <jdbcConnection driverClass="com.mysql.jdbc.Driver"
-      connectionURL="jdbc:mysql://localhost:3306/much_notes?serverTimezone=Asia/Shanghai"
+      connectionURL="jdbc:mysql://127.0.0.1:3306/much_notes?useSSL=false&amp;useUnicode=true&amp;characterEncoding=utf8&amp;allowPublicKeyRetrieval=true&amp;serverTimezone=Asia/Shanghai"
       userId="root" password="root123">
       <!--高版本的 mysql-connector-java 需要设置 nullCatalogMeansCurrent=true-->
-      <!--      <property name="nullCatalogMeansCurrent" value="true"/>-->
+      <property name="nullCatalogMeansCurrent" value="true"/>
     </jdbcConnection>
 
     <javaTypeResolver>
@@ -78,62 +78,60 @@
     </javaClientGenerator>
 
     <!--生成对应表及类名-->
-    <table tableName="note_user" domainObjectName="NoteUserDO"
+    <table tableName="category" domainObjectName="CategoryDO"
+      enableDeleteByPrimaryKey="false" enableCountByExample="true" enableUpdateByExample="true"
+      enableDeleteByExample="false"
+      enableSelectByExample="true" selectByExampleQueryId="true">
+      <generatedKey column="id" sqlStatement="Mysql" identity="true"/>
+    </table>
+    <!--<table tableName="note_user" domainObjectName="NoteUserDO"
       enableDeleteByPrimaryKey="false"
       enableCountByExample="true" enableUpdateByExample="true" enableDeleteByExample="false"
       enableSelectByExample="true" selectByExampleQueryId="true">
-      <!-- http://mybatis.org/generator/configreference/generatedKey.html -->
       <generatedKey column="id" sqlStatement="Mysql" identity="true"/>
     </table>
     <table tableName="category" domainObjectName="CategoryDO"
       enableDeleteByPrimaryKey="false" enableCountByExample="true" enableUpdateByExample="true"
       enableDeleteByExample="false"
       enableSelectByExample="true" selectByExampleQueryId="true">
-      <!-- http://mybatis.org/generator/configreference/generatedKey.html -->
       <generatedKey column="id" sqlStatement="Mysql" identity="true"/>
     </table>
     <table tableName="account_type" domainObjectName="AccountTypeDO"
       enableDeleteByPrimaryKey="false" enableCountByExample="true" enableUpdateByExample="true"
       enableDeleteByExample="false"
       enableSelectByExample="true" selectByExampleQueryId="true">
-      <!-- http://mybatis.org/generator/configreference/generatedKey.html -->
       <generatedKey column="id" sqlStatement="Mysql" identity="true"/>
     </table>
     <table tableName="user_account_info" domainObjectName="UserAccountInfoDO"
       enableDeleteByPrimaryKey="false" enableCountByExample="true" enableUpdateByExample="true"
       enableDeleteByExample="false"
       enableSelectByExample="true" selectByExampleQueryId="true">
-      <!-- http://mybatis.org/generator/configreference/generatedKey.html -->
       <generatedKey column="id" sqlStatement="Mysql" identity="true"/>
     </table>
     <table tableName="user_account_book" domainObjectName="UserAccountBookDO"
       enableDeleteByPrimaryKey="false" enableCountByExample="true" enableUpdateByExample="true"
       enableDeleteByExample="false"
       enableSelectByExample="true" selectByExampleQueryId="true">
-      <!-- http://mybatis.org/generator/configreference/generatedKey.html -->
       <generatedKey column="id" sqlStatement="Mysql" identity="true"/>
     </table>
     <table tableName="user_account_book_auth" domainObjectName="UserAccountBookAuthDO"
       enableDeleteByPrimaryKey="false" enableCountByExample="true" enableUpdateByExample="true"
       enableDeleteByExample="false"
       enableSelectByExample="true" selectByExampleQueryId="true">
-      <!-- http://mybatis.org/generator/configreference/generatedKey.html -->
       <generatedKey column="id" sqlStatement="Mysql" identity="true"/>
     </table>
     <table tableName="user_account_record" domainObjectName="UserAccountRecordDO"
       enableDeleteByPrimaryKey="false" enableCountByExample="true" enableUpdateByExample="true"
       enableDeleteByExample="false"
       enableSelectByExample="true" selectByExampleQueryId="true">
-      <!-- http://mybatis.org/generator/configreference/generatedKey.html -->
       <generatedKey column="id" sqlStatement="Mysql" identity="true"/>
     </table>
     <table tableName="user_account_book_category" domainObjectName="UserAccountBookCategoryDO"
       enableDeleteByPrimaryKey="false" enableCountByExample="true" enableUpdateByExample="true"
       enableDeleteByExample="false"
       enableSelectByExample="true" selectByExampleQueryId="true">
-      <!-- http://mybatis.org/generator/configreference/generatedKey.html -->
       <generatedKey column="id" sqlStatement="Mysql" identity="true"/>
-    </table>
+    </table>-->
 
   </context>
 

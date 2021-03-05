@@ -24,58 +24,63 @@ public class UserAccountBookCategoryDOSqlProvider {
             sql.VALUES("uid", "#{uid,jdbcType=BIGINT}");
         }
 
-      if (record.getGid() != null) {
-        sql.VALUES("gid", "#{gid,jdbcType=BIGINT}");
-      }
+        if (record.getGid() != null) {
+            sql.VALUES("gid", "#{gid,jdbcType=BIGINT}");
+        }
 
-      if (record.getCid() != null) {
-        sql.VALUES("cid", "#{cid,jdbcType=BIGINT}");
-      }
+        if (record.getCid() != null) {
+            sql.VALUES("cid", "#{cid,jdbcType=BIGINT}");
+        }
 
-      if (record.getCreator() != null) {
-        sql.VALUES("creator", "#{creator,jdbcType=BIGINT}");
-      }
+        if (record.getCreator() != null) {
+            sql.VALUES("creator", "#{creator,jdbcType=BIGINT}");
+        }
 
-      if (record.getUpdater() != null) {
-        sql.VALUES("updater", "#{updater,jdbcType=BIGINT}");
-      }
+        if (record.getUpdater() != null) {
+            sql.VALUES("updater", "#{updater,jdbcType=BIGINT}");
+        }
 
-      if (record.getCreateTime() != null) {
-        sql.VALUES("create_time", "#{createTime,jdbcType=TIMESTAMP}");
-      }
+        if (record.getCreateTime() != null) {
+            sql.VALUES("create_time", "#{createTime,jdbcType=TIMESTAMP}");
+        }
 
-      if (record.getUpdateTime() != null) {
-        sql.VALUES("update_time", "#{updateTime,jdbcType=TIMESTAMP}");
-      }
+        if (record.getUpdateTime() != null) {
+            sql.VALUES("update_time", "#{updateTime,jdbcType=TIMESTAMP}");
+        }
 
-      if (record.getRemark() != null) {
+        if (record.getRemark() != null) {
             sql.VALUES("remark", "#{remark,jdbcType=VARCHAR}");
+        }
+
+        if (record.getIsDeleted() != null) {
+            sql.VALUES("is_deleted", "#{isDeleted,jdbcType=TINYINT}");
         }
 
         return sql.toString();
     }
 
     public String selectByExample(UserAccountBookCategoryDOExample example) {
-      SQL sql = new SQL();
-      if (example != null && example.isDistinct()) {
-        sql.SELECT_DISTINCT("id");
-      } else {
-        sql.SELECT("id");
-      }
-      sql.SELECT("uid");
-      sql.SELECT("gid");
-      sql.SELECT("cid");
-      sql.SELECT("creator");
-      sql.SELECT("updater");
-      sql.SELECT("create_time");
-      sql.SELECT("update_time");
-      sql.SELECT("remark");
-      sql.FROM("user_account_book_category");
-      applyWhere(sql, example, false);
+        SQL sql = new SQL();
+        if (example != null && example.isDistinct()) {
+            sql.SELECT_DISTINCT("id");
+        } else {
+            sql.SELECT("id");
+        }
+        sql.SELECT("uid");
+        sql.SELECT("gid");
+        sql.SELECT("cid");
+        sql.SELECT("creator");
+        sql.SELECT("updater");
+        sql.SELECT("create_time");
+        sql.SELECT("update_time");
+        sql.SELECT("remark");
+        sql.SELECT("is_deleted");
+        sql.FROM("user_account_book_category");
+        applyWhere(sql, example, false);
 
-      if (example != null && example.getOrderByClause() != null) {
-        sql.ORDER_BY(example.getOrderByClause());
-      }
+        if (example != null && example.getOrderByClause() != null) {
+            sql.ORDER_BY(example.getOrderByClause());
+        }
 
         return sql.toString();
     }
@@ -95,32 +100,36 @@ public class UserAccountBookCategoryDOSqlProvider {
             sql.SET("uid = #{record.uid,jdbcType=BIGINT}");
         }
 
-      if (record.getGid() != null) {
-        sql.SET("gid = #{record.gid,jdbcType=BIGINT}");
-      }
+        if (record.getGid() != null) {
+            sql.SET("gid = #{record.gid,jdbcType=BIGINT}");
+        }
 
-      if (record.getCid() != null) {
-        sql.SET("cid = #{record.cid,jdbcType=BIGINT}");
-      }
+        if (record.getCid() != null) {
+            sql.SET("cid = #{record.cid,jdbcType=BIGINT}");
+        }
 
-      if (record.getCreator() != null) {
-        sql.SET("creator = #{record.creator,jdbcType=BIGINT}");
-      }
+        if (record.getCreator() != null) {
+            sql.SET("creator = #{record.creator,jdbcType=BIGINT}");
+        }
 
-      if (record.getUpdater() != null) {
-        sql.SET("updater = #{record.updater,jdbcType=BIGINT}");
-      }
+        if (record.getUpdater() != null) {
+            sql.SET("updater = #{record.updater,jdbcType=BIGINT}");
+        }
 
-      if (record.getCreateTime() != null) {
-        sql.SET("create_time = #{record.createTime,jdbcType=TIMESTAMP}");
-      }
+        if (record.getCreateTime() != null) {
+            sql.SET("create_time = #{record.createTime,jdbcType=TIMESTAMP}");
+        }
 
-      if (record.getUpdateTime() != null) {
-        sql.SET("update_time = #{record.updateTime,jdbcType=TIMESTAMP}");
-      }
+        if (record.getUpdateTime() != null) {
+            sql.SET("update_time = #{record.updateTime,jdbcType=TIMESTAMP}");
+        }
 
-      if (record.getRemark() != null) {
+        if (record.getRemark() != null) {
             sql.SET("remark = #{record.remark,jdbcType=VARCHAR}");
+        }
+
+        if (record.getIsDeleted() != null) {
+            sql.SET("is_deleted = #{record.isDeleted,jdbcType=TINYINT}");
         }
 
         applyWhere(sql, example, true);
@@ -128,23 +137,23 @@ public class UserAccountBookCategoryDOSqlProvider {
     }
 
     public String updateByExample(Map<String, Object> parameter) {
-      SQL sql = new SQL();
-      sql.UPDATE("user_account_book_category");
+        SQL sql = new SQL();
+        sql.UPDATE("user_account_book_category");
 
-      sql.SET("id = #{record.id,jdbcType=BIGINT}");
-      sql.SET("uid = #{record.uid,jdbcType=BIGINT}");
-      sql.SET("gid = #{record.gid,jdbcType=BIGINT}");
-      sql.SET("cid = #{record.cid,jdbcType=BIGINT}");
-      sql.SET("creator = #{record.creator,jdbcType=BIGINT}");
-      sql.SET("updater = #{record.updater,jdbcType=BIGINT}");
-      sql.SET("create_time = #{record.createTime,jdbcType=TIMESTAMP}");
-      sql.SET("update_time = #{record.updateTime,jdbcType=TIMESTAMP}");
-      sql.SET("remark = #{record.remark,jdbcType=VARCHAR}");
+        sql.SET("id = #{record.id,jdbcType=BIGINT}");
+        sql.SET("uid = #{record.uid,jdbcType=BIGINT}");
+        sql.SET("gid = #{record.gid,jdbcType=BIGINT}");
+        sql.SET("cid = #{record.cid,jdbcType=BIGINT}");
+        sql.SET("creator = #{record.creator,jdbcType=BIGINT}");
+        sql.SET("updater = #{record.updater,jdbcType=BIGINT}");
+        sql.SET("create_time = #{record.createTime,jdbcType=TIMESTAMP}");
+        sql.SET("update_time = #{record.updateTime,jdbcType=TIMESTAMP}");
+        sql.SET("remark = #{record.remark,jdbcType=VARCHAR}");
+        sql.SET("is_deleted = #{record.isDeleted,jdbcType=TINYINT}");
 
-      UserAccountBookCategoryDOExample example = (UserAccountBookCategoryDOExample) parameter
-        .get("example");
-      applyWhere(sql, example, true);
-      return sql.toString();
+        UserAccountBookCategoryDOExample example = (UserAccountBookCategoryDOExample) parameter.get("example");
+        applyWhere(sql, example, true);
+        return sql.toString();
     }
 
     public String updateByPrimaryKeySelective(UserAccountBookCategoryDO record) {
@@ -155,32 +164,36 @@ public class UserAccountBookCategoryDOSqlProvider {
             sql.SET("uid = #{uid,jdbcType=BIGINT}");
         }
 
-      if (record.getGid() != null) {
-        sql.SET("gid = #{gid,jdbcType=BIGINT}");
-      }
+        if (record.getGid() != null) {
+            sql.SET("gid = #{gid,jdbcType=BIGINT}");
+        }
 
-      if (record.getCid() != null) {
-        sql.SET("cid = #{cid,jdbcType=BIGINT}");
-      }
+        if (record.getCid() != null) {
+            sql.SET("cid = #{cid,jdbcType=BIGINT}");
+        }
 
-      if (record.getCreator() != null) {
-        sql.SET("creator = #{creator,jdbcType=BIGINT}");
-      }
+        if (record.getCreator() != null) {
+            sql.SET("creator = #{creator,jdbcType=BIGINT}");
+        }
 
-      if (record.getUpdater() != null) {
-        sql.SET("updater = #{updater,jdbcType=BIGINT}");
-      }
+        if (record.getUpdater() != null) {
+            sql.SET("updater = #{updater,jdbcType=BIGINT}");
+        }
 
-      if (record.getCreateTime() != null) {
-        sql.SET("create_time = #{createTime,jdbcType=TIMESTAMP}");
-      }
+        if (record.getCreateTime() != null) {
+            sql.SET("create_time = #{createTime,jdbcType=TIMESTAMP}");
+        }
 
-      if (record.getUpdateTime() != null) {
-        sql.SET("update_time = #{updateTime,jdbcType=TIMESTAMP}");
-      }
+        if (record.getUpdateTime() != null) {
+            sql.SET("update_time = #{updateTime,jdbcType=TIMESTAMP}");
+        }
 
-      if (record.getRemark() != null) {
+        if (record.getRemark() != null) {
             sql.SET("remark = #{remark,jdbcType=VARCHAR}");
+        }
+
+        if (record.getIsDeleted() != null) {
+            sql.SET("is_deleted = #{isDeleted,jdbcType=TINYINT}");
         }
 
         sql.WHERE("id = #{id,jdbcType=BIGINT}");

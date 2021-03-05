@@ -6,14 +6,18 @@ import org.apache.commons.collections4.CollectionUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import xyz.flysium.constant.enums.IsOrNot;
 import xyz.flysium.constant.enums.UserStatus;
 import xyz.flysium.dao.entity.AccountTypeDO;
 import xyz.flysium.dao.entity.AccountTypeDOExample;
 import xyz.flysium.dao.entity.NoteUserDO;
 import xyz.flysium.dao.entity.NoteUserDOExample;
+import xyz.flysium.dao.entity.NoteUserRelationshipDO;
+import xyz.flysium.dao.entity.NoteUserRelationshipDOExample;
 import xyz.flysium.dao.entity.UserAccountInfoDO;
 import xyz.flysium.dao.repository.AccountTypeDOMapper;
 import xyz.flysium.dao.repository.NoteUserDOMapper;
+import xyz.flysium.dao.repository.NoteUserRelationshipDOMapper;
 import xyz.flysium.dao.repository.UserAccountInfoDOMapper;
 import xyz.flysium.support.mybatis.QuerySupport;
 
@@ -27,6 +31,8 @@ public class UserService {
 
   @Autowired
   private NoteUserDOMapper userMapper;
+  @Autowired
+  private NoteUserRelationshipDOMapper userRelationshipDOMapper;
   @Autowired
   private AccountTypeDOMapper accountTypeMapper;
   @Autowired
@@ -102,6 +108,15 @@ public class UserService {
     }
 
     return user;
+  }
+
+  public List<NoteUserRelationshipDO> getUserRelationshipByUid(Long uid) {
+    Objects.requireNonNull(uid);
+    NoteUserRelationshipDOExample example = new NoteUserRelationshipDOExample();
+    example.createCriteria()
+      .andUidEqualTo(uid)
+      .andIsDeletedEqualTo(IsOrNot.False.getKeyByte());
+    return userRelationshipDOMapper.selectByExample(example);
   }
 
 }

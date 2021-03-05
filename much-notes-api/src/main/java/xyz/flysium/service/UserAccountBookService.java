@@ -45,6 +45,7 @@ public class UserAccountBookService {
     userAccountBook.setType(AccountBookType.NORMAL.getKeyByte());
     userAccountBook.setUid(uid);
     userAccountBook.setCreator(uid);
+    userAccountBook.setIsDeleted(IsOrNot.False.getKeyByte());
     userAccountBookMapper.insertSelective(userAccountBook);
 
     UserAccountBookAuthDO userAccountBookAuth = new UserAccountBookAuthDO();
@@ -139,8 +140,15 @@ public class UserAccountBookService {
    */
   public UserAccountBookDO getAccountBookById(Long accountBookId) {
     Objects.requireNonNull(accountBookId);
-
-    return userAccountBookMapper.selectByPrimaryKey(accountBookId);
+    UserAccountBookDOExample bookExample = new UserAccountBookDOExample();
+    bookExample.createCriteria()
+      .andIdEqualTo(accountBookId)
+      .andIsDeletedEqualTo(IsOrNot.False.getKeyByte());
+    List<UserAccountBookDO> list = userAccountBookMapper.selectByExample(bookExample);
+    if (CollectionUtils.isEmpty(list)) {
+      return null;
+    }
+    return list.get(0);
   }
 
   /**
@@ -176,7 +184,8 @@ public class UserAccountBookService {
     UserAccountBookDOExample bookExample = new UserAccountBookDOExample();
     bookExample.createCriteria()
       .andIdIn(userAccountBookAuths.stream().map(UserAccountBookAuthDO::getAccountBookId)
-        .collect(Collectors.toList()));
+        .collect(Collectors.toList()))
+      .andIsDeletedEqualTo(IsOrNot.False.getKeyByte());
     bookExample.setOrderByClause(" update_time DESC ");
     return QuerySupport.queryAll((rowBounds -> {
       return userAccountBookMapper.selectByExampleWithRowbounds(bookExample, rowBounds);

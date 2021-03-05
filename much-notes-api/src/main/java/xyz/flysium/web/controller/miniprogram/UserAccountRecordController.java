@@ -159,11 +159,13 @@ public class UserAccountRecordController {
     }
     UserAccountBookDO book = userAccountBookService
       .getAccountBookById(record.getAccountBookId());
+    if (book == null) {
+      return ResultResponse.fail("账本不存在或已被删除");
+    }
     CategoryDO category = categoryService.getCategoryById(record.getCategoryId());
-
     UserAccountRecordDTO dto = dozerBeanMapper.map(record, UserAccountRecordDTO.class);
     dto.setAccountBookName(book.getName());
-    dto.setCategory(dozerBeanMapper.map(category, CategoryDTO.class));
+    dto.setCategory((category == null) ? null : dozerBeanMapper.map(category, CategoryDTO.class));
     if (record.getCreator() != null) {
       NoteUserDO user = userService.getUnFilterUserById(record.getCreator());
       if (user != null) {

@@ -3,33 +3,33 @@ package xyz.flysium.dao.repository;
 import java.util.List;
 import java.util.Map;
 import org.apache.ibatis.jdbc.SQL;
-import xyz.flysium.dao.entity.UserAccountBookDO;
-import xyz.flysium.dao.entity.UserAccountBookDOExample;
-import xyz.flysium.dao.entity.UserAccountBookDOExample.Criteria;
-import xyz.flysium.dao.entity.UserAccountBookDOExample.Criterion;
+import xyz.flysium.dao.entity.NoteUserRelationshipDO;
+import xyz.flysium.dao.entity.NoteUserRelationshipDOExample;
+import xyz.flysium.dao.entity.NoteUserRelationshipDOExample.Criteria;
+import xyz.flysium.dao.entity.NoteUserRelationshipDOExample.Criterion;
 
-public class UserAccountBookDOSqlProvider {
-    public String countByExample(UserAccountBookDOExample example) {
+public class NoteUserRelationshipDOSqlProvider {
+    public String countByExample(NoteUserRelationshipDOExample example) {
         SQL sql = new SQL();
-        sql.SELECT("count(*)").FROM("user_account_book");
+        sql.SELECT("count(*)").FROM("note_user_rel");
         applyWhere(sql, example, false);
         return sql.toString();
     }
 
-    public String insertSelective(UserAccountBookDO record) {
+    public String insertSelective(NoteUserRelationshipDO record) {
         SQL sql = new SQL();
-        sql.INSERT_INTO("user_account_book");
+        sql.INSERT_INTO("note_user_rel");
 
         if (record.getUid() != null) {
             sql.VALUES("uid", "#{uid,jdbcType=BIGINT}");
         }
 
-        if (record.getName() != null) {
-            sql.VALUES("name", "#{name,jdbcType=VARCHAR}");
+        if (record.getThatUid() != null) {
+            sql.VALUES("that_uid", "#{thatUid,jdbcType=BIGINT}");
         }
 
-        if (record.getType() != null) {
-            sql.VALUES("type", "#{type,jdbcType=TINYINT}");
+        if (record.getRelType() != null) {
+            sql.VALUES("rel_type", "#{relType,jdbcType=TINYINT}");
         }
 
         if (record.getCreator() != null) {
@@ -59,7 +59,7 @@ public class UserAccountBookDOSqlProvider {
         return sql.toString();
     }
 
-    public String selectByExample(UserAccountBookDOExample example) {
+    public String selectByExample(NoteUserRelationshipDOExample example) {
         SQL sql = new SQL();
         if (example != null && example.isDistinct()) {
             sql.SELECT_DISTINCT("id");
@@ -67,15 +67,15 @@ public class UserAccountBookDOSqlProvider {
             sql.SELECT("id");
         }
         sql.SELECT("uid");
-        sql.SELECT("name");
-        sql.SELECT("type");
+        sql.SELECT("that_uid");
+        sql.SELECT("rel_type");
         sql.SELECT("creator");
         sql.SELECT("updater");
         sql.SELECT("create_time");
         sql.SELECT("update_time");
         sql.SELECT("remark");
         sql.SELECT("is_deleted");
-        sql.FROM("user_account_book");
+        sql.FROM("note_user_rel");
         applyWhere(sql, example, false);
 
         if (example != null && example.getOrderByClause() != null) {
@@ -86,11 +86,11 @@ public class UserAccountBookDOSqlProvider {
     }
 
     public String updateByExampleSelective(Map<String, Object> parameter) {
-        UserAccountBookDO record = (UserAccountBookDO) parameter.get("record");
-        UserAccountBookDOExample example = (UserAccountBookDOExample) parameter.get("example");
+        NoteUserRelationshipDO record = (NoteUserRelationshipDO) parameter.get("record");
+        NoteUserRelationshipDOExample example = (NoteUserRelationshipDOExample) parameter.get("example");
 
         SQL sql = new SQL();
-        sql.UPDATE("user_account_book");
+        sql.UPDATE("note_user_rel");
 
         if (record.getId() != null) {
             sql.SET("id = #{record.id,jdbcType=BIGINT}");
@@ -100,12 +100,12 @@ public class UserAccountBookDOSqlProvider {
             sql.SET("uid = #{record.uid,jdbcType=BIGINT}");
         }
 
-        if (record.getName() != null) {
-            sql.SET("name = #{record.name,jdbcType=VARCHAR}");
+        if (record.getThatUid() != null) {
+            sql.SET("that_uid = #{record.thatUid,jdbcType=BIGINT}");
         }
 
-        if (record.getType() != null) {
-            sql.SET("type = #{record.type,jdbcType=TINYINT}");
+        if (record.getRelType() != null) {
+            sql.SET("rel_type = #{record.relType,jdbcType=TINYINT}");
         }
 
         if (record.getCreator() != null) {
@@ -138,12 +138,12 @@ public class UserAccountBookDOSqlProvider {
 
     public String updateByExample(Map<String, Object> parameter) {
         SQL sql = new SQL();
-        sql.UPDATE("user_account_book");
+        sql.UPDATE("note_user_rel");
 
         sql.SET("id = #{record.id,jdbcType=BIGINT}");
         sql.SET("uid = #{record.uid,jdbcType=BIGINT}");
-        sql.SET("name = #{record.name,jdbcType=VARCHAR}");
-        sql.SET("type = #{record.type,jdbcType=TINYINT}");
+        sql.SET("that_uid = #{record.thatUid,jdbcType=BIGINT}");
+        sql.SET("rel_type = #{record.relType,jdbcType=TINYINT}");
         sql.SET("creator = #{record.creator,jdbcType=BIGINT}");
         sql.SET("updater = #{record.updater,jdbcType=BIGINT}");
         sql.SET("create_time = #{record.createTime,jdbcType=TIMESTAMP}");
@@ -151,25 +151,25 @@ public class UserAccountBookDOSqlProvider {
         sql.SET("remark = #{record.remark,jdbcType=VARCHAR}");
         sql.SET("is_deleted = #{record.isDeleted,jdbcType=TINYINT}");
 
-        UserAccountBookDOExample example = (UserAccountBookDOExample) parameter.get("example");
+        NoteUserRelationshipDOExample example = (NoteUserRelationshipDOExample) parameter.get("example");
         applyWhere(sql, example, true);
         return sql.toString();
     }
 
-    public String updateByPrimaryKeySelective(UserAccountBookDO record) {
+    public String updateByPrimaryKeySelective(NoteUserRelationshipDO record) {
         SQL sql = new SQL();
-        sql.UPDATE("user_account_book");
+        sql.UPDATE("note_user_rel");
 
         if (record.getUid() != null) {
             sql.SET("uid = #{uid,jdbcType=BIGINT}");
         }
 
-        if (record.getName() != null) {
-            sql.SET("name = #{name,jdbcType=VARCHAR}");
+        if (record.getThatUid() != null) {
+            sql.SET("that_uid = #{thatUid,jdbcType=BIGINT}");
         }
 
-        if (record.getType() != null) {
-            sql.SET("type = #{type,jdbcType=TINYINT}");
+        if (record.getRelType() != null) {
+            sql.SET("rel_type = #{relType,jdbcType=TINYINT}");
         }
 
         if (record.getCreator() != null) {
@@ -201,7 +201,7 @@ public class UserAccountBookDOSqlProvider {
         return sql.toString();
     }
 
-    protected void applyWhere(SQL sql, UserAccountBookDOExample example, boolean includeExamplePhrase) {
+    protected void applyWhere(SQL sql, NoteUserRelationshipDOExample example, boolean includeExamplePhrase) {
         if (example == null) {
             return;
         }
