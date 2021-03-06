@@ -5,9 +5,22 @@ logging:
         web: DEBUG
         service: DEBUG
         dao: DEBUG
+    org:
+      springframework:
+        core: DEBUG
+        beans: INFO
+        aop: INFO
+        boot: INFO
+        web: INFO
+        http: INFO
+        jdbc: DEBUG
+        tx: DEBUG
+      mybatis: INFO
     com:
       alibaba:
         druid: DEBUG
+    redis:
+      clients: DEBUG
 
 # server
 server:
