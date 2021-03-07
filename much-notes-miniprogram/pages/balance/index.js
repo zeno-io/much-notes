@@ -16,18 +16,21 @@ Page({
         balance: 0,
         type: 0,
         icon: "../../imgs/account_type_icon/icon_zf_xj.png",
+        show: true,
       },
       {
         name: "支付宝",
         balance: 0,
         type: 1,
         icon: "../../imgs/account_type_icon/icon_zf_zfb.png",
+        show: true,
       },
       {
         name: "微信",
         balance: 0,
         type: 2,
         icon: "../../imgs/account_type_icon/icon_zf_wx.png",
+        show: true,
       }
     ]
 
@@ -61,6 +64,11 @@ Page({
         vm.data.accountList.forEach(v => {
           v.balance = data.result[v.type]
           total += v.balance
+          if (this.data.type == 'family') {
+            v.show = false;
+          } else {
+            v.show = true;
+          }
         });
         vm.setData({
           accountList: vm.data.accountList,

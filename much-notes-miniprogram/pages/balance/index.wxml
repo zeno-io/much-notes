@@ -14,9 +14,8 @@
       </view>
       <view class='item-right-wrap'>
         <view class='item-balance'>￥{{item.balance/100}}</view>
-        <image mode='widthFix' class='item-img-arrow' src='../../imgs/icon_arrow.png'></image>
+        <view wx:if="{{item.show}}"><image mode='widthFix' class='item-img-arrow' src='../../imgs/icon_arrow.png'></image></view>
       </view>
-
     </view>
   </view>
 </view>
