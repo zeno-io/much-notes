@@ -39,11 +39,15 @@ Page({
       })
     }
   },
-  toZc(){
+  toPersonalBalance() {
     wx.navigateTo({
       url: '../balance/index',
     })
+  },
+  toFamilyBalance() {
+    wx.navigateTo({
+      url: '../balance/index?type=family',
+    })
   }
-
 
 })

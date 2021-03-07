@@ -63,7 +63,7 @@
   align-items: center;
 }
 .total-zc{
-  margin-top: 2vh;
+  /* margin-top: 2vh; */
   font-size: 5vw;
   color: white;
 }
@@ -201,7 +201,7 @@
   display: flex;
   font-size: 3vw;
 }
-.day-info-zc{
+.day-info-sr{
   margin-left: 2vw;
 }
 

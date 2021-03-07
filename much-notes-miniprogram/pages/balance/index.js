@@ -7,7 +7,8 @@ Page({
    * 页面的初始数据
    */
   data: {
-    total:0,
+    total: 0,
+    type: 'personal',
     accountList: [
       // 3不选帐户 2微信  1支付宝 0现金
       {
@@ -36,7 +37,10 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-
+    let type = options.type;
+    if (type != undefined && type != null) {
+      this.data.type = type;
+    }
   },
 
   /**
@@ -45,9 +49,13 @@ Page({
   onShow: function () {
     this.getData();
   },
-  getData(){
+  getData() {
     let vm = this;
-    c.request('/mp/account/info/getBalance', {}, (succ, data) => {
+    let uri = '/mp/account/info/getBalance';
+    if (this.data.type == 'family') {
+      uri = '/mp/account/info/getFamilyBalance';
+    }
+    c.request(uri, {}, (succ, data) => {
       if (succ) {
         let total = 0;
         vm.data.accountList.forEach(v => {
@@ -61,8 +69,10 @@ Page({
       }
     });
   },
-  toEdit(e){
-
+  toEdit(e) {
+    if (this.data.type == 'family') {
+      return;
+    }
     let index = e.currentTarget.dataset.index;
     let item = this.data.accountList[index];
     wx.navigateTo({

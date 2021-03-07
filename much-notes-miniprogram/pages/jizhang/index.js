@@ -9,7 +9,7 @@ Page({
     abid:'',
     accountBook: {
       name: '',
-      count: ''
+      countInfo: ''
     },
     BackgroundImg: '',
     recordList: [],
@@ -89,8 +89,12 @@ Page({
     c.requestGet('/mp/account/book/getAccountBookById', {
       "id": vm.data.abid
     }, function (success, data) {
+      let accountBook = {
+        name: data.result.name,
+        countInfo: (data.result.count <= 1) ? '' : data.result.count + '人'
+      };
       vm.setData({
-        accountBook: data.result
+        accountBook: accountBook
       });
     });
     c.request('/mp/category/getUnTypeList', {

@@ -6,8 +6,12 @@
     <image mode="widthFix" src="{{avatarUrl}}" class="img-avatarUrl"> </image>
     <view class="nickname">{{nickname}}</view>
   </view>
-  <view class="user-zc" bindtap='toZc'>
+  <view class="user-zc" bindtap='toPersonalBalance'>
     <view>账户资产</view>
+    <image class="icon-arrow" mode="widthFix" src="../../imgs/icon_arrow.png"></image>
+  </view>
+  <view class="user-zc" bindtap='toFamilyBalance'>
+    <view>家庭资产</view>
     <image class="icon-arrow" mode="widthFix" src="../../imgs/icon_arrow.png"></image>
   </view>
   <view class="vip">更多功能请期待</view>
